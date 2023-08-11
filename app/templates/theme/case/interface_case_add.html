@@ -1,0 +1,1188 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}测试用例{% endblock %}
+
+{% block head %}
+
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <!--用例基础信息开始-->
+    <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">接口用例基础信息</div>
+            <div class="panel-body">
+                <div id="" class="form-horizontal">
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_name">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="用例名称，用于描述该用例简单的功能" class="glyphicon glyphicon-question-sign"></label>
+                                用例名称</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txt_case_name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_description">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="用于描述用例的用途" class="glyphicon glyphicon-question-sign"></label>
+                                用例描述</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txt_case_description">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_type">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="描述用例分类，比如一个功能中的多个用例，可以用同一个分类区分" class="glyphicon glyphicon-question-sign"></label>
+                                用例分类</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txt_case_type">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_device">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="复杂场景的用例使用group，简单场景的用例使用common" class="glyphicon glyphicon-question-sign"></label>
+                                用例类型</label>
+                            <div class="col-sm-8">
+                                <select id="sel_run_device" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                    <option value="common">接口</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4 " for="txt_case_wait_time" >
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="该用例在执行前需要等待的时间" class="glyphicon glyphicon-question-sign"></label>
+                                等待时间</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="txt_case_wait_time">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_from_system">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用例所属的系统，比如放款系统，放款系统" class="glyphicon glyphicon-question-sign"></label>
+                                所属系统</label>
+                            <div class="col-sm-8">
+{#                                <input type="text" class="form-control" id="txt_case_from_system">#}
+                                <select id="txt_case_from_system" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                    {% for program in sys_programs %}
+                                    <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label col-sm-4" for="txt_case_from_system">
+                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="手功用例ID" class="glyphicon glyphicon-question-sign"></label>
+                                TAPD_ID</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="case_ref_tapd_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--用例基础信息结束-->
+
+    <!--获取实际值请求开始-->
+    <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">获取实际值请求</div>
+            <div class="panel-body">
+                <div class="panel-group" >
+
+                    <div id="accordion">
+                        <label class="checkbox-inline" >
+                            <input type="radio" name="groupCaseRadios" id="is_case_http_request" value="1" style="margin:5px;padding: 5px;" >http请求
+                            <div class="collapseRow" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ></div>
+                        </label>
+
+                        <label class="checkbox-inline" >
+                            <input type="radio" name="groupCaseRadios" id="is_case_db_reqeust" value="2" style="margin:5px;padding: 5px;">数据库请求
+                            <div class="collapseRow" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" ></div>
+                        </label>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal">
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_request_url">请求URL</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="txt_case_request_url">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_request_method">
+                                        请求方式</label>
+                                    <div class="col-sm-4">
+                                        <select id="sel_request_method" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                            <option>POST</option>
+                                            <option>GET</option>
+                                            <option>DELETE</option>
+                                            <option>PUT</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_request_args">
+                                        请求头信息</label>
+                                    <div class="col-sm-10">
+                                        <div id="sel_request_header"></div>
+                                        <div class="form-group">
+                                            <pre id="result_args" class="fail" style="display: none; color: red;"></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_request_args">
+                                        请求参数</label>
+                                    <div class="col-sm-10">
+                                        <div id="json_case_request_args"></div>
+                                        <div class="form-group">
+                                            <pre id="result_args" class="fail" style="display: none; color: red;"></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_replace">
+                                        <label data-toggle="tooltip" data-html="true" title="<br>替换表达式，用于替换GET请求中querystring 的参数化</br>
+                                                    <br>处理的逻辑如下:</br>
+                                                    <br>1. 通过替换表达式现将值填充到请求参数中</br>
+                                                    <br>2. 将请求参数的字段通过替换用户变量的模式替换api 地址中的querystring 参数</br>
+                                                    eg ：
+                                                       address：http://www.baidu.com?kw=\{\{search_keywords\}\}
+                                                       params:{'search_keywords':''}
+                                                       replace_expression:{'$.main_reponse.data.keywords'
+                                                       :'$.search_keywords'}"
+
+                                               class="glyphicon glyphicon-question-sign"></label>
+                                        替换表达式</label>
+                                    <div class="col-sm-10">
+                                        <div id="json_case_replace"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px;margin-left: 10px;">
+{#                                    <div class="checkbox-custom checkbox-default">#}
+{#                                        <input type="checkbox" onclick="show_mock(1)" id="is_http_mock">#}
+{#                                        <label for="is_http_mock">是否需要mock数据</label>#}
+{#                                    </div>#}
+                                    <div id="collapse_case_http_mock" class="panel-body collapse col-sm-12" style="margin-top: -10px;">
+
+                                        <div class="form-group" style="...">
+                                            <div class ="col-sm-6">
+                                                <label class="control-label col-sm-4"  style="width: 150px;" for="txt_http_mock_name">mock名称</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="txt_http_mock_name">
+                                                </div>
+                                            </div>
+                                            <div class ="col-sm-6">
+                                                <label class="control-label col-sm-4"  style="width: 150px;" for="txt_http_mock_path">mock路径</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="txt_http_mock_path">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_expect">
+                                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'item_no':'201245121450021'}
+                                                   在请求发出去之前会直接用这个字段的值作为结果返回。（支持http请求和DB 请求） "
+                                                       class="glyphicon glyphicon-question-sign"></label>
+                                                MOCK预期值</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_http_mock_expect"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_replace">
+                                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'$.data.asset_item_no':'$.main_request.data.asset.item_no'}
+                                                   在mock 预期值返回之前，先用$.data.asset_item_no 提取全局变量的值，替换mock预期值中$.main_request.data.asset.item_no指定的值 "
+                                                       class="glyphicon glyphicon-question-sign"></label>
+                                                MOCK替换表达式</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_http_mock_replace"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal">
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="填写sql语句，改sql 语句一定是一个select 语句，参数化时使用%s 代替eg：
+                                            select * from asset where asset_item_no =%s and asset_loan_channel =%s
+                                            " class="glyphicon glyphicon-question-sign"></label>
+                                        sql语句</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="txt_case_sql" rows="5" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql_args">
+                                        <label data-toggle="tooltip"  data-html="true" data-placement="bottom" title="填写sql 的参数
+                                            eg：{'task_order_no':'20123112231132','loan_channel':'hengfeng'}
+                                            " class="glyphicon glyphicon-question-sign"></label>
+                                        sql参数</label>
+                                    <div class="col-sm-10">
+                                        <div id="json_case_sql_args"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_sql_replace">
+                                        <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql_args">
+                                            <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用全局变量中的值替换sql 参数
+                                            eg:{'$.data.asset.item_no':'$.task_order_no'}
+                                            " class="glyphicon glyphicon-question-sign"></label>
+                                            sql参数</label>
+                                        替换表达式</label>
+                                    <div class="col-sm-5">
+                                        <div id="json_case_sql_replace"></div>
+                                    </div>
+
+                                    <label class="control-label col-sm-2" for="txt_case_run_sql_device">执行数据库</label>
+                                    <div class="col-sm-3">
+                                       <input type="text" class="form-control" id="sel_run_sql_device" maxlength="100">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px;margin-left: 10px;">
+{#                                    <div class="checkbox-custom checkbox-default">#}
+{#                                        <input type="checkbox" onclick="show_mock(2)" id="is_mock">#}
+{#                                        <label for="is_mock">是否需要mock数据</label>#}
+{#                                    </div>#}
+                                    <div id="collapse_case_mock" class="panel-body collapse col-sm-12" style="margin-top: -10px;">
+                                        <div class="form-group" style="...">
+                                            <div class ="col-sm-6">
+                                                <label class="control-label col-sm-4"  style="width: 150px;"for="txt_sql_mock_name">mock名称</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="txt_sql_mock_name">
+                                                </div>
+                                            </div>
+                                            <div class ="col-sm-6">
+                                                <label class="control-label col-sm-4"  style="width: 150px;"for="txt_sql_mock_path">mock路径</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="txt_sql_mock_path">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_expect">MOCK预期值</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_sql_mock_expect"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_replace">MOCK替换表达式</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_sql_mock_replace"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--获取实际值请求结束-->
+
+    <!--预期值相关开始-->
+    <div style="margin-top: 10px;margin-left: 30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">预期值相关</div>
+            <div class="panel-body">
+                <div id="" class="form-horizontal">
+                    <div class="form-group" >
+                        <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_expect">
+                            <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'$.data.asset_item_no':'201245121450021'}
+                                                   表示需要通过 $.data.asset_item_no jsonpath 从实际返回的值从提取值，与 201245121450021 进行比较   "
+                                   class="glyphicon glyphicon-question-sign"></label>
+                            用例预期值</label>
+                        <div class="col-sm-10">
+                            <div id="json_case_expect"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--预期值相关结束-->
+
+
+    <!--添加前置处理开始-->
+    <div style="margin-top: 10px;margin-bottom: 10px;margin-left: 30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">前置处理</div>
+            <div class="panel-body">
+                <div id="toolbar" class="btn-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#initEdit">添加初始化</button>
+                </div>
+                <table id="tb_add_pre" class="gaea_table"></table>
+            </div>
+        </div>
+    </div>
+    <!--添加前置处理结束-->
+
+
+    <!--添加初始化开始-->
+    <div style="margin-top: 10px;margin-bottom: 70px;margin-left: 30px;" >
+        <div class="panel panel-default">
+            <div class="panel-heading">初始化</div>
+            <div class="panel-body">
+                <div id="toolbar" class="btn-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#preEdit">添加前置处理</button>
+                </div>
+
+                <table id="tb_add_init" class="gaea_table"></table>
+            </div>
+        </div>
+    </div>
+    <!--添加初始化结束-->
+    <footer class="navbar footer navbar-fixed-bottom " >
+        <div class="container">
+            <div class="pull-right" style="margin-bottom: 20px;">
+                <button type="button" id="btn_save" class="btn btn-primary" onclick="saveCase()">保 存</button>
+            </div>
+        </div>
+    </footer>
+
+    {% include 'case/modal_case_init.html' %}
+    {% include 'case/modal_case_pre.html' %}
+    {% include 'case/modal_case_pre_edit.html' %}
+    {% include 'case/modal_case_pre_edit.html' %}
+    {% include 'case/bootstrab_warnging.html' %}
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/case_add.js') }}"></script>
+
+    <script>
+
+        $(function () {
+
+            //1.初始化Add Init Table
+            var oInitTable = new AddTableInit();
+            oInitTable.Init();
+
+            //2.初始化Add Pre Table
+            var oPreTable = new PreTableInit();
+            oPreTable.Init();
+
+            //2.初始化Button的点击事件
+            var oButtonInit = new ButtonInit();
+            oButtonInit.Init();
+            init_page_default_value();
+
+        });
+        function init_page_default_value(){
+            json_dict['sel_request_header'].set({
+                "Content-type": "application/json"
+            })
+        }
+        // create the editor
+
+        var options = {
+            mode: "code"
+        };
+
+        var json = {
+        };
+
+        var json_dict = {};
+
+        var json_list = ['json_case_expect', 'json_case_replace', 'json_case_request_args',
+            'json_init_request_args', 'json_init_replace', 'json_pre_request_args',
+            'json_pre_http_replace', 'json_pre_replace', 'json_pre_sql_args', 'json_pre_expect', 'json_init_sql_args',
+            'json_sql_mock_expect', 'json_sql_mock_replace', 'json_http_mock_expect', 'json_http_mock_replace',
+            'json_init_sql_replace', 'json_pre_sql_replace', 'json_public_replace', 'json_user_args',
+            'json_case_sql_args', 'json_case_sql_replace','sel_request_header'];
+
+        for(var json_name in json_list){
+            var container = document.getElementById(json_list[json_name]);
+            var json_edit = new JSONEditor(container, options, json);
+            json_dict[json_list[json_name]] = json_edit;
+        }
+
+        function getMaxId(table_id, id_name){
+            var init_datas = $(table_id).bootstrapTable('getData');
+            var ids = new Array();
+
+            if(init_datas.length > 0) {
+                init_datas.forEach(function (item) {
+                    ids.push(item[id_name]);
+                });
+            }
+            /*for(var index in init_datas){
+                console.log(index);
+                ids.push(init_datas[index]["init_id"]);
+            }*/
+            var max = 1;
+            if(ids.length > 0)
+            {
+                max = Math.max.apply(null, ids) + 1;
+            }
+            return max;
+        }
+
+        $('#myTab a').click(function (e) {
+            if( !$(this).parent('li').hasClass('active') ){
+                var that = this;
+                showConfirm('切换后该页面的内容会重置，是否继续切换？', function (){
+                    e.preventDefault();
+                    $(that).tab('show');
+                    if("tab0" == $('#that').attr("href"))
+                    {
+                        $('#is_http').html("1");
+                    }
+                    else if ("tab1" == $('#that').attr("href"))
+                    {
+                        $('#is_http').html("2");
+                    }
+                    // 不清除
+                })
+
+            }
+        });
+
+        // set json
+        // editor.set(json)
+        // get json editor.get();
+
+        window.operateEvents = {
+            'click .delete': function (e, value, row, index) {
+                toastr.success("success", '删除成功');
+                $("#tb_add_pre").bootstrapTable('remove', {
+                    field: 'prev_id',
+                    values: [row['prev_id']]
+                });
+
+                return false;
+            },
+            'click .update': function (e, value, row, index) {
+                $.ajax({
+                    type : "PUT",
+                    headers:{"X-CSRFToken":"{{ csrf_token() }}"},
+                    url : "/api/mock/pre",
+                    data : JSON.stringify({
+                        "prev_id" : row['prev_id']
+                    }),
+                    contentType: "application/json; charset=UTF-8",
+                    success : function (data) {
+                        if (data.result != 0) {
+                            toastr.info("info", data.message);
+                            return ;
+                        }
+                        toastr.success("success", '更新成功');
+                        $("#tb_add_pre").bootstrapTable('refresh');
+                    }
+                });
+
+                return false;
+            },
+            'click .copy': function (e, value, row, index) {
+                copy_data={}
+                for(key in row){
+                    copy_data[key]=row[key]
+                }
+
+                $("#tb_add_pre").bootstrapTable('insertRow', {
+                    index: 0,
+                    row: copy_data
+                });
+                toastr.success("success", '复制成功');
+
+            },
+            'click .init_delete': function (e, value, row, index) {
+                toastr.success("success", '删除成功');
+                $("#tb_add_init").bootstrapTable('remove', {
+                    field: 'init_id',
+                    values: [row['init_id']]
+                });
+                return false;
+            },
+            'click .init_update': function (e, value, row, index) {
+                $.ajax({
+                    type : "PUT",
+                    headers: {"X-CSRFToken":"{{ csrf_token() }}"},
+                    url : "/api/mock/init",
+                    data : JSON.stringify({
+                        "init_id" : row['init_id']
+                    }),
+                    contentType: "application/json; charset=UTF-8",
+                    success : function (data) {
+                        if (data.result != 0) {
+                            toastr.info("info", data.message);
+                            return ;
+                        }
+                        toastr.success("success", '更新成功');
+                        $("#tb_add_init").bootstrapTable('refresh');
+                    }
+                });
+
+                return false;
+            },
+            'click .init_copy': function (e, value, row, index) {
+                copy_data={}
+                for(key in row){
+                    copy_data[key]=row[key]
+                }
+
+                toastr.success("success", '复制成功');
+                $("#tb_add_init").bootstrapTable('insertRow', {
+                    index: 0,
+                    row: copy_data
+                });
+
+                return false;
+            }
+        };
+
+
+
+        function getNow(s) {
+            return s < 10 ? '0' + s: s;
+        }
+
+        function get_date() {
+            var myDate = new Date();
+            //获取当前年
+            var year=myDate.getFullYear();
+            //获取当前月
+            var month=myDate.getMonth()+1;
+            //获取当前日
+            var date=myDate.getDate();
+            var h=myDate.getHours();       //获取当前小时数(0-23)
+            var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+            var s=myDate.getSeconds();
+
+            var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+            return now
+        }
+
+        function jsonFormatter(value, row, index) {
+            return "<pre style='white-space: pre-wrap;border:0px;background-color: transparent;'>"+JSON.stringify(value, null, 2)+"</pre>"
+        };
+
+        var PreTableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#tb_add_pre').bootstrapTable({
+                    // url: '/api/tb_case/',         //请求后台的URL（*）
+                    data : [],
+                    method: 'get',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: false,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: oTableInit.queryParams,//传递参数（*）
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber:1,                       //初始化加载第一页，默认第一页
+                    pageSize: 10,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    strictSearch: false,
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: false,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: false,                //是否启用点击选中行
+                    //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                    showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [{
+                        checkbox: false,
+                        visible:false
+                    }, {
+                        field: 'prev_id',
+                        visible: true,
+                        title: 'ID',
+                    },{
+                        field: 'operate',
+                        align:'center',
+                        width: "150px",
+                        events: operateEvents,
+                        formatter: operateFormatter,
+                        colspan: 1,
+                        title: '操作'}
+                        , {
+                            field: 'prev_name',
+                            title: '前置名称',
+                            align: 'center'
+                        },  {
+                            field: 'prev_description',
+                            title: '前置描述',
+                            align: 'center'
+                        }, {
+                            field: 'prev_flag',
+                            visible: false
+                        }, {
+                            field: 'prev_setup_type',
+                            visible: false
+                        }, {
+                            field: 'prev_api_address',
+                            title: '请求URL',
+                            align: 'center'
+                        }, {
+                            field: 'prev_api_method',
+                            title: '请求方式',
+                            align: 'center',
+                            visible: false
+                        }, {
+                            field: 'prev_api_params',
+                            title: '请求参数',
+                            formatter:jsonFormatter
+                        }, {
+                            field: 'prev_api_header',
+                            title: '请求头信息',
+                            align: 'center',
+                            visible: false
+
+                        }, {
+                            field: 'prev_api_expression',
+                            title: '替换表达式',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_sql_statement',
+                            title: 'sql语句',
+                            align: 'center',
+                            visible: false
+                        }, {
+                            field: 'prev_sql_params',
+                            title: 'sql参数',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_sql_database',
+                            title: 'sql执行数据库',
+                            align: 'center',
+                            visible: false
+                        }, {
+                            field: 'prev_sql_expression',
+                            title: 'sql替换表达式',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_expression',
+                            title: '替换表达式',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_params',
+                            title: '用户变量定义参数',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_except_expression',
+                            title: '公共替换表达式',
+                            formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_except_value',
+                            title: '预期值替换表达式',
+                            //formatter:jsonFormatter,
+                            visible: false
+                        }, {
+                            field: 'prev_in_user',
+                            visible: false
+                        }, {
+                            field: 'prev_last_user',
+                            visible: false
+                        }, {
+                            field: 'prev_in_date',
+                            visible: false
+                        }, {
+                            field: 'prev_last_date',
+                            visible: false
+                        }]
+                });
+
+
+
+                function operateFormatter(value, row, index) {
+                    return [
+                        '<a class="copy" href="javascript:void(0)" title="Copy">',
+                        {#'<i class="glyphicon glyphicon-paste"></i>',#}
+                        '<span>复制</span>',
+                        '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                        '<a class="update" style="cursor: pointer" href="case_pre_edit/'+row.prev_id+'/" title="Update">',
+                        {#'<i class="glyphicon glyphicon-edit"></i>',#}
+                        '<span>编辑</span>',
+                        '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                        '<a class="delete" href="javascript:void(0)" title="Delete">',
+                        {#'<i class="glyphicon glyphicon-remove"></i>',#}
+                        '<span>删除</span>',
+                        '</a>',
+                    ].join('');
+                }
+            };
+
+            return oTableInit;
+        }
+
+        var AddTableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#tb_add_init').bootstrapTable({
+                    //url: '/api/tb_case/',         //请求后台的URL（*）
+                    data: [],
+                    method: 'get',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: false,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: oTableInit.queryParams,//传递参数（*）
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 10,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    strictSearch: false,
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: false,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: true,                //是否启用点击选中行
+                    //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                    showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [{
+                        checkbox: false,
+                        visible: false
+                    }, {
+                        field: 'init_id',
+                        title: 'ID'
+                    }, {
+                        field: 'operate',
+                        align: 'center',
+                        width: "150px",
+                        events: operateEvents,
+                        formatter: operateFormatter,
+                        title: '操作'
+                    }, {
+                        field: 'case_init_name',
+                        title: '初始化名称',
+                        align: 'center'
+                    }, {
+                        field: 'case_init_description',
+                        title: '初始化描述',
+                        align: 'center'
+                    }, {
+                        field: 'case_init_type',
+                        title: '初始化类型',
+                        align: 'center'
+                    }, {
+                        field: 'case_init_api_address',
+                        title: '请求URL',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'case_init_api_method',
+                        title: '请求方式',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'case_init_api_params',
+                        title: '请求参数',
+                        formatter:jsonFormatter,
+                    }, {
+                        field: 'case_init_api_header',
+                        title: '请求头信息',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'case_init_api_expression',
+                        title: '替换表达式',
+                        formatter:jsonFormatter,
+                        visible: false
+                    }, {
+                        field: 'case_init_sql',
+                        title: 'sql表达式',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'case_init_sql_params',
+                        title: 'sql参数',
+                        formatter:jsonFormatter,
+                        visible: false
+                    }, {
+                        field: 'case_init_sql_expression',
+                        title: 'sql替换表达式',
+                        formatter:jsonFormatter,
+                        visible: false
+                    }, {
+                        field: 'case_init_sql_database',
+                        title: '执行数据库',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'case_init_indate',
+                        visible: false
+                    }, {
+                        field: 'case_init_inuser',
+                        visible: false
+                    }, {
+                        field: 'case_init_lastuser',
+                        visible: false
+                    }, {
+                        field: 'case_init_lastdate',
+                        visible: false
+                    }]
+                });
+
+                function operateFormatter(value, row, index) {
+                    return [
+                        '<a class="init_copy" href="javascript:void(0)" title="Copy">',
+                        '<span>复制</span>',
+                        '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                        '<a class="init_update" style="cursor: pointer" href="case_init_edit/' + row.init_id + '/" title="Update">',
+                        '<span>编辑</span>',
+                        '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                        '<a class="init_delete" href="javascript:void(0)" title="Delete">',
+                        '<span>删除</span>',
+                        '</a>',
+
+                    ].join('');
+                }
+            };
+
+            return oTableInit;
+        }
+
+        function reponseFormatter(value, row, index) {
+            return "<pre class='repsonse_pre'>" + value + "</pre>"
+        };
+
+        var ButtonInit = function () {
+            var oInit = new Object();
+            var postdata = {};
+
+            oInit.Init = function () {
+                //初始化页面上面的按钮事件
+            };
+
+            return oInit;
+        };
+
+        //获取httpmock信息
+        function get_http_mock() {
+            var is_http_mock = $("#is_http_mock").prop('checked');
+
+            if(is_http_mock) {
+                var mock_info = {
+                    "mock_name": "",
+                    "mock_api_path": "",
+                    "mock_response": "",
+                    "mock_expression": "",
+                    "mock_status": "",
+                    "mock_memo": "",
+                    "mock_create_at": "",
+                    "mock_create_user": "",
+                    "mock_update_at": "",
+                    "mock_case_step_id": "",
+                    "mock_update_user": ""};
+                var mock_response = $.isEmptyObject(json_dict['json_http_mock_expect'].get()) ==true ? "": json_dict['json_http_mock_expect'].get();
+                var mock_expression = $.isEmptyObject(json_dict['json_http_mock_replace'].get())==true ? "": json_dict['json_http_mock_replace'].get();
+                var mock_name = $("#txt_http_mock_name").val();
+                var mock_path = $("#txt_http_mock_path").val();
+                var mock_status = is_http_mock ? "active" : "deactive"
+                mock_info["mock_name"] = mock_name;
+                mock_info["mock_api_path"] = mock_path;
+                mock_info["mock_response"] = mock_response;
+                mock_info["mock_expression"] = mock_expression;
+                mock_info["mock_status"] = mock_status;
+                mock_info["mock_memo"] = "";
+                mock_info["mock_case_step_id"] = 1;
+                mock_info["mock_create_at"] = get_date();
+                mock_info["mock_create_user"] = "{{ current_user.username }}";
+                mock_info["mock_update_at"] = get_date();
+                mock_info["mock_update_user"] = "{{ current_user.username }}";
+                return mock_info;
+            }
+
+        }
+
+        //获取数据库mock信息
+        function get_db_mock() {
+            var is_mock = $("#is_mock").prop('checked');
+
+            if(is_mock){
+                var mock_sql_info = {
+                    "mock_name": "",
+                    "mock_api_path":"",
+                    "mock_response": "",
+                    "mock_expression": "",
+                    "mock_status": "",
+                    "mock_memo": "",
+                    "mock_create_at":"",
+                    "mock_create_user": "",
+                    "mock_update_at":"",
+                    "mock_case_step_id": "",
+                    "mock_update_user":""};
+                var mock_sql_response = $.isEmptyObject(json_dict['json_sql_mock_expect'].get()) == true ? "" : json_dict['json_sql_mock_expect'].get();
+                var mock_sql_expression = $.isEmptyObject(json_dict['json_sql_mock_replace'].get()) == true ? "" :json_dict['json_sql_mock_replace'].get();
+                var mock_name = $("#txt_sql_mock_name").val();
+                var mock_path = $("#txt_sql_mock_path").val();
+                var mock_status = is_mock ? "active" : "deactive"
+                mock_sql_info["mock_name"] = mock_name;
+                mock_sql_info["mock_api_path"] = mock_path;
+                mock_sql_info["mock_response"] = mock_sql_response;
+                mock_sql_info["mock_expression"] = mock_sql_expression;
+                mock_sql_info["mock_status"] =mock_status ;
+                mock_sql_info["mock_memo"] = "";
+                mock_sql_info["mock_case_step_id"] = 1;
+                mock_sql_info["mock_create_at"] = get_date();
+                mock_sql_info["mock_create_user"] = "{{ current_user.username }}";
+                mock_sql_info["mock_update_at"] = get_date();
+                mock_sql_info["mock_update_user"] = "{{ current_user.username }}";
+                return mock_sql_info;
+            }
+
+        }
+
+        //mock所有情况
+        function get_mocks() {
+            var mocks = new Array();
+            var is_http_db = $('#accordion input:radio:checked').val();
+            if ("2" == is_http_db)
+            {
+                var db_mock = get_db_mock();
+                if($.isEmptyObject(db_mock)==false){
+                    mocks.push(db_mock);
+                }
+
+            }
+            else if ( "1" == is_http_db)
+            {
+                //获取实际值请求-数据库请求
+                var http_mock = get_http_mock();
+                if($.isEmptyObject(http_mock)==false){
+                    mocks.push(http_mock);
+                }
+            }
+            return mocks;
+        }
+
+
+        //保存用例
+        function saveCase() {
+            // 用例基础信息获取
+            var csrftoken = "{{ csrf_token()}}";
+            var case_data = fill_entity()
+            $.ajax({
+                url: "/api/case/case/",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken": csrftoken},
+                async: true,
+                jsonp: "callback",
+                type: "POST",
+                data: case_data,
+                // 成功后开启模态框
+                success: function (data) {
+                    if (data["code"] == 1) {
+                        toastr.warning("warning", data["msg"]);
+                    }
+                    else {
+                        address = "/case/"+data.origin_data;
+                        $(location).attr('href', address);
+                        toastr.success("success", "添加用例成功");
+                    }
+                },
+                error: function () {
+                    $("#update_warning").text("网络异常，请求失败");
+                    $("#update_warning").show()
+                },
+                dataType: "json"
+            });
+
+        };
+
+        function fill_entity(){
+
+            var case_mock_flag ='N'
+            var case_name = $("#txt_case_name").val();
+            var case_description = $("#txt_case_description").val();
+            var case_type = $("#txt_case_type").val();
+            var case_run_device = $("#sel_run_device").val();
+            var case_run_group_property = $("#sel_run_group_property").val();
+            var case_run_priority = $("#txt_run_priority").val();
+            var case_is_exec = $("input[name='radio_case_is_exec']:checked").val();
+            var case_vars_name = $("#txt_case_vars_name").val()
+            var case_run_task = $("#txt_case_next_task").val();
+            var case_run_msg = $("#txt_case_next_msg").val();
+            var case_ref_tapd_id = $("#case_ref_tapd_id").val();
+            var case_wait_time = $("#txt_case_wait_time").val();
+            var case_mock_flag_http = $("input:checkbox[id='is_http_mock']:checked").val();
+            var case_mock_flag_db = $("input:checkbox[id='is_mock']:checked").val();
+            if (case_mock_flag_db==true || case_mock_flag_http==true){
+                case_mock_flag = 'Y'
+            }else{
+                case_mock_flag = 'N'
+            }
+
+            var case_from_system  =$("#txt_case_from_system").val();
+            var case_exec_group =$("#txt_case_exec_group").val();
+
+            //获取实际值请求-http
+            var is_http_db = $('#accordion input:radio:checked').val();
+
+            var request_url = "";
+            var request_method = "";
+            var request_header = "";
+            var request_args = "";
+            var request_replace = "";
+            var case_sql = "";
+            var case_sql_args = "";
+            var case_sql_replace = "";
+            var case_sql_deveice = "";
+
+            if ("1" == is_http_db)
+            {
+                var request_url = $("#txt_case_request_url").val();
+                var request_method = $("#sel_request_method").val();
+                var request_header = $.isEmptyObject(json_dict['sel_request_header'].get())==true ? "" : json_dict['sel_request_header'].get();
+
+                var request_args = $.isEmptyObject(json_dict['json_case_request_args'].get())==true ? "" : json_dict['json_case_request_args'].get();
+                var request_replace = $.isEmptyObject(json_dict['json_case_replace'].get()) == true ? "" : json_dict['json_case_replace'].get();
+                var case_check_method = 'except'
+
+                if(request_method!=="GET" && $.isEmptyObject(request_replace)==false){
+                    toastr.error("error", 'http 请求中的替换表达式仅仅只能在请求方式为GET时使用');
+                    return
+                }
+
+            }
+            else if ( "2" == is_http_db)
+            {
+                //获取实际值请求-数据库请求
+                var case_sql = $("#txt_case_sql").val();
+                var case_sql_args =  $.isEmptyObject(json_dict['json_case_sql_args'].get())==true ?"" : json_dict['json_case_sql_args'].get();
+                var request_replace = $.isEmptyObject(json_dict['json_case_sql_replace'].get()) ==true ? "":json_dict['json_case_sql_replace'].get();
+                var case_sql_deveice = $("#sel_run_sql_device").val();
+                var case_check_method = 'database'
+            }
+
+            //预期相关
+            var case_expect = $.isEmptyObject(json_dict['json_case_expect'].get()) == true ? "": json_dict['json_case_expect'].get();
+
+            //添加前置处理
+            var pre_table_data = $('#tb_add_pre').bootstrapTable('getData');
+
+            //添加初始化
+            var init_table_data = $('#tb_add_init').bootstrapTable('getData');
+
+            if (case_name == "" ||
+                case_description == ""||
+                case_from_system==""
+            ) {
+                toastr.warning("warning", '用例名称、用例描述、用户来源、参数不能为空');
+                return
+            }else if(case_run_device=="group"){
+                if( case_exec_group=="" || case_run_group_property==""){
+                    toastr.warning("warning", '执行器为group 时，复杂用例属性和复杂用例分组都不能为空');
+                    return
+                }
+            }else if (case_run_device=="common"){
+
+                if( case_exec_group!=="" || case_run_group_property!==""){
+                    toastr.warning("warning", '执行器为common 时，复杂用例属性和复杂用例分组不能有值');
+                    return
+                }
+            }else if (case_run_priority=="" ||typeof case_run_priority !=="number"){
+                case_run_priority =0
+            }else if (case_wait_time=="" || typeof case_wait_time !=="number"){
+                case_wait_time = 0
+            }
+
+
+            var case_data = JSON.stringify({
+                "case":{
+                    "basicInfo":{
+                        "case_exec_priority":case_run_priority,
+                        "case_from_system":case_from_system,
+                        "case_name": case_name,
+                        "case_description": case_description,
+                        "case_category": case_type,
+                        "case_executor": case_run_device,
+                        "case_exec_group": case_exec_group,
+                        "case_exec_group_priority": case_run_group_property,
+                        "case_api_address": request_url,
+                        "case_api_method": request_method,
+                        "case_api_params": request_args,
+                        "case_api_header": request_header,
+                        "case_check_method":case_check_method,
+                        "case_except_value": case_expect,
+                        "case_sql_actual_statement": case_sql,
+                        "case_sql_actual_database": case_sql_deveice,
+                        "case_sql_params": case_sql_args,
+                        "case_ref_tapd_id": case_ref_tapd_id,
+                        "case_is_exec":case_is_exec,
+                        "case_mock_flag":case_mock_flag,
+                        "case_next_msg":case_run_msg,
+                        "case_next_task":case_run_task,
+                        "case_replace_expression":request_replace,
+                        "case_init_id":"",
+                        "case_wait_time":case_wait_time,
+                        "case_vars_name":case_vars_name,
+                        "case_author":"{{ current_user.username }}",
+                        "case_in_date":get_date(),
+                        "case_in_user":"{{ current_user.username }}",
+                        "case_last_user":"{{ current_user.username }}",
+                        "case_last_date":get_date(),
+                    },
+                    "prevInfo": pre_table_data,
+                    "initInfo": init_table_data,
+                    "mockInfo": get_mocks(),
+                }
+            });
+            return case_data
+        }
+
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+
+    </script>
+{% endblock %}

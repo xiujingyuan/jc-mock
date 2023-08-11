@@ -1,0 +1,110 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/bootstrap-duallistbox.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link href="{{ cdn_host }}x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/case_task/case_task.css') }}">
+{% endblock %}
+
+{% block content_page_header %}
+    <div class="case_task_header">
+        <div class="case_task_header_dropdown dropdown">
+            <button type="button" class="case_task_header_dropdown btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                <i class="case_task_header_i fa fa-link"></i>我创建的
+                <span class="caret"></span>
+            </button>
+            <ul class="case_task_header_ul dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1">我创建的</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1">所有的</a>
+                </li>
+            </ul>
+        </div>
+        <div class="triangle"></div>
+        <ul class="case_task_program">
+            {% for program in sys_programs %}
+                {% if loop.first %}
+                    <li class="case_task_program_item active">
+                {% else %}
+                    <li class="case_task_program_item">
+                {% endif %}
+                    <a id="sel_pro_{{ program.sys_program_id }}">
+                        <span>{{ program.sys_program_name }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+{% block page_content %}
+    <div class="tab-content tab-ul">
+    <ul class="nav nav-tabs case_task-tab" id="myTab" >
+        <li class="active"><a href="#task_list" id="tab_task_list">用例集列表</a></li>
+        <li><a href="#task_detail" id="tab_task_detail">用例集详情</a></li>
+    </ul>
+    </div>
+    <div class="cast-task-list tab-content">
+        <div class="tab-pane active" id="task_list">
+            <form id="formSearch" class="form-horizontal hidden" style="border: 0px;">
+                <div class="form-group" style="margin-top:15px;margin-left: -70px;">
+                    <label class="control-label col-sm-1" for="txt_task_title">任务名</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="txt_task_title">
+                    </div>
+                    <label class="control-label col-sm-1" for="txt_task_run_status">执行状态</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="txt_task_run_status">
+                    </div>
+
+                    <label class="control-label col-sm-1" for="txt_task_des">任务描述</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="txt_task_des">
+                    </div>
+                    <button type="button" class="btn btn-primary pull-left" style="margin-left: 30px;" id="btn_query" >查询</button>
+                    <button type="button" class="btn btn-primary pull-left" style="margin-left: 30px;" id="btn_create_list"
+                            data-toggle="modal" data-target="#task_list_create">创建用例集</button>
+                </div>
+            </form>
+            <table id="tb_task_list" class="table-no-bordered"></table>
+        </div>
+        <div class="tab-pane task-detail" id="task_detail">
+            {% include 'theme/task/task_detail.html' %}
+        </div>
+    </div>
+    </div>
+    {% include "theme/task/modal_task_create.html" %}
+    {% include "theme/task/modal_show_detail.html" %}
+    {% include "theme/task/modal_init_detail.html" %}
+    {% include "theme/task/modal_pre_detail.html" %}
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.bootstrap-duallistbox.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-paginator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nanobar.min.js') }}?v=2.9993"></script>
+    <script>
+    var current_user = "{{ current_user.username }}",
+        csrf_token = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/case_task/case_task.js') }}"></script>
+{% endblock %}

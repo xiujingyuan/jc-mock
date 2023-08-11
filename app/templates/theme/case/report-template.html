@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告--快牛金科</title>
+</head>
+
+<body>
+    <table style="border:1px solid blue;word-wrap:break-word; word-break:break-all; font-family:'Microsoft YaHei UI Light'; width: 800px; min-height: 25px; line-height: 25px; text-align: left; border-collapse: collapse; padding:2px;" >
+        <tr>
+            <td colspan="6" width="1000px" style="text-align: center" bgcolor="#deb887">基础信息</td>
+        </tr>
+        <tr>
+            <td width="150px" style="border:1px solid blue;">测试系统</td>
+            <td width="200px"  style="border:1px solid blue;" colspan="1">{{ data.finlab_report_system_name }}</td>
+            <td width="150px" style="border:1px solid blue;">测试分支</td>
+            <td width="400px" colspan="3"  style="border:1px solid blue;">{{ data.finlab_report_branch_name }}</td>
+
+        </tr>
+        <tr>
+            <td colspan="6" width="1000px" style="text-align: center" bgcolor="#deb887" style="border:1px solid blue;">概要报告</td>
+        </tr>
+        <tr>
+            <td width="150px" style="border:1px solid blue;">测试结果</td>
+            <td width="230px" style="border:1px solid blue;">{{ data.finlab_report_result }}</td>
+            <td width="150px" style="border:1px solid blue;">测试周期</td>
+            <td width="47" colspan="3" style="border:1px solid blue;">{{ data.finlab_report_begin }} - {{ data.finlab_report_end }}</td>
+        </tr>
+
+        <tr>
+            <td  width="150px" style="border:1px solid blue;">增量代码覆盖率</td>
+            <td  width="180px" style="border:1px solid blue;">{{ data.finlab_report_diff_cover }}%</td>
+            <td width="150px" style="border:1px solid blue;">自动化测试覆盖率</td>
+            <td width="180px" style="border:1px solid blue;">{{ data.finlab_report_auto_rate }}%</td>
+            <td width="150px" style="border:1px solid blue;">Snor 扫描结果</td>
+            <td width="190px" style="border:1px solid blue;">{{ data.finlab_report_snor_rate }}%</td>
+        </tr>
+
+        <tr>
+            <td  width="150px" style="border:1px solid blue;">bug 总个数</td>
+            <td width="180px" style="border:1px solid blue;">{{ data.finlab_report_total_bug }}</td>
+            <td  width="150px" style="border:1px solid blue;">关闭bug个数</td>
+            <td width="180px" style="border:1px solid blue;">{{ data.finlab_report_close_bug }}</td>
+            <td  width="150px" style="border:1px solid blue;">严重bug个数</td>
+            <td width="190px" style="border:1px solid blue;">{{ data.finlab_report_serious_bug }}</td>
+        </tr>
+
+        <tr>
+            <td width="150px" style="border:1px solid blue;">开发人员</td>
+            <td width="180px" style="border:1px solid blue;">{{ data.finlab_report_devloper }}</td>
+            <td width="150px" style="border:1px solid blue;">产品经理</td>
+            <td width="180px" style="border:1px solid blue;">{{ data.finlab_report_productor }}</td>
+            <td width="150px" style="border:1px solid blue;">测试人员</td>
+            <td width="190px" style="border:1px solid blue;">{{ data.finlab_report_tester }}</td>
+        </tr>
+        <tr>
+            <td width="150px" style="border:1px solid blue;">关联需求地址</td>
+            <td width="850px"  colspan="5" style="border:1px solid blue; max-width:500px;">
+                <a href="{{ data.finlab_report_ref_requirement }}">
+                    {{ data.finlab_report_ref_requirement }}</a></td>
+
+        </tr>
+
+        {% if data.finlab_report_case_address %}
+                <tr>
+                    <td width="150px" style="border:1px solid blue;">关联用例的地址</td>
+                    <td width="850px" colspan="5" style="border:1px solid blue;">
+                        <a  href=" ">
+                            {{ data.finlab_report_case_address }}</a ></td>
+
+                </tr>
+        {% endif %}
+
+        {%  if download_case_url %}
+            <tr>
+                <td width="150px" style="border:1px solid blue;">用例下载</td>
+                <td width="850px" colspan="5" style="border:1px solid blue;">
+                    <a href="{{ base_url }}{{ download_case_url }}" >
+                        {{ base_url }}{{ download_case_url }}</a></td>
+
+            </tr>
+        {% endif %}
+        <tr>
+            <td width="150px" style="border:1px solid blue;">测试结论</td>
+            <td width="850px" colspan="5" style="border:1px solid blue;">{{ data.finlab_report_summary }}</td>
+
+        </tr>
+        <tr>
+            <td width="150px" style="border:1px solid blue;">项目背景</td>
+            <td width="85" colspan="5" style="border:1px solid blue;">{{ data.finlab_report_description}}</td>
+
+        </tr>
+        {% for tran in data.trans %}
+            {%  if tran['finlab_report_transaction_name'] %}
+                <tr>
+                    <td colspan="6" width="1000px" style="text-align: center" bgcolor="#deb887" style="border:1px solid blue;">
+                        {{ tran['finlab_report_transaction_name'] }}</td>
+                </tr>
+                <tr>
+                    <td width="150px" style="border:1px solid blue;">地址</td>
+                    <td width="850px" colspan="5" style="border:1px solid blue;">
+                        <a href="{{ tran['finlab_report_transaction_link_url'] }}">{{ tran['finlab_report_transaction_link_url'] }}</a></td>
+                </tr>
+                <tr>
+                    <td width="1000px" colspan="6" style="border:1px solid blue;">
+                        <img width="990px" height="auto" src="{{ base_url }}{{ tran['finlab_report_transaction_image_url'] }}"/></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+    </table>
+</body>
+</html>

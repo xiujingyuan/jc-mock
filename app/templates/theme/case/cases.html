@@ -1,0 +1,174 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}测试用例{% endblock %}
+
+{% block head %}
+
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.min.css" rel="stylesheet">
+    <link href="{{ cdn_host }}x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/case/case.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+{% endblock %}
+
+{% block content_page_header %}
+    <div class="case_header">
+        <div class="case_header_dropdown dropdown">
+            <button type="button" class="case_header_dropdown btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                <i class="case_header_i fa fa-link"></i>我创建的
+                <span class="caret"></span>
+            </button>
+            <ul class="case_header_ul dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" >我创建的</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1">所有的</a>
+                </li>
+            </ul>
+        </div>
+        <div class="triangle"></div>
+        <ul class="case_program">
+            {% for program in sys_programs %}
+                {% if loop.first %}
+                    <li class="case_program_item active">
+                {% else %}
+                    <li class="case_program_item">
+                {% endif %}
+                    <a id="sel_pro_{{ program.sys_program_id }}">
+                        <span>{{ program.sys_program_name }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block page_content %}
+
+<div class="panel-body" style="padding-bottom:0px;">
+    <div class="panel panel-default hidden" style="margin-bottom:0px;">
+        <div class="panel-heading">查询条件</div>
+        <div class="panel-body">
+            <form id="formSearch" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_case_id">用例ID</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="txt_case_id">
+                    </div>
+                    <label class="control-label col-sm-1" for="txt_case_name">用例名称</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="txt_case_name">
+                    </div>
+
+                    <label class="control-label col-sm-1" for="txt_case_description">用例描述</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="txt_case_description">
+                    </div>
+
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_case_device">用例类型</label>
+                    <div class="col-sm-3">
+                        <select id="txt_case_device" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                            <option value="common">简单场景</option>
+                            <option value="group">复杂场景</option>
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                    <label class="control-label col-sm-1" for="txt_case_from_system">所属系统</label>
+                    <div class="col-sm-3">
+                        <select id="txt_case_from_system" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                            {% for program in sys_programs %}
+                                {% if program.sys_program_group_id != 8 %}
+                                    <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+    {#                        <label class="control-label col-sm-1" for="txt_case_exce_priority">用例优先级</label>#}
+    {#                        <div class="col-sm-3">#}
+    {#                            <input type="text" class="form-control" id="txt_case_exce_priority">#}
+    {#                        </div>#}
+                    <label class="control-label col-sm-1" for="txt_case_belong_business">所属业务</label>
+                    <div class="col-sm-3">
+                        <select id="sel_case_belong_business" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="...">
+                    <label class="control-label col-sm-1" for="txt_case_exec_group">复杂用例名称</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="txt_case_exec_group">
+                    </div>
+                    <label class="control-label col-sm-1" for="txt_real_run">是否执行</label>
+                    <div class="col-sm-3">
+                        <select id="is_run" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" style="padding-left: 150px;">
+                        <button type="button" id="btn_query" class="btn btn-primary" >查 询</button>
+                        <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-primary">重 置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="toolbar" class="btn-group tool-div">
+        <a id="btn_exec" class="text-primary"><i class="fa fa-play"></i>批量执行</a>
+        <a id="btn_show_query" class="dropdown dropdown-toggle hidden" data-delay="100" data-toggle="dropdown"><i class="fa fa-filter"></i>过 滤</a>
+                <ul class="dropdown-menu case-sel-content">
+                    <li>过滤</li>
+                    <li><a style="background-color: transparent;" href="#">Person Info</a></li>
+                    <li><a style="background-color: transparent;" href="#">Change Password</a></li>
+                    <li><a style="background-color: transparent;" href="#">Change Email</a></li>
+                    <li><a style="background-color: transparent;" href="#">Sign out</a></li>
+                    <a id="btn_query" class="text-primary">查 询
+                </a>
+                </ul>
+        <a id="btn_case" type="button" class="text-primary" href="/add_case" target="_blank"><i class="fa fa-plus"></i>新增用例</a>
+
+        <a id="btn_case" type="button" class="text-primary" href="/case_system_variable" target="_blank"><i class="fa fa-plus-square"></i>新增变量</a></a>
+
+        <a id="btn_copy_all" type="button" class="text-primary"><i class="glyphicon glyphicon-file"></i>批量复制</a>
+        <i id="copying" class="fa fa-refresh fa-spin hidden" style="margin-left: -20px;margin-top: 10px;color: white;"></i>
+
+        <a type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#modal_summary_case" id="modal_case_summary" ></a>
+    </div>
+    <table id="tb_case" class="table-no-bordered"></table>
+</div>
+
+{#    {% include 'case/modal_summary.html' %}#}
+{#    {% include 'task/modal_task_create.html' %}#}
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-editable.min.js') }}"></script>
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-editable.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/case_add.js') }}"></script>
+    <script>
+    var csrf_token = "{{ csrf_token() }}",
+        current_user = "{{ current_user.username }}";
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/case/case.js') }}"></script>
+
+{% endblock %}

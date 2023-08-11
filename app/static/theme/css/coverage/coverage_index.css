@@ -1,0 +1,67 @@
+.table-demo {
+    width: 80%;
+    margin: 30px auto 0px auto;
+}
+
+.fixed-table-header {
+    border-right: solid 1px #ddd;
+    border-top: solid 1px #ddd;
+}
+
+    .fixed-table-header table {
+        border-top: solid 0px #ddd !important;
+        margin-top: -1px;
+    }
+/*定义类名为.thead-blue的样式*/
+.table .thead-blue th {
+    color: #fff;
+    background-color: #3195f1;
+    border-color: #0d7adf;
+}
+
+
+.add_miss_line {
+    color:green;
+    background:#fd979c;
+    white-space: pre;
+}
+
+.add_filter_line {
+    color:blue;
+    white-space: pre;
+}
+
+.miss_line {
+    background:#fd979c;
+    white-space: pre;
+}
+
+.add_line {
+    color:green;
+    white-space: pre;
+}
+
+.add_filter_coverage_line {
+    background: #beffc3;
+}
+.number_line {
+    color:#958f8f;
+    width:50px;
+    text-align: right;
+    display: inline-block;
+    background: #f2f2f2!important;
+}
+
+.normal_line {
+    white-space: pre;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    cursor: pointer;
+}
+
+.jacoco-content-show {
+    white-space:pre-wrap;
+    overflow-x:auto;
+}

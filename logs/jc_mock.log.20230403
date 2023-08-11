@@ -1,0 +1,1992 @@
+2023-04-03 10:19:09 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 10:19:09 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 10:19:09 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 10:19:09 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 10:24:23 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 615, in period_recovery
+    repay_date = args['repay_date']
+KeyError: 'repay_date'
+2023-04-03 10:24:23 INFO _log: 127.0.0.1 - - [03/Apr/2023 10:24:23] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 10:24:28 ERROR _failed_send: Sentry responded with an error: <urlopen error timed out> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 29, in connect
+    sock = socket.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2023-04-03 10:24:28 ERROR _log_failed_submission: ["KeyError: 'repay_date'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 615, in period_recovery']
+2023-04-03 15:24:48 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:24:48 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:24:48 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:24:48 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:29:06 INFO log_info: #### DB env=qsq_fox1
+2023-04-03 15:29:06 INFO log_info: #### database=qsq_fox1
+2023-04-03 15:29:16 INFO log_info: 数据库执行异常，sql：select * from asset where asset_item_number='20230317110209204578' 
+2023-04-03 15:29:16 INFO log_info: 数据库执行异常：(2003, "Can't connect to MySQL server on '10.1.0.15' (timed out)")
+2023-04-03 15:29:16 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:29:16] "[37mPOST /api/dh/periodRecovery HTTP/1.1[0m" 200 -
+2023-04-03 15:32:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:32:49 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:32:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:32:49 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:33:28 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 15:33:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:33:28 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 15:33:28 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 15:33:28 INFO log_info: port:26474 already been choiced
+2023-04-03 15:33:28 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 15:33:28 INFO _log: Authentication (publickey) successful!
+2023-04-03 15:33:29 INFO log_info: connect to arcticfox-pakistan with port 26474
+2023-04-03 15:33:29 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1743, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 15:33:29 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:33:29] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 15:33:34 ERROR _failed_send: Sentry responded with an error: <urlopen error timed out> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 29, in connect
+    sock = socket.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2023-04-03 15:33:34 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1743, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 15:42:00 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:42:00 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:42:00 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:42:01 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:43:04 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 15:43:04 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:43:04 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 15:43:04 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 15:43:04 INFO log_info: port:20700 already been choiced
+2023-04-03 15:43:04 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 15:43:04 INFO _log: Authentication (publickey) successful!
+2023-04-03 15:43:05 INFO log_info: connect to arcticfox-pakistan with port 20700
+2023-04-03 15:43:05 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1743, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 15:43:05 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:43:05] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 15:43:05 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 15:43:05 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1743, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 15:45:24 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:45:24 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:45:24 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:45:24 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:46:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:46:08 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:46:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:46:08 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:46:15 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 15:46:15 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:46:15 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 15:46:15 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 15:46:15 INFO log_info: port:29903 already been choiced
+2023-04-03 15:46:15 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 15:46:15 INFO _log: Authentication (publickey) successful!
+2023-04-03 15:46:16 INFO log_info: connect to arcticfox-pakistan with port 29903
+2023-04-03 15:46:16 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1745, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 15:46:16 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:46:16] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 15:46:16 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 15:46:16 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1745, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 15:48:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:48:12 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:48:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:48:12 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:48:16 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 15:48:16 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:48:16 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 15:48:16 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 15:48:16 INFO log_info: port:28999 already been choiced
+2023-04-03 15:48:16 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 15:48:17 INFO _log: Authentication (publickey) successful!
+2023-04-03 15:48:17 INFO log_info: connect to arcticfox-pakistan with port 28999
+2023-04-03 15:48:17 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1746, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 15:48:17 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:48:17] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 15:48:17 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 15:48:17 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1746, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 15:54:19 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:54:19 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 15:54:19 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:54:19 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 15:54:22 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 15:54:22 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 15:54:22 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 15:54:22 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 15:54:22 INFO log_info: port:27796 already been choiced
+2023-04-03 15:54:22 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 15:54:22 INFO _log: Authentication (publickey) successful!
+2023-04-03 15:54:22 INFO log_info: connect to arcticfox-pakistan with port 27796
+2023-04-03 15:54:22 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1747, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 15:54:22 INFO _log: 127.0.0.1 - - [03/Apr/2023 15:54:22] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 15:54:23 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 15:54:23 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1747, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 16:03:01 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:03:01 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:03:01 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:03:01 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:03:06 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:03:06 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:03:06 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:03:06 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:03:06 INFO log_info: port:25178 already been choiced
+2023-04-03 16:03:06 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:03:06 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:03:06 INFO log_info: connect to arcticfox-pakistan with port 25178
+2023-04-03 16:03:06 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1747, in get_repay_period_asset_detail
+    print(key, value.type)
+AttributeError: 'str' object has no attribute 'type'
+2023-04-03 16:03:06 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:03:06] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:03:11 ERROR _failed_send: Sentry responded with an error: <urlopen error timed out> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 29, in connect
+    sock = socket.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2023-04-03 16:03:11 ERROR _log_failed_submission: ["AttributeError: 'str' object has no attribute 'type'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1747, in get_repay_period_asset_detail']
+2023-04-03 16:04:04 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:04:04 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:04:04 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:04:04 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:04:06 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:04:06 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:04:06 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:04:06 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:04:06 INFO log_info: port:24972 already been choiced
+2023-04-03 16:04:06 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:04:06 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:04:06 INFO log_info: connect to arcticfox-pakistan with port 24972
+2023-04-03 16:04:07 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 648, in period_recovery
+    data_info_asset = get_repay_period_asset_detail(country, asset_item_number, repay_detail_asset_info, trans)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1748, in get_repay_period_asset_detail
+    return json.dumps(asset_public_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+2023-04-03 16:04:07 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:04:07] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:04:07 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:04:07 ERROR _log_failed_submission: ['TypeError: Object of type int64 is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 648, in period_recovery', '  File "app/api/dh/individual.py", line 1748, in get_repay_period_asset_detail', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 16:07:26 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:07:26 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:07:26 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:07:26 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:11:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:11:28 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:11:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:11:29 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:11:31 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:11:31 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:11:31 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:11:31 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:11:31 INFO log_info: port:20684 already been choiced
+2023-04-03 16:11:32 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:11:32 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:11:32 INFO log_info: connect to arcticfox-pakistan with port 20684
+2023-04-03 16:11:32 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 664, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1788, in get_repay_trans
+    "description": description,
+UnboundLocalError: local variable 'description' referenced before assignment
+2023-04-03 16:11:32 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:11:32] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:11:32 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:11:32 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'description' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 664, in period_recovery', '  File "app/api/dh/individual.py", line 1788, in get_repay_trans']
+2023-04-03 16:16:24 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:16:24 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:16:24 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:16:24 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:16:45 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:16:45 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:16:45 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:16:45 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:16:47 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:16:47 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:16:47 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:16:47 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:16:47 INFO log_info: port:20041 already been choiced
+2023-04-03 16:16:47 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:16:48 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:16:48 INFO log_info: connect to arcticfox-pakistan with port 20041
+2023-04-03 16:16:49 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 664, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1829, in get_repay_trans
+    final_body.append(principal_body)
+UnboundLocalError: local variable 'principal_body' referenced before assignment
+2023-04-03 16:16:49 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:16:49] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:16:54 ERROR _failed_send: Sentry responded with an error: <urlopen error timed out> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 29, in connect
+    sock = socket.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2023-04-03 16:16:54 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'principal_body' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 664, in period_recovery', '  File "app/api/dh/individual.py", line 1829, in get_repay_trans']
+2023-04-03 16:22:05 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:22:05 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:22:05 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:22:05 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:22:11 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:22:11 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:22:11 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:22:11 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:22:11 INFO log_info: port:21279 already been choiced
+2023-04-03 16:22:11 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:22:11 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:22:11 INFO log_info: connect to arcticfox-pakistan with port 21279
+2023-04-03 16:22:12 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 664, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1829, in get_repay_trans
+    if principal_body is not None:
+UnboundLocalError: local variable 'principal_body' referenced before assignment
+2023-04-03 16:22:12 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:22:12] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:22:12 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:22:12 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'principal_body' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 664, in period_recovery', '  File "app/api/dh/individual.py", line 1829, in get_repay_trans']
+2023-04-03 16:24:46 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:24:46 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:24:46 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:24:46 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:24:48 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:24:48 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:24:48 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:24:48 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:24:48 INFO log_info: port:24781 already been choiced
+2023-04-03 16:24:48 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:24:48 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:24:48 INFO log_info: connect to arcticfox-pakistan with port 24781
+2023-04-03 16:24:49 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 664, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1833, in get_repay_trans
+    if principal_body is not None:
+UnboundLocalError: local variable 'principal_body' referenced before assignment
+2023-04-03 16:24:49 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:24:49] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:24:49 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:24:49 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'principal_body' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 664, in period_recovery', '  File "app/api/dh/individual.py", line 1833, in get_repay_trans']
+2023-04-03 16:26:41 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:26:41 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:26:41 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:26:41 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:26:43 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:26:43 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:26:43 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:26:43 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:26:43 INFO log_info: port:25411 already been choiced
+2023-04-03 16:26:43 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:26:43 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:26:44 INFO log_info: connect to arcticfox-pakistan with port 25411
+2023-04-03 16:26:45 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1833, in get_repay_trans
+    if principal_body is not None:
+UnboundLocalError: local variable 'principal_body' referenced before assignment
+2023-04-03 16:26:45 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:26:45] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:26:50 ERROR _failed_send: Sentry responded with an error: <urlopen error timed out> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 29, in connect
+    sock = socket.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+2023-04-03 16:26:50 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'principal_body' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1833, in get_repay_trans']
+2023-04-03 16:28:04 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:28:04 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:28:04 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:28:04 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:28:56 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:28:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:28:56 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:28:56 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:28:56 INFO log_info: port:24457 already been choiced
+2023-04-03 16:28:56 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:28:56 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:28:56 INFO log_info: connect to arcticfox-pakistan with port 24457
+2023-04-03 16:28:57 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1802, in get_repay_trans
+    principal_body, interest_body, fee_body, late_body = {}
+ValueError: not enough values to unpack (expected 4, got 0)
+2023-04-03 16:28:57 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:28:57] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:28:57 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:28:57 ERROR _log_failed_submission: ['ValueError: not enough values to unpack (expected 4, got 0)', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1802, in get_repay_trans']
+2023-04-03 16:29:48 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:29:48 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 16:29:48 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:29:48 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 16:29:50 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 16:29:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 16:29:50 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 16:29:50 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 16:29:50 INFO log_info: port:21488 already been choiced
+2023-04-03 16:29:50 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 16:29:50 INFO _log: Authentication (publickey) successful!
+2023-04-03 16:29:51 INFO log_info: connect to arcticfox-pakistan with port 21488
+2023-04-03 16:29:51 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1750, in get_repay_trans
+    due_at_date = datetime.datetime.strptime(trans_info[i]["asset_transaction_expect_finish_time"], "%Y-%m-%d %H:%M:%S")
+IndexError: list index out of range
+2023-04-03 16:29:51 INFO _log: 127.0.0.1 - - [03/Apr/2023 16:29:51] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 16:29:51 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 16:29:51 ERROR _log_failed_submission: ['IndexError: list index out of range', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1750, in get_repay_trans']
+2023-04-03 17:02:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:02:12 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:02:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:02:12 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:02:15 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:02:15 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:02:15 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:02:15 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:02:15 INFO log_info: port:25200 already been choiced
+2023-04-03 17:02:15 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:02:16 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:02:16 INFO log_info: connect to arcticfox-pakistan with port 25200
+2023-04-03 17:02:17 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1772, in get_repay_trans
+    date_diff = (finish_date - due_at_date).days
+TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'str'
+2023-04-03 17:02:17 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:02:17] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:02:17 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:02:17 ERROR _log_failed_submission: ["TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'str'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1772, in get_repay_trans']
+2023-04-03 17:03:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:03:28 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:03:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:03:28 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:03:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:03:49 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:03:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:03:49 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:03:51 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:03:51 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:03:51 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:03:51 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:03:51 INFO log_info: port:24532 already been choiced
+2023-04-03 17:03:51 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:03:51 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:03:52 INFO log_info: connect to arcticfox-pakistan with port 24532
+2023-04-03 17:03:52 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1773, in get_repay_trans
+    date_diff = (finish_date - due_at_date).days
+TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'str'
+2023-04-03 17:03:52 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:03:52] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:03:52 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:03:52 ERROR _log_failed_submission: ["TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'str'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1773, in get_repay_trans']
+2023-04-03 17:08:09 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:08:09 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:08:09 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:08:09 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:08:11 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:08:11 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:08:11 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:08:11 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:08:11 INFO log_info: port:30600 already been choiced
+2023-04-03 17:08:11 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:08:11 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:08:12 INFO log_info: connect to arcticfox-pakistan with port 30600
+2023-04-03 17:08:12 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1750, in get_repay_trans
+    print("i=", i, trans_info[i])
+IndexError: list index out of range
+2023-04-03 17:08:12 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:08:12] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:08:16 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:08:16 ERROR _log_failed_submission: ['IndexError: list index out of range', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1750, in get_repay_trans']
+2023-04-03 17:12:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:12:08 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:12:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:12:08 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:12:12 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:12:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:12:12 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:12:12 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:12:12 INFO log_info: port:24614 already been choiced
+2023-04-03 17:12:12 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:12:13 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:12:13 INFO log_info: connect to arcticfox-pakistan with port 24614
+2023-04-03 17:12:14 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1750, in get_repay_trans
+    print("i=", i, trans_info[i])
+IndexError: list index out of range
+2023-04-03 17:12:14 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:12:14] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:12:14 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:12:14 ERROR _log_failed_submission: ['IndexError: list index out of range', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1750, in get_repay_trans']
+2023-04-03 17:17:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:17:08 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:17:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:17:08 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:17:10 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:17:10 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:17:10 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:17:10 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:17:10 INFO log_info: port:28905 already been choiced
+2023-04-03 17:17:10 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:17:11 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:17:11 INFO log_info: connect to arcticfox-pakistan with port 28905
+2023-04-03 17:17:11 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1750, in get_repay_trans
+    print("i=", i, trans_info[i])
+IndexError: list index out of range
+2023-04-03 17:17:11 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:17:11] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:17:12 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:17:12 ERROR _log_failed_submission: ['IndexError: list index out of range', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1750, in get_repay_trans']
+2023-04-03 17:19:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:19:50 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:19:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:19:50 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:19:53 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:19:53 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:19:53 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:19:53 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:19:53 INFO log_info: port:23278 already been choiced
+2023-04-03 17:19:53 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:19:53 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:19:54 INFO log_info: connect to arcticfox-pakistan with port 23278
+2023-04-03 17:19:54 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1750, in get_repay_trans
+    print("i=", i, trans_info[i])
+IndexError: list index out of range
+2023-04-03 17:19:54 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:19:54] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:19:54 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:19:54 ERROR _log_failed_submission: ['IndexError: list index out of range', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1750, in get_repay_trans']
+2023-04-03 17:21:39 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:21:39 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:21:39 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:21:39 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:21:41 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:21:41 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:21:41 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:21:41 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:21:41 INFO log_info: port:21135 already been choiced
+2023-04-03 17:21:41 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:21:41 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:21:42 INFO log_info: connect to arcticfox-pakistan with port 21135
+2023-04-03 17:21:42 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1861, in get_repay_trans
+    return json.dumps(final_body, ensure_ascii=False)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+2023-04-03 17:21:42 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:21:42] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:21:42 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:21:42 ERROR _log_failed_submission: ['TypeError: Object of type datetime is not JSON serializable', '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1861, in get_repay_trans', '  File "json/__init__.py", line 238, in dumps', '  File "json/encoder.py", line 199, in encode', '  File "json/encoder.py", line 257, in iterencode', '  File "json/encoder.py", line 179, in default']
+2023-04-03 17:24:36 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:24:36 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:24:36 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:24:37 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:24:38 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:24:38 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:24:38 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:24:38 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:24:38 INFO log_info: port:25796 already been choiced
+2023-04-03 17:24:38 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:24:38 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:24:39 INFO log_info: connect to arcticfox-pakistan with port 25796
+2023-04-03 17:24:39 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1863, in get_repay_trans
+    for key, value in final_body.items():
+AttributeError: 'list' object has no attribute 'items'
+2023-04-03 17:24:39 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:24:39] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:24:39 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:24:39 ERROR _log_failed_submission: ["AttributeError: 'list' object has no attribute 'items'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1863, in get_repay_trans']
+2023-04-03 17:28:32 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:28:32 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:28:32 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:28:32 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:28:34 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:28:34 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:28:34 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:28:34 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:28:34 INFO log_info: port:26580 already been choiced
+2023-04-03 17:28:34 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:28:35 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:28:35 INFO log_info: connect to arcticfox-pakistan with port 26580
+2023-04-03 17:28:35 ERROR log_exception: Exception on /api/dh/periodRecovery [POST]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 663, in period_recovery
+    trans_info = get_repay_trans(asset_item_number, "trans", repay_period, repay_date)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 1863, in get_repay_trans
+    for key, value in final_body.items():
+AttributeError: 'list' object has no attribute 'items'
+2023-04-03 17:28:35 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:28:35] "[35m[1mPOST /api/dh/periodRecovery HTTP/1.1[0m" 500 -
+2023-04-03 17:28:36 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-04-03 17:28:36 ERROR _log_failed_submission: ["AttributeError: 'list' object has no attribute 'items'", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 663, in period_recovery', '  File "app/api/dh/individual.py", line 1863, in get_repay_trans']
+2023-04-03 17:29:58 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:29:58 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 17:29:58 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:29:59 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 17:30:00 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 17:30:00 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 17:30:00 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 17:30:00 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 17:30:00 INFO log_info: port:26377 already been choiced
+2023-04-03 17:30:00 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 17:30:00 INFO _log: Authentication (publickey) successful!
+2023-04-03 17:30:01 INFO log_info: connect to arcticfox-pakistan with port 26377
+2023-04-03 17:30:01 INFO log_info: #### 请求参数-资产编号：20230317110209204578，国家：PK；回款请求地址：http://fox-asset-sync-pk.c99349d1eb3d045a4857270fb79311aa0.cn-shanghai.alicontainer.com/api/biz/sync/recovery
+2023-04-03 17:30:01 INFO log_info: #### 回款通知body={'type': 'AssetChangeNotify', 'key': '1680514201808', 'from_system': 'Rbiz', 'data': {'rbizPushFox': True, 'action': 'tran_repay', 'type': 'assetAccountSync', 'asset': {'type': 'paydayloan', 'status': 'repay', 'decreaseAmount': 0.0, 'version': 1680514201754, 'asset_item_no': '20230317110209204578', 'asset_owner': 'FT1', 'sub_type': 'multiple', 'period_type': 'day', 'period_count': 2, 'product_category': '7', 'cmdb_product_number': 'mangguo_postservice54%_rate1‰_late5%', 'grant_at': '2023-03-10 08:32:14', 'effect_at': '2023-03-10 08:32:14', 'actual_grant_at': '2023-03-10 08:32:14', 'due_at': '2023-03-24 00:00:00', 'payoff_at': '2023-03-24 00:00:00', 'from_system': 'pak', 'principal_amount': 500000, 'granted_principal_amount': 500000, 'loan_channel': 'qiss', 'alias_name': '', 'interest_amount': 0, 'fee_amount': 165000, 'balance_amount': 250000, 'repaid_amount': 415000, 'total_amount': 665000, 'interest_rate': '0.360', 'charge_type': 0, 'ref_order_no': '', 'ref_order_type': 'postservice33%_rate0%_late2%', 'withholding_amount': '', 'sub_order_type': '', 'actual_payoff_at': '', 'ref_item_no': '', 'product_name': '', 'order_to_asset': False, 'late_amount': 0, 'repaid_late_amount': 0, 'repaid_fee_amount': 165000, 'decrease_fee_amount': 0, 'decrease_late_amount': 0, 'from_app': 'pak001', 'decrease_interest_amount': 0, 'decrease_principal_amount': 0, 'repaid_principal_amount': 250000, 'repaid_interest_amount': 0}, 'trans': [{'type': 'repayprincipal', 'description': '偿还本金', 'amount': 250000, 'status': 'finish', 'period': 2, 'remark': '', 'category': 'principal', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 250000, 'total_amount': 250000, 'balance_amount': 0, 'due_at': '2023-03-24 00:00:00', 'finish_at': '2023-04-03 14:00:06', 'late_status': 'late', 'repay_priority': 10, 'trade_at': '2023-04-03 14:00:06', 'create_at': '2023-04-03 17:30:01', 'update_at': '2023-04-03 17:30:01'}], 'tran_logs': None}}
+2023-04-03 17:30:01 INFO _log: 127.0.0.1 - - [03/Apr/2023 17:30:01] "[37mPOST /api/dh/periodRecovery HTTP/1.1[0m" 200 -
+2023-04-03 18:30:10 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:30:10 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 18:30:10 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:30:10 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 18:30:15 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 18:30:15 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:30:15 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 18:30:15 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 18:30:15 INFO log_info: port:25686 already been choiced
+2023-04-03 18:30:15 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 18:30:15 INFO _log: Authentication (publickey) successful!
+2023-04-03 18:30:16 INFO log_info: connect to arcticfox-pakistan with port 25686
+2023-04-03 18:30:16 INFO log_info: #### 请求参数-资产编号：20230317110209204578，国家：PK；回款请求地址：http://fox-asset-sync-pk.c99349d1eb3d045a4857270fb79311aa0.cn-shanghai.alicontainer.com/api/biz/sync/recovery
+2023-04-03 18:30:16 INFO log_info: #### 回款通知body={'type': 'AssetChangeNotify', 'key': '1680517816567', 'from_system': 'Rbiz', 'data': {'rbizPushFox': True, 'action': 'tran_repay', 'type': 'assetAccountSync', 'asset': {'type': 'paydayloan', 'status': 'repay', 'decreaseAmount': 0.0, 'version': 1680517816313, 'asset_item_no': '20230317110209204578', 'asset_owner': 'FT1', 'sub_type': 'multiple', 'period_type': 'day', 'period_count': 2, 'product_category': '7', 'cmdb_product_number': 'mangguo_postservice54%_rate1‰_late5%', 'grant_at': '2023-03-10 08:32:14', 'effect_at': '2023-03-10 08:32:14', 'actual_grant_at': '2023-03-10 08:32:14', 'due_at': '2023-03-24 00:00:00', 'payoff_at': '2023-03-24 00:00:00', 'from_system': 'pak', 'principal_amount': 500000, 'granted_principal_amount': 500000, 'loan_channel': 'qiss', 'alias_name': '', 'interest_amount': 0, 'fee_amount': 165000, 'balance_amount': 250000, 'repaid_amount': 415000, 'total_amount': 665000, 'interest_rate': '0.360', 'charge_type': 0, 'ref_order_no': '', 'ref_order_type': 'postservice33%_rate0%_late2%', 'withholding_amount': '', 'sub_order_type': '', 'actual_payoff_at': '', 'ref_item_no': '', 'product_name': '', 'order_to_asset': False, 'late_amount': 0, 'repaid_late_amount': 0, 'repaid_fee_amount': 165000, 'decrease_fee_amount': 0, 'decrease_late_amount': 0, 'from_app': 'pak001', 'decrease_interest_amount': 0, 'decrease_principal_amount': 0, 'repaid_principal_amount': 250000, 'repaid_interest_amount': 0}, 'trans': [{'type': 'repayprincipal', 'description': '偿还本金', 'amount': 250000, 'status': 'finish', 'period': 2, 'remark': '', 'category': 'principal', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 250000, 'total_amount': 250000, 'balance_amount': 0, 'due_at': '2023-03-24 00:00:00', 'finish_at': '2023-04-03 14:00:06', 'late_status': 'late', 'repay_priority': 10, 'trade_at': '2023-04-03 14:00:06', 'create_at': '2023-04-03 18:30:10', 'update_at': '2023-04-03 18:30:10'}], 'tran_logs': [{'id': 987502, 'asset_item_no': '20230317110209204578', 'asset_tran_no': 318842143, 'operate_type': 'withhold_repay', 'amount': -250000, 'operate_flag': 'normal', 'comment': '代扣还款', 'from_system': 'rbiz', 'ref_no': 163287003, 'operator_id': 0, 'operator_name': '', 'create_at': '2023-04-03 18:30:10', 'update_at': '2023-04-03 18:30:10', 'tran_type': 'repayprincipal', 'period': 2, 'withhold_finish_at': '2023-04-03 14:00:06'}]}}
+2023-04-03 18:30:16 INFO _log: 127.0.0.1 - - [03/Apr/2023 18:30:16] "[37mPOST /api/dh/periodRecovery HTTP/1.1[0m" 200 -
+2023-04-03 18:35:41 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:35:41 INFO log_info: 传入国家：CN，environment=test
+2023-04-03 18:35:41 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:35:42 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-04-03 18:35:46 INFO log_info: 传入国家：PK，environment=dev
+2023-04-03 18:35:46 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-04-03 18:35:46 INFO log_info: #### DB env=arcticfox-pakistan
+2023-04-03 18:35:46 INFO log_info: #### database=arcticfox-pakistan
+2023-04-03 18:35:46 INFO log_info: port:30716 already been choiced
+2023-04-03 18:35:46 INFO _log: Connected (version 2.0, client OpenSSH_7.4)
+2023-04-03 18:35:46 INFO _log: Authentication (publickey) successful!
+2023-04-03 18:35:47 INFO log_info: connect to arcticfox-pakistan with port 30716
+2023-04-03 18:35:47 INFO log_info: #### 请求参数-资产编号：20230317110209204578，国家：PK；回款请求地址：http://fox-asset-sync-pk.c99349d1eb3d045a4857270fb79311aa0.cn-shanghai.alicontainer.com/api/biz/sync/recovery
+2023-04-03 18:35:47 INFO log_info: #### 回款通知body={'type': 'AssetChangeNotify', 'key': '1680518147728', 'from_system': 'Rbiz', 'data': {'rbizPushFox': True, 'action': 'tran_repay', 'type': 'assetAccountSync', 'asset': {'type': 'paydayloan', 'status': 'repay', 'decreaseAmount': 0.0, 'version': 1680518147435, 'asset_item_no': '20230317110209204578', 'asset_owner': 'FT1', 'sub_type': 'multiple', 'period_type': 'day', 'period_count': 2, 'product_category': '7', 'cmdb_product_number': 'mangguo_postservice54%_rate1‰_late5%', 'grant_at': '2023-03-10 08:32:14', 'effect_at': '2023-03-10 08:32:14', 'actual_grant_at': '2023-03-10 08:32:14', 'due_at': '2023-03-24 00:00:00', 'payoff_at': '2023-03-24 00:00:00', 'from_system': 'pak', 'principal_amount': 500000, 'granted_principal_amount': 500000, 'loan_channel': 'qiss', 'alias_name': '', 'interest_amount': 0, 'fee_amount': 165000, 'balance_amount': 250000, 'repaid_amount': 415000, 'total_amount': 665000, 'interest_rate': '0.360', 'charge_type': 0, 'ref_order_no': '', 'ref_order_type': 'postservice33%_rate0%_late2%', 'withholding_amount': '', 'sub_order_type': '', 'actual_payoff_at': '', 'ref_item_no': '', 'product_name': '', 'order_to_asset': False, 'late_amount': 0, 'repaid_late_amount': 0, 'repaid_fee_amount': 165000, 'decrease_fee_amount': 0, 'decrease_late_amount': 0, 'from_app': 'pak001', 'decrease_interest_amount': 0, 'decrease_principal_amount': 0, 'repaid_principal_amount': 250000, 'repaid_interest_amount': 0}, 'trans': [{'type': 'fin_service', 'description': '服务费', 'amount': 82500, 'status': 'finish', 'period': 1, 'remark': '', 'category': 'fee', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 82500, 'total_amount': 82500, 'balance_amount': 0, 'due_at': '2023-03-17 00:00:00', 'finish_at': '2023-03-17 08:02:51', 'late_status': 'normal', 'repay_priority': 10, 'trade_at': '2023-03-17 08:02:51', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41'}, {'type': 'repayprincipal', 'description': '偿还本金', 'amount': 250000, 'status': 'finish', 'period': 1, 'remark': '', 'category': 'principal', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 250000, 'total_amount': 250000, 'balance_amount': 0, 'due_at': '2023-03-17 00:00:00', 'finish_at': '2023-03-17 08:03:11', 'late_status': 'normal', 'repay_priority': 10, 'trade_at': '2023-03-17 08:03:11', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41'}, {'type': 'fin_service', 'description': '服务费', 'amount': 82500, 'status': 'finish', 'period': 2, 'remark': '', 'category': 'fee', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 82500, 'total_amount': 82500, 'balance_amount': 0, 'due_at': '2023-03-24 00:00:00', 'finish_at': '2023-04-03 14:00:06', 'late_status': 'late', 'repay_priority': 10, 'trade_at': '2023-04-03 14:00:06', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41'}, {'type': 'repayprincipal', 'description': '偿还本金', 'amount': 250000, 'status': 'finish', 'period': 2, 'remark': '', 'category': 'principal', 'asset_item_no': '20230317110209204578', 'decrease_amount': 0, 'repaid_amount': 250000, 'total_amount': 250000, 'balance_amount': 0, 'due_at': '2023-03-24 00:00:00', 'finish_at': '2023-04-03 14:00:06', 'late_status': 'late', 'repay_priority': 10, 'trade_at': '2023-04-03 14:00:06', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41'}], 'tran_logs': [{'id': 591401, 'asset_item_no': '20230317110209204578', 'asset_tran_no': 318842142, 'operate_type': 'withhold_repay', 'amount': -82500, 'operate_flag': 'normal', 'comment': '代扣还款', 'from_system': 'rbiz', 'ref_no': 163287002, 'operator_id': 0, 'operator_name': '', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41', 'tran_type': 'fin_service', 'period': 2, 'withhold_finish_at': '2023-04-03 14:00:06'}, {'id': 591402, 'asset_item_no': '20230317110209204578', 'asset_tran_no': 318842143, 'operate_type': 'withhold_repay', 'amount': -250000, 'operate_flag': 'normal', 'comment': '代扣还款', 'from_system': 'rbiz', 'ref_no': 163287003, 'operator_id': 0, 'operator_name': '', 'create_at': '2023-04-03 18:35:41', 'update_at': '2023-04-03 18:35:41', 'tran_type': 'repayprincipal', 'period': 2, 'withhold_finish_at': '2023-04-03 14:00:06'}]}}
+2023-04-03 18:35:47 INFO _log: 127.0.0.1 - - [03/Apr/2023 18:35:47] "[37mPOST /api/dh/periodRecovery HTTP/1.1[0m" 200 -

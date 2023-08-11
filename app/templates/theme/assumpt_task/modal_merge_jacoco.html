@@ -1,0 +1,25 @@
+
+<div class="modal fade" id="merge_jacoco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="jenkins_job_name">
+        <input class="hidden" value="" id="jenkins_task_id">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">合并覆盖率</div>
+                    <div class="panel-body">
+                        <table id="env_table"></table>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_merge_jacoco_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_merge_jacoco_save">查看</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

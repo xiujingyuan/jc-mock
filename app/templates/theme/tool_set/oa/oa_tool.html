@@ -1,0 +1,140 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading" >
+            生成打卡记录
+        </div>
+        <div class="panel-body dh-content">
+            <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_client_app" style="margin: 5px;">年:</label>
+                    <div class="col-sm-1">
+                        <select id="year" name="year" class="form-control selectpicker" data-style="btn-primary">
+                            <option value="2021" selected="selected">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_client_app" style="margin: 5px;">月:</label>
+                    <div class="col-sm-1">
+                        <select id="month" name="month" class="form-control selectpicker" data-style="btn-primary"  >
+                            <option value="1" selected="selected">1月</option>
+                            <option value="2">2月</option>
+                            <option value="3">3月</option>
+                            <option value="4">4月</option>
+                            <option value="5">5月</option>
+                            <option value="6">6月</option>
+                            <option value="7">7月</option>
+                            <option value="8">8月</option>
+                            <option value="9">9月</option>
+                            <option value="10">10月</option>
+                            <option value="11">11月</option>
+                            <option value="12">12月</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                 <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_client_app" style="margin: 5px;">签卡方式</label>
+                    <div class="col-sm-1">
+                        <select id="clock_type" name="clock_type" class="form-control selectpicker" data-style="btn-primary">
+                            <option value="machine" selected="selected">打卡机</option>
+                            <option value="wechat">企业微信</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_client_app" style="margin: 5px;">员工ID:</label>
+                    <input type="text" data-toggle="员工ID" id="text_employee_id" style="margin: 10px;" value="KN3OA0000001">
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-1" for="txt_client_app" style="margin: 5px;">员工姓名:</label>
+                    <input type="text" data-toggle="员工姓名" id="text_employee_name" style="margin: 10px;" value="杨雪超">
+                </div>
+            </form>
+
+            <div class="col-sm-2 pull-right" style="margin-top: 30px;">
+                {% if check %}
+                    <button class="btn btn-primary" id="id_add_clock_record" disabled="disabled">创建打卡记录</button>
+                {% else %}
+                    <button class="btn btn-primary" id="id_add_clock_record" >创建打卡记录</button>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    {#$(function () {#}
+    {#    var get_task = setInterval(function () {ajaxFunc(); }, 2000);#}
+    {##}
+    {#    function ajaxFunc() {#}
+    {#          $.ajax({#}
+    {#            url : "/api/oa/create_data",#}
+    {#            contentType: "application/json; charset=UTF-8",#}
+    {#            headers: {"X-CSRFToken":csrftoken},#}
+    {#            async : true,#}
+    {#            type : "POST",#}
+    {#            dataType : "json",#}
+    {#            success : function(data) {#}
+    {#                if($("#id_add_clock_record").prop("disabled") == false){#}
+    {#                    clearInterval(get_task);#}
+    {#                }#}
+    {#                if(data["data"] == false){#}
+    {#                    $("#id_add_clock_record").removeAttr("disabled");#}
+    {#                }#}
+    {#            }#}
+    {#        });#}
+    {#    }#}
+    {##}
+
+
+    var csrftoken = "{{ csrf_token() }}";
+
+    $("#id_add_clock_record").click(function () {
+        $(this).attr("disabled",true);
+        var year = parseInt($("#year").val());
+        var month = parseInt($("#month").val());
+        var employee_id = $("#text_employee_id").val();
+        var employee_name = $("#text_employee_name").val();
+        var clock_type = $("#clock_type").val();
+        $.ajax({
+                url : "/api/oa/create_data",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken":csrftoken},
+                async : true,
+                type : "POST",
+                data : JSON.stringify({
+                        "employee_no": employee_id,
+                        "name": employee_name,
+                        "year": year,
+                        "month": month,
+                        "clock_type": clock_type
+                    }),
+
+                success : function(data) {
+                    if(data["code"] == 1){
+                        toastr.success("success", data.msg);
+                    }
+                    else{
+                            toastr.error("error", data.msg);
+                        }
+                    $("#id_add_clock_record").removeAttr("disabled");
+                },
+                error : function() {
+                    toastr.warning("warning", "网络异常，请求失败");
+                    $("#id_add_clock_record").removeAttr("disabled");
+                },
+                dataType : "json"
+            });
+
+    })
+</script>
+

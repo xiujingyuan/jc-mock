@@ -1,0 +1,38 @@
+
+<div class="modal fade" id="modify_filter_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="jenkins_task_id">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">覆盖率文件过滤设置</div>
+                    <div class="panel-body">
+                        <input type="hidden" value="" id="id_assumpt_table">
+                        <input type="hidden" value="" id="id_build_task_id">
+                        <input type="hidden" value="" id="id_build_branch">
+                        <input type="hidden" value="" id="id_program_id">
+                        <input type="hidden" value="" id="id_id">
+                        <input type="hidden" value="" id="id_index">
+                        <div id="" class="form-horizontal">
+                         <div class="form-group" style="margin-top:15px">
+                            <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_request_args">
+                                过滤参数</label>
+                            <div class="col-sm-10">
+                                <div id="json_filter_file_value"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modify_filter_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_modify_filter">更新</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

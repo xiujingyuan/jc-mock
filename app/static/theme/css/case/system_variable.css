@@ -1,0 +1,32 @@
+.bootstrap-table .table > thead > tr > th {
+    border: none;
+}
+.bootstrap-table .table {
+    border: none;
+}
+
+.table thead {
+    border: none;
+}
+.fixed-table-container {
+    border: 0px solid;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}
+
+.panel.panel-default,
+.panel-heading {
+    border: none;
+}
+.th-inner {
+    border: none;
+}
+
+.variable-sel-title,
+.variable-table-content {
+    margin: 0 15px;
+}
+
+.variable-sel-title {
+    border: none;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}

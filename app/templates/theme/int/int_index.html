@@ -1,0 +1,195 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+<link rel="stylesheet" type="text/css"
+      href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+<link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+<link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/tool/tool_index.css') }}">
+<script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+{% endblock %}
+
+{% block content_page_header %}
+<div class="tool_header">
+    <div class="tool_header_dropdown dropdown">
+        <button type="button" class="tool_header_dropdown btn dropdown-toggle" id="dropdownMenu1"
+                data-toggle="dropdown">
+            <i class="tool_header_i fa fa-link"></i>联调服务
+            <span class="caret"></span>
+        </button>
+    </div>
+    <div class="triangle"></div>
+    <div class="form-group" style="margin-top:18px">
+        <div class="col-sm-10">
+            <label id="tool_desc" class="tool-desc"></label>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+{% block page_content %}
+<div class="container-fluid">
+    <div id="orgTitleContent" class="tab-content org-content">
+        <div class="tab-pane fade in active">
+            {% include "theme/int/int_tool.html" %}
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+<script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+<script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+<script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+<script>
+    var new_tools_object={};
+    $(function () {
+        bind_select_init("sel_request_funcation");
+
+        $(window).resize(function () {
+            set_content_height();
+        });
+        set_content_height();
+    });
+
+    function set_content_height() {
+        $(".paysvr-content").css("height", $(window).height() - 120);
+        $(".org-content").css("height", $(window).height() - 120);
+        $(".dh-content").css("height", $(window).height() - 200);
+        $(".json-content").css("height", ($(window).height() - 250) / 2)
+    }
+
+    var json_dict = {},
+        options = {
+            mode: "code",
+            sortObjectKeys:false
+        },
+        json = {
+    };
+
+    var json_list = ['tool_request_params', 'tool_request_response'];
+    for(var json_name in json_list){
+        var container = document.getElementById(json_list[json_name]);
+        var json_edit = new JSONEditor(container, options, json);
+        json_dict[json_list[json_name]] = json_edit;
+    }
+
+    $('#sel_request_funcation').on('changed.bs.select',function(e){
+        if(new_tools_object.hasOwnProperty(e.target.value)){
+            var temp_value = new_tools_object[e.target.value];
+            init_tools(temp_value);
+        }
+    });
+
+    function init_tools(tool_obj) {
+        $('#tool_http_address').val(tool_obj['common_tools_address']);
+        $('#tool_http_method').val(tool_obj['common_tools_method']);
+        $('#tool_table_id').val(tool_obj['common_tools_id']);
+        json_dict['tool_request_params'].set(tool_obj['common_tools_placeholder']);
+        json_dict['tool_request_response'].set({});
+        $("#tool_desc").text(tool_obj['common_tools_description']);
+        $("#req_desc").text(tool_obj['common_tools_req_desc']);
+        $("#return_desc").text(tool_obj['common_tools_resp_desc']);
+    }
+
+    function bind_select_init(obj) {
+        var tools = {{ tools | tojson }};
+        for(var i in tools){
+            new_tools_object[tools[i]['common_tools_id']]=tools[i];
+            $('#'+obj).append(" <option value=\"" + tools[i]['common_tools_id'] + "\">" + tools[i]['common_tools_title'] + "</option>");
+            if(i==0){
+                init_tools(tools[i]);
+            }
+        }
+
+        $('#'+obj).selectpicker('refresh');
+    }
+
+    function send_request() {
+        var id = $('#tool_table_id').val();
+        if($.isEmptyObject(id)){
+            toastr.warning("warning", "请选择你需要的功能！");
+            return
+
+        }
+        $('#loadingModal').modal({"data-backdrop": 'static', "keyboard": false});
+        $("#loadingModal").modal('show');
+
+        var data = deepCopy(new_tools_object[id]);
+        data['common_tools_placeholder'] = JSON.stringify(json_dict['tool_request_params'].get());
+        var request_data = JSON.stringify(data);
+        $.ajax({
+            url: "/api/case/common/request",
+            contentType: "application/json; charset=UTF-8",
+            headers: {"X-CSRFToken":"{{ csrf_token() }}"},
+            async: true,
+            jsonp: "callback",
+            type: "POST",
+            data: request_data,
+            // 成功后开启模态框
+
+            success: function (data) {
+                //绑定值
+                json_dict['tool_request_response'].set(data['msg']);
+                $("#loadingModal").modal('hide');
+
+            },
+            error: function () {
+                $("#loadingModal").modal('hide');
+                $("#update_warning").text("网络异常，请求失败");
+                $("#update_warning").show()
+            },
+            dataType: "json"
+        });
+
+    }
+
+    var deepCopy = function(obj){
+        var newItem = null;
+        if(typeof obj != 'object'|| obj==null){
+            return obj;	 //如果传入obj不是object或者为null就退出递归,
+        }
+        Array.isArray(obj) ? newItem = [] : newItem = {};
+
+        for(var key in obj){
+            //arguments.callee 的作用是指向正在执行的函数的指针(也就是deepCopy函数本身)
+            newItem[key] = arguments.callee(obj[key]);  //进行递归操作
+        }
+        return newItem;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+{% endblock %}

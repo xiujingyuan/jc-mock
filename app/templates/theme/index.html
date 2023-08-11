@@ -1,0 +1,116 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block content_page_header %}
+{% endblock %}
+{% block page_content %}
+     <div class="index-panel-info panel-body">
+        <div class="new-case-table hidden">
+            <div class="col-md-6 ">
+
+                <div class="panel panel-default index-panel">
+                    <div class="panel-heading">
+                    最新更新的用例
+                    </div>
+                    <div class="index-case-panel panel-body">
+                        <table id="tb_new_case" class="table-no-bordered"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 hidden">
+                <div class="panel panel-default index-panel">
+                    <div class="panel-heading">
+                常用的链接
+                {#                        <a class="pull-right" href="{{ url_for('link.link',origination=1) }}">更多</a>#}
+                </div>
+                    <div class="panel-body" >
+                    <div id="myTabContent" class="tab-content">
+                {% for link_url in link_urls %}
+                <div class="col-sm-6 hidden">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" >
+                            <a href="{{ link_url.link_url }}" target="_blank" id="link_title_{{ link_url.link_id }}" >{{ link_url.link_title }}</a>
+                            <i style="font-size:20px;color: #2e77bb;text-align: center;"
+                               class="col-sm-1 glyphicon glyphicon-edit pull-right" data-toggle="modal"
+                               data-target="#updateLink" onclick="update_link({{ link_url.link_id }})"></i>
+                            {% if link_url.link_user and link_url.link_pwd %}
+                            <i style="font-size:20px;color: #2e77bb;text-align: center;"
+                               class="col-sm-1 glyphicon glyphicon-collapse-down pull-right"
+                               data-toggle="collapse" data-target="#showName_{{ link_url.link_url_id }}_{{ loop.index }}"></i>
+                            {% endif %}
+                        </div>
+                            <div id="showName_{{ link_url.link_url_id }}_{{ loop.index }}" class="panel-body collapse link-index" >
+                            <div style="padding: 5px;margin: 5px 5px;">
+                                <div class="col-sm-2" style="padding: 0px;margin: 5px 0px;">
+                                    <span>用户:</span>
+                                </div>
+                                <div class="col-sm-10" style="padding: 0px;margin: 5px 0px;">link_title_
+                                    <span id="link_user_{{ link_url.link_id }}" style="word-wrap: break-word;word-break: break-all;white-space: pre-wrap !important;">{{- link_url.link_user -}}</span>
+                                </div>
+                            </div>
+                            <div style="padding: 5px;margin: 5px 5px 15px 5px;">
+                                <div class="col-sm-2" style="padding: 0px;margin: 5px 0px;">
+                                    <span>密码:</span>
+                                </div>
+                                <div class="col-sm-10" style="padding: 0px;margin: 5px 0px;">
+                                    <span id="link_pwd_{{ link_url.link_id }}" style="word-wrap: break-word;word-break: break-all;white-space: pre-wrap !important;">{{- link_url.link_pwd -}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6 hidden">
+                <div class="panel panel-default index-panel">
+                    <div class="panel-heading">
+                    最新用例执行记录
+                    </div>
+                    <div class="index-case-panel panel-body">
+                        <table id="tb_run_case" class="table-no-bordered"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 hidden">
+            <div class="panel panel-default index-panel hidden">
+                <div class="panel-heading">
+                最新生成的报告
+                </div>
+                <div class="panel-body" style="padding: 0px;height: 340px;">
+                    <table id="tb_run_case_report" style="height: 340px;"></table>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="div-wai">
+            <h1 class="index-welcome">欢迎来到测试平台</h1>
+        </div>
+        <div>
+
+{#            <img src="{{ url_for('static', filename='theme/img/index.png') }}">#}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ url_for('static', filename='theme/js/index/index.js') }}"></script>
+    <script>
+    $(location).attr('href', '/report/new/3/');
+    </script>
+{% endblock %}

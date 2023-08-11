@@ -1,0 +1,847 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}工具箱{% endblock %}
+
+{% block head %}
+
+    {{ super() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/bootstrap/bootstrap-select.css') }}">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/bootstrap/bootstrap-datetimepicker.min.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+    <style>
+        .W90 .th-inner {
+            width: 90px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">测试系统-分支</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="...">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试系统</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="text_system_name"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试分支名称</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="text_system_branch_name"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="...">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">收件人地址</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="text_notify_email"
+                                   placeholder="多个收件人地址用';'分割，eg:zhangtingli@kuainiugroup.com;zhangtingli@kuainiugroup.com"/>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">概要报告
+            </div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试结果</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <select id="sel_test_result" name="country" data-live-search="true"
+                                    class="form-control selectpicker" data-style="btn-primary" style="height: 55px;">
+                                <option>通过</option>
+                                <option>通过, 重点观察数据</option>
+                                <option>通过，有风险</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试周期</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id='date_test_begin'/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id='date_test_end'/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">增量代码覆盖率</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_diff_cover"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">自动化测试覆盖率</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_auto_rate"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">Snor 扫描结果</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_snor_result"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">bug 总个数</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_total_bug"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">关闭bug个数</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_close_bug"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">严重bug个数</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_serious_bug"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">开发人员</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_devloper"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">产品经理</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_productor"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试人员</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="text_tester"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">关联需求地址</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="text_ref_requirement_address"/>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">关联用例地址</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="text_ref_case_address"/>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="text_upload_test_case" type="file" class="form-control" name="file"
+                                   placeholder="上传测试用例"/>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btn_send_request"
+                                onclick="upload_report($('#text_upload_test_case'),'test_case',null,null)">
+                            上传用例
+                        </button>
+                    </div>
+
+
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">测试结论</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="text_test_result_description" rows="3"
+                                      style="min-width: 100%"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">项目背景</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="text_project_description" rows="3"
+                                      style="min-width: 100%"></textarea>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">bug 走势图</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">bug走势图地址</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="text_bug_link_url"/>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="capture_image('bug_trend',$('#text_bug_link_url'),$('#bug_trend_show'))">
+                                抓取报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            {#                        <input type="text" class="form-control" id="text_productor"/>#}
+                            <input id="text_bug_upload" type="file" class="form-control" name="file"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="upload_report($('#text_bug_upload'),'bug_trend',$('#text_bug_link_url'),$('#bug_trend_show'))">
+                                上传报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-12">
+                            <img src="" id="bug_trend_show" class="img-rounded" width="99%">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">增量代码覆盖率</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">增量代码覆盖率地址</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="text_diff_cover_link_url"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="capture_image('diff_cover',$('#text_diff_cover_link_url'),$('#diff_cover_show'))">
+                                抓取报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="text_upload_diff_cover" type="file" class="form-control" name="file"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="upload_report($('#text_upload_diff_cover'),'diff_cover',$('#text_diff_cover_link_url'),$('#diff_cover_show'))">
+                                上传报告
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+
+                        <div class="col-sm-12">
+                            <img src="" id="diff_cover_show" class="img-rounded" width="99%">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">自动化执行结果</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">自动化测试</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="text_upload_auto_link_url"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="capture_image('auto_rate',$('#text_upload_auto_link_url'),$('#auto_rate_show'))">
+                                抓取报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="text_upload_auto" type="file" class="form-control" name="file"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="upload_report($('#text_upload_auto'),'auto_rate',$('#text_upload_auto_link_url'),$('#auto_rate_show'))">
+                                上传报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+
+                        <div class="col-sm-12">
+                            <img src="" id="auto_rate_show" class="img-rounded" width="99%">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">Snor 扫码结果</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">snor 扫描结果</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="text_upload_snor_link_url"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="capture_image('snor_scan',$('#text_upload_snor_link_url'),$('#snor_scan_show'))">
+                                抓取报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="text_upload_snor" type="file" class="form-control" name="file"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="upload_report($('#text_upload_snor'),'snor_scan',$('#text_upload_snor_link_url'),$('#snor_scan_show'))">
+                                上传报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+
+                        <div class="col-sm-12">
+                            <img src="" class="img-rounded" id="snor_scan_show" width="99%">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">bug list</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">bug list 地址</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="text_upload_buglist_link_url"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="capture_image('bug_list',$('#text_upload_buglist_link_url'),$('#bug_list_show'))">
+                                抓取报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="text_upload_buglist" type="file" class="form-control" name="file"/>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"
+                                    onclick="upload_report($('#text_upload_buglist'),'bug_list',$('#text_upload_buglist_link_url'),$('#bug_list_show'))">
+                                上传报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+
+                        <div class="col-sm-12">
+                            <img src="" id="bug_list_show" class="img-rounded" width="99%">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="navbar footer navbar-fixed-bottom ">
+        <div class="container">
+            <div class="pull-left" style="margin-bottom: 20px;">
+                <button type="button" id="btn_save_report" class="btn btn-primary" style="margin-right: 20px;"
+                        onclick="save_report_basic_info()">保存
+                </button>
+                <button type="button" id="btn_send_report" class="btn btn-primary" style="margin-right: 20px;"
+                        onclick="send_report()">发送报告
+                </button>
+
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        $('#date_test_begin').datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            minView: "month",
+            todayBtn: true,
+            todayHighlight: true
+        });
+        $('#date_test_end').datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: "month",
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true
+        });
+
+        $(function () {
+            var report_id =
+            {{ report }}
+            if (report_id != null) {
+                init_page(bind_data_for_report, report_id)
+            }
+        });
+
+        function init_page(bind_data_for_report, report_id) {
+            var req_data = {
+                "report_id":report_id
+            }
+            $.ajax({
+                url: "/api/case/report/detail",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                async: true,
+                jsonp: "callback",
+                type: "POST",
+                data: JSON.stringify(req_data),
+                success: function (data) {
+                    if (data["code"] == 1) {
+                        toastr.error("加载失败")
+                    }
+                    else {
+                        bind_data_for_report(data['rows'])
+                    }
+
+                },
+                error: function () {
+                    toastr.error("保存失败")
+                },
+                dataType: "json"
+            });
+        }
+
+        function bind_data_for_report(data) {
+            $('#text_project_description').val(data['finlab_report_description'])
+            $('#text_system_branch_name').val(data['finlab_report_branch_name'])
+            $('#text_test_result_description').val(data['finlab_report_summary'])
+            $('#text_tester').val(data['finlab_report_tester'])
+            $('#text_total_bug').val(data['finlab_report_total_bug'])
+            $('#text_close_bug').val(data['finlab_report_close_bug'])
+            $('#text_serious_bug').val(data['finlab_report_serious_bug'])
+            $('#text_diff_cover').val(data['finlab_report_diff_cover'])
+            $('#text_auto_rate').val(data['finlab_report_auto_rate'])
+            $('#text_snor_result').val(data['finlab_report_snor_rate'])
+            $('#text_ref_requirement_address').val(data['finlab_report_ref_requirement'])
+            $('#text_ref_case_address').val(data['finlab_report_case_address'])
+            $('#text_productor').val(data['finlab_report_productor'])
+            $('#date_test_begin').val(data['finlab_report_begin'])
+            $('#sel_test_result').val(data['finlab_report_result'])
+            $('#text_devloper').val(data['finlab_report_devloper'])
+            $('#date_test_end').val(data['finlab_report_end'])
+            $('#text_notify_email').val(data['finlab_report_notify_address'])
+            $('#text_system_name').val(data['finlab_report_system_name'])
+            var trans = data['trans']
+            for (var i =0 ; i<trans.length ;++i){
+                if(trans[i]['finlab_report_transaction_type']=="diff_cover"){
+                    $('#text_diff_cover_link_url').val(trans[i]['finlab_report_transaction_link_url'])
+                    var base_url = 'http://testing-images.kuainiu.io/'+ trans[i]['finlab_report_transaction_image_url']
+                    $('#diff_cover_show').attr("src", base_url)
+                }else if(trans[i]['finlab_report_transaction_type']=="bug_trend"){
+                    $('#text_bug_link_url').val(trans[i]['finlab_report_transaction_link_url'])
+                    var base_url = 'http://testing-images.kuainiu.io/'+ trans[i]['finlab_report_transaction_image_url']
+                    $('#bug_trend_show').attr("src", base_url)
+                }else if(trans[i]['finlab_report_transaction_type']=="auto_rate"){
+                    $('#text_upload_auto_link_url').val(trans[i]['finlab_report_transaction_link_url'])
+                    var base_url = 'http://testing-images.kuainiu.io/'+ trans[i]['finlab_report_transaction_image_url']
+                    $('#auto_rate_show').attr("src", base_url)
+                }else if(trans[i]['finlab_report_transaction_type']=="snor_scan"){
+                    $('#text_upload_snor_link_url').val(trans[i]['finlab_report_transaction_link_url'])
+                    var base_url = 'http://testing-images.kuainiu.io/'+ trans[i]['finlab_report_transaction_image_url']
+                    $('#snor_scan_show').attr("src", base_url)
+                }else if(trans[i]['finlab_report_transaction_type']=="bug_list"){
+                    $('#text_upload_buglist_link_url').val(trans[i]['finlab_report_transaction_link_url'])
+                    var base_url = 'http://testing-images.kuainiu.io/'+ trans[i]['finlab_report_transaction_image_url']
+                    $('#bug_list_show').attr("src", base_url)
+                }
+            }
+        }
+
+        function save_report_basic_info() {
+            if (valide_request() == false) {
+                return
+            }
+            var report = build_report_eneity()
+            report['trans'] = []
+            $.ajax({
+                url: "/api/case/save/report-basic-info",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                async: true,
+                jsonp: "callback",
+                type: "POST",
+                data: JSON.stringify(report),
+                success: function (data) {
+                    if (data["code"] == 1) {
+                        toastr.error("保存失败")
+                    }
+                    else {
+                        toastr.success("保存成功")
+                    }
+
+                },
+                error: function () {
+                    toastr.error("保存失败")
+                },
+                dataType: "json"
+            });
+
+
+        }
+
+
+        function send_report() {
+            var branch_name = $("#text_system_branch_name").val();
+            var barnch = {
+                "branch_name": branch_name
+            }
+            $.ajax({
+                url: "/api/case/send/report",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                async: true,
+                jsonp: "callback",
+                type: "POST",
+                data: JSON.stringify(barnch),
+                success: function (data) {
+
+                    if (data["code"] == 1) {
+                        toastr.error("发送失败")
+                    }
+                    else {
+                        toastr.success("发送邮件成功")
+                    }
+
+                },
+                error: function () {
+                    toastr.error("发送失败")
+                },
+                dataType: "json"
+            });
+
+
+        }
+
+        function build_report_eneity() {
+            var report = {
+                "report": {
+                    'finlab_report_description': $('#text_project_description').val(),
+                    'finlab_report_branch_name': $('#text_system_branch_name').val(),
+                    'finlab_report_build_number': 0,
+                    'finlab_report_summary': $('#text_test_result_description').val(),
+                    'finlab_report_content': "",
+                    'finlab_report_tester': $('#text_tester').val(),
+                    'finlab_report_total_bug': $('#text_total_bug').val(),
+                    'finlab_report_close_bug': $('#text_close_bug').val(),
+                    'finlab_report_serious_bug': $('#text_serious_bug').val(),
+                    'finlab_report_diff_cover': $('#text_diff_cover').val(),
+                    'finlab_report_auto_rate': $('#text_auto_rate').val(),
+                    'finlab_report_snor_rate': $('#text_snor_result').val(),
+                    'finlab_report_ref_requirement': $('#text_ref_requirement_address').val(),
+                    'finlab_report_case_address': $('#text_ref_case_address').val(),
+                    'finlab_report_productor': $('#text_productor').val(),
+                    'finlab_report_begin': $('#date_test_begin').val(),
+                    'finlab_report_result': $('#sel_test_result').val(),
+                    'finlab_report_devloper': $('#text_devloper').val(),
+                    'finlab_report_end': $('#date_test_end').val(),
+                    'finlab_report_notify_address': $('#text_notify_email').val(),
+                    'finlab_report_system_name': $('#text_system_name').val(),
+                    'finlab_report_inuser': "{{  current_user.username  }}",
+                    'finlab_report_indate': get_date()
+                }
+
+
+            }
+            return report
+        }
+
+        function build_report_trans_entity(type, link_url) {
+            return {
+                "finlab_report_transaction_type": type,
+                "finlab_report_transaction_rate": "",
+                "finlab_report_transaction_name": get_tilte(type),
+                "finlab_report_transaction_content": "",
+                "finlab_report_transaction_image_url": "",
+                "finlab_report_transaction_link_url": link_url,
+                "finlab_report_transaction_indate": get_date(),
+                "finlab_report_transaction_inuser": "{{ current_user.username }}"
+            }
+        }
+
+        function get_tilte(tran_type) {
+            var result = ""
+            if (tran_type == "bug_list") {
+                result = "bug 清单"
+            } else if (tran_type == "diff_cover") {
+                result = "增量覆盖率"
+            } else if (tran_type == "snor_scan") {
+                result = "Snor 扫描结果"
+            } else if (tran_type == "bug_trend") {
+                result = "bug 趋势图"
+            } else if (tran_type == "auto_rate") {
+                result = "自动化结果"
+            }
+            return result
+        }
+
+        function valide_request() {
+            var system_name = $("#text_system_name").val();
+            var branch_name = $("#text_system_branch_name").val();
+            var email_address = $("#text_notify_email").val();
+            var result = true
+            if ($.isEmptyObject(system_name)) {
+                toastr.error("测试系统不能为空");
+                result = false
+            }
+            if ($.isEmptyObject(branch_name)) {
+                toastr.error("测试分支名称不能为空")
+                result = false
+            }
+            if ($.isEmptyObject(email_address)) {
+                toastr.error("收件人地址不能为空")
+                result = false
+            }
+            return result
+        }
+
+        function upload_report(control_name, type, link_url, show_contral) {
+            if (valide_request() == false) {
+                return
+            }
+            var myFormData = new FormData();
+            var link = ""
+            var branch_name = $("#text_system_branch_name").val();
+            var system_name = $("#text_system_name").val();
+            if ($.isEmptyObject(link_url) == false) {
+                var link = link_url.val();
+            }
+            var file_obj = $(control_name).get(0).files[0];
+            var data = JSON.stringify(build_report_eneity());
+            var trans = JSON.stringify(build_report_trans_entity(type, link))
+            myFormData.append("upfile", file_obj);
+            myFormData.append("branch_name", branch_name);
+            myFormData.append("system_name", system_name);
+            myFormData.append("data", data);
+            myFormData.append("trans", trans);
+            $.ajax({
+                type: "post",
+                url: '/api/case/upload/file', //请求url   
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                processData: false,
+                contentType: false,
+                data: myFormData,
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data["code"] == 1) {
+                        toastr.error("上传失败")
+                    }
+                    else {
+                        if ($.isEmptyObject(show_contral) == false) {
+                            show_contral.attr("src", data['image_url'])
+                        }
+                        toastr.success("上传成功")
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    toastr.error(data['message']);
+                    return
+                }
+
+            });
+        }
+
+        function capture_image(type, address, show_contral) {
+            if (valide_request() == false) {
+                return
+            }
+            address = address.val();
+            var data = JSON.stringify(build_report_eneity());
+            var trans = JSON.stringify(build_report_trans_entity(type, address))
+            var branch_name = $("#text_system_branch_name").val();
+            var system_name = $("#text_system_name").val();
+
+            var req_data = {
+                "url": address,
+                "data": data,
+                "trans": trans,
+                "branch_name": branch_name,
+                "system_name": system_name,
+                "image_name": type + '.png'
+            }
+            var req_data_temp = JSON.stringify(req_data)
+            console.log(req_data_temp)
+            $.ajax({
+                url: "/api/case/capture/screen",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                async: true,
+                jsonp: "callback",
+                type: "POST",
+                data: req_data_temp,
+                // 成功后开启模态框
+                success: function (data) {
+                    if (data["code"] == 1) {
+                        toastr.error("抓取图片失败")
+                    }
+                    else {
+                        show_contral.attr("src", data['image_url'])
+                        toastr.success("抓取图片成功")
+                    }
+
+                },
+                error: function () {
+
+                },
+                dataType: "json"
+            });
+
+
+        }
+
+
+        function get_date() {
+            var myDate = new Date();
+            //获取当前年
+            var year = myDate.getFullYear();
+            //获取当前月
+            var month = myDate.getMonth() + 1;
+            //获取当前日
+            var date = myDate.getDate();
+            var h = myDate.getHours();       //获取当前小时数(0-23)
+            var m = myDate.getMinutes();     //获取当前分钟数(0-59)
+            var s = myDate.getSeconds();
+
+            var now = year + '-' + getNow(month) + "-" + getNow(date) + " " + getNow(h) + ':' + getNow(m) + ":" + getNow(s);
+            return now
+        }
+
+        function getNow(s) {
+            return s < 10 ? '0' + s : s;
+        }
+
+    </script>
+
+
+
+{% endblock %}
+
+
+

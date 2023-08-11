@@ -1,0 +1,10 @@
+
+.repsonse_pre {
+    white-space: pre-wrap;
+    border:0px;
+    background:white;
+}
+
+.repsonse_pre:hover {
+    background: #f9f9f9;
+}

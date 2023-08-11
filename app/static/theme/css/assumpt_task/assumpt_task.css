@@ -1,0 +1,159 @@
+
+.W60 .selectpicker,
+.W60,
+.W60 div {
+    width:90px !important;
+}
+
+.W60 > div div {
+    padding-left: 0px !important;
+}
+
+.W60 .filter-option-inner-inner {
+    text-indent: 1em;
+}
+
+.jenknis_class,
+.jenknis_class .selectpicker,
+.jenknis_class div {
+    width:240px !important;
+}
+
+.jenknis_class > div div {
+    padding-left: 0px !important;
+}
+
+.jenknis_class .filter-option-inner-inner {
+    text-indent: 1em;
+}
+
+.table_center {
+    vertical-align: middle !important;
+}
+
+.time,
+.time  div {
+    width: 160px !important;
+}
+
+.opclass,
+.opclass div {
+    width: 265px !important;
+}
+
+.master_env_sel {
+    width: 80px !important;
+}
+
+.master_div {
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    padding: 0px;
+    margin: 0px;
+    min-height: 60px;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}
+
+.master_div > div {
+    padding:10px 20px;
+    min-height: 50px;
+}
+
+.fixed-table-container,
+.bootstrap-table .table > thead > tr > th {
+    border: none;
+}
+
+.bootstrap-table .table {
+    border: none;
+    box-shadow: 0 0 10px rgba(128, 145, 165, 0.2);
+}
+
+.col-task-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 260px;
+}
+
+.col-receive-time {
+    min-width: 160px;
+}
+
+.col-publish-time {
+    min-width: 120px;
+}
+
+.col-receive-time,
+.col-publish-time,
+.col-task-name,
+.col-text {
+    display:table-cell!important;
+    vertical-align:middle!important;
+}
+
+.col-env,
+.col-compare-type {
+    width: 80px;
+}
+
+.program-name {
+    float: left;
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.div_info {
+    width: 600px;
+    margin: 10px;
+}
+
+.div_info_lab {
+    float: left;
+    width: 200px;
+    margin-top: 7px;
+}
+
+.div_info_sel {
+    width: 300px!important;
+}
+
+.div_info_text {
+    height: 35px;
+    width: 300px;
+}
+
+.quality-info {
+    margin: 10px;
+}
+
+.sel-quality-info {
+    margin-left: 10px!important;
+}
+
+.task-tab {
+    list-style: none;
+    height: 40px;
+    float: right;
+    display: flex;
+}
+
+.task-tab li {
+    position: relative;
+    margin: 0 10px;
+    width: 80px;
+}
+
+.task-tab li.active
+{
+    border-bottom: 2px solid #3582fb;
+}
+
+.task-tab li a {
+    color: black;
+    font-size: 16px;
+}
+
+.task-tab li.active a {
+    color: #3582fb;
+}

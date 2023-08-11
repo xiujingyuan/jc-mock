@@ -1,0 +1,201 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}工具箱{% endblock %}
+
+{% block head %}
+
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+    <style>
+    .W90 .th-inner {
+        width:90px !important;
+    }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+ <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">工具箱</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <select id="sel_request_funcation" name="country" data-live-search="true" class="form-control selectpicker" data-style="btn-primary" style="height: 55px;">
+
+                            </select>
+                        </div>
+                        <div class="col-sm-9" style="...">
+                            <input type="text" class="form-control" id="tool_http_address" readonly>
+                            <input type="text" class="form-control hidden" id="tool_http_method"  >
+                            <input type="text" class="form-control hidden" id="tool_table_id" hidden >
+                        </div>
+                        <div class="col-sm-1"style="...">
+                            <button type="button" class="btn btn-primary" id="btn_send_request"  onclick="send_request()">发送</button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">请求参数</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <div id="tool_request_params" aria-placeholder="fdafds"></div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="txt_case_type">返回值</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <div id="tool_request_response"></div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loadingModal">
+        <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+            <div class="progress progress-striped active" style="margin-bottom: 0;">
+                <div class="progress-bar" style="width: 100%;"></div>
+            </div>
+            <h5>正在加载...</h5>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+<script>
+    var new_tools_object={};
+    $(function () {
+        bind_select_init("sel_request_funcation");
+    });
+    var json_dict = {};
+
+    var options = {
+        mode: "code",
+        sortObjectKeys:false
+    };
+    var json = {
+    };
+
+    var json_list = ['tool_request_params', 'tool_request_response'];
+
+    for(var json_name in json_list){
+        var container = document.getElementById(json_list[json_name]);
+        var json_edit = new JSONEditor(container, options, json);
+        json_dict[json_list[json_name]] = json_edit;
+    }
+
+    $('#sel_request_funcation').on('changed.bs.select',function(e){
+        if(new_tools_object.hasOwnProperty(e.target.value)){
+            var temp_value = new_tools_object[e.target.value]
+            $('#tool_http_address').val(temp_value['address'])
+            $('#tool_http_method').val(temp_value['method'])
+            $('#tool_table_id').val(temp_value['id'])
+            json_dict['tool_request_params'].set(temp_value['placeholder']);
+            json_dict['tool_request_response'].set({});
+        }
+    });
+
+    function bind_select_init(obj) {
+        var tools = {{ tools | tojson }}
+            $('#'+obj).append(" <option value=\"0\" >" +"请选择" + "</option>");
+            for(var i in tools){
+                new_tools_object[tools[i]['id']]=tools[i];
+                $('#'+obj).append(" <option value=\"" + tools[i]['id'] + "\">" + tools[i]['title'] + "</option>");
+        }
+        $('#'+obj).selectpicker('refresh');
+    }
+
+    function send_request() {
+
+        var id = $('#tool_table_id').val();
+        if($.isEmptyObject(id)){
+            toastr.warning("warning", "请选择你需要的功能！");
+            return
+
+        }
+        $('#loadingModal').modal({"data-backdrop": 'static', "keyboard": false});
+        $("#loadingModal").modal('show');
+
+        var data = deepCopy(new_tools_object[id]);
+        data['placeholder'] = JSON.stringify(json_dict['tool_request_params'].get());
+        var request_data = JSON.stringify(data)
+        $.ajax({
+            url: "/api/case/common/request",
+            contentType: "application/json; charset=UTF-8",
+            headers: {"X-CSRFToken":"{{ csrf_token() }}"},
+            async: true,
+            jsonp: "callback",
+            type: "POST",
+            data: request_data,
+            // 成功后开启模态框
+
+            success: function (data) {
+                if (data["code"] == 1) {
+                    $("#loadingModal").modal('hide');
+                    toastr.warning("warning", data["msg"]);
+                }
+                else {
+                    //绑定值
+                    json_dict['tool_request_response'].set(data['result'])
+                    $("#loadingModal").modal('hide');
+                }
+
+            },
+            error: function () {
+                $("#loadingModal").modal('hide');
+                $("#update_warning").text("网络异常，请求失败");
+                $("#update_warning").show()
+            },
+            dataType: "json"
+        });
+
+    }
+
+
+
+    var deepCopy = function(obj){
+        var newItem = null;
+        if(typeof obj != 'object'|| obj==null){
+            return obj;	 //如果传入obj不是object或者为null就退出递归,
+        }
+        Array.isArray(obj) ? newItem = [] : newItem = {};
+
+        for(var key in obj){
+            //arguments.callee 的作用是指向正在执行的函数的指针(也就是deepCopy函数本身)
+            newItem[key] = arguments.callee(obj[key]);  //进行递归操作
+        }
+        return newItem;
+    };
+
+
+
+    </script>
+
+
+
+{% endblock %}
+
+
+

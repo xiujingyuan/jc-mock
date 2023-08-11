@@ -1,0 +1,246 @@
+
+<div class="modal fade" id="initEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul class="case-add-modal-title nav nav-tabs" id="myTabInit">
+                    <li class="active"><a href="#tab_init_info" data-toggle="tab">初始化基础信息</a></li>
+                    <li><a href="#tab_init_action" data-toggle="tab">初始化动作</a></li>
+                </ul>
+                <div class="tab-content tab-modal-content">
+                    <div class="tab-pane active" id="tab_init_info">
+                        <!--初始化基础信息开始-->
+                        <div style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">初始化基础信息</div>
+                        <div class="panel-body">
+                        <div id="" class="form-horizontal">
+                        <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-6">
+                        <label class="control-label col-sm-4" for="txt_init_name">初始化名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="txt_init_name" maxlength="200">
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label class="control-label col-sm-4" for="txt_init_description">初始化描述</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="txt_init_description" maxlength="200">
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div id="" class="form-horizontal">
+                        <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-6">
+                        <label class="control-label col-sm-4" for="txt_init_type">执行类型</label>
+                        <div class="col-sm-8">
+                            <select id="sel_init_type" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                <option>setup</option>
+                                <option>teardown</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <label class="control-label col-sm-4" for="txt_init_case_priority">优先级</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="txt_init_case_priority">
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <!--初始化基础信息结束-->
+                    </div>
+                    <div class="tab-pane" id="tab_init_action">
+                        <!--初始化动作开始-->
+                        <div style="margin-top: 10px;margin-bottom: 10px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">初始化处理动作</div>
+                        <div class="panel-body">
+                        <div id="myInit">
+                        <label class="checkbox-inline" >
+                        <input type="radio" name="groupInitRadios" id="is_init_http_request" value="1" style="margin:5px;padding: 5px;" />http请求
+                        <div class="collapseInitRow" data-toggle="collapse" data-parent="#myInit" href="#collapseInitOne" ></div>
+                        </label>
+                        <label class="checkbox-inline" >
+                        <input type="radio" name="groupInitRadios" id="is_init_db_reqeust" value="2" style="margin:5px;padding: 5px;">数据库请求
+                        <div class="collapseInitRow" data-toggle="collapse" data-parent="#myInit" href="#collapseInitTwo" ></div>
+                        </label>
+                        </div>
+                        <div id="collapseInitOne" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                        <form id="formSearch" class="form-horizontal">
+                        <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" style="width: 120px;" for="txt_init_request_url">请求URL</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txt_init_request_url" maxlength="500">
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" style="width: 120px;" for="txt_init_request_method">请求方式</label>
+                        <div class="col-sm-4">
+                        <select id="sel_init_request_method" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                        <option>POST</option>
+                        <option>GET</option>
+                        <option>DELETE</option>
+                        <option>PUT</option>
+                        </select>
+                        </div>
+                        <label class="control-label col-sm-1" style="width: 147px;" for="txt_init_request_header">请求头信息</label>
+                        <div class="col-sm-4">
+                        <select id="sel_init_request_header" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                        <option>application/json</option>
+                        <option>application/x-www-form-urlencoded</option>
+                        </select>
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_init_req uest_args">请求参数</label>
+                        <div class="col-sm-10">
+                        <div id="json_init_request_args"></div>
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px;display: none;">
+                        <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_init_replace">替换表达式</label>
+                        <div class="col-sm-10">
+                        <div id="json_init_replace"></div>
+                        </div>
+                        </div>
+                        </form>
+                        </div>
+                        </div>
+                        <div id="collapseInitTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        <form id="formSearch" class="form-horizontal">
+                        <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1"  style="width: 120px;"for="txt_init_sql">sql语句</label>
+                        <div class="col-sm-10">
+                        <textarea id="txt_init_sql" rows="5" class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1"  style="width: 120px;"for="txt_init_sql_args">sql参数</label>
+                        <div class="col-sm-10">
+                        <div id="json_init_sql_args"></div>
+                        </div>
+                        </div>
+                        <div class="form-group" style="margin-top:15px;">
+                            <label class="control-label col-sm-1" style="width: 120px;display: none;" for="txt_init_sql_replace">替换表达式</label>
+                            <div class="col-sm-5" style="display: none;">
+                                <div id="json_init_sql_replace"></div>
+                            </div>
+
+                            <label class="control-label col-sm-1" style="width: 120px;" for="txt_init_run_sql_device">执行数据库</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="sel_init_run_sql_device" maxlength="500">
+                            </div>
+
+                        </div>
+                        </form>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <!--初始化处理动作结束-->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_init_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_init_save">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+    $("#btn_init_save").click(function () {
+        // console.log($("#formSearch").serialize());
+        var init_name = $("#txt_init_name").val();
+        var init_description = $("#txt_init_description").val();
+        var init_type = $("#sel_init_type").val();
+
+        var is_init_http_db = $('#myInit input:radio:checked').val();
+
+        // init db vars
+        var txt_init_sql = "";
+        var json_init_sql_args = "";
+        var json_init_sql_replace = "";
+        var sel_init_run_sql_device = "";
+
+        // init http vars
+        var txt_init_request_url = "";
+        var sel_init_request_method = "";
+        var sel_init_request_header = "";
+        var json_init_request_args = "";
+        var json_init_replace = "";
+
+        var case_priority = $("#txt_init_case_priority").val();
+
+        if("1" == is_init_http_db)
+        {
+            var txt_init_request_url = $("#txt_init_request_url").val();
+            var sel_init_request_method = $("#sel_init_request_method").val();
+            var sel_init_request_header = $("#sel_init_request_header").val();
+            var sel_init_request_header_dict = {
+                "Content-type":sel_init_request_header
+            }
+
+            var json_init_request_args = $.isEmptyObject(json_dict['json_init_request_args'].get())==true ? "" : json_dict['json_init_request_args'].get();
+            var json_init_replace = $.isEmptyObject(json_dict['json_init_replace'].get())==true ? "" : json_dict['json_init_replace'].get();
+        }
+        else if ("2" == is_init_http_db){
+            var txt_init_sql = $("#txt_init_sql").val();
+            var json_init_sql_args = $.isEmptyObject(json_dict['json_init_sql_args'].get())==true ? "" : json_dict['json_init_sql_args'].get();
+            var json_init_sql_replace = $.isEmptyObject(json_dict['json_init_sql_replace'].get())==true ? "" : json_dict['json_init_sql_replace'].get();
+            var sel_init_run_sql_device = $("#sel_init_run_sql_device").val();
+        }
+
+        if(init_name==""){
+            toastr.warning("warning", '初始化名称不能为空');
+            return
+        }
+
+        if(txt_init_request_url=="" && txt_init_sql==""){
+            toastr.warning("warning", 'http 请求地址或者sql语句不能同时为空');
+            return
+        }
+
+        var init_id = getMaxId("#tb_add_init", "init_id");
+        var data = {
+                    "init_id": init_id,
+                    "case_init_type": init_type,
+                    "case_init_name": init_name,
+                    "case_init_description": init_description,
+                    "case_init_api_address": txt_init_request_url,
+                    "case_init_api_method": sel_init_request_method,
+                    "case_init_api_params": json_init_request_args,
+                    "case_init_api_header": sel_init_request_header_dict,
+                    "case_init_api_expression": json_init_replace,
+                    "case_init_sql": txt_init_sql,
+                    "case_init_sql_params": json_init_sql_args,
+                    "case_init_sql_expression": json_init_sql_replace,
+                    "case_init_sql_database": sel_init_run_sql_device,
+                    "case_init_indate":get_date(),
+                    "case_init_inuser":"{{ current_user.username }}",
+                    "case_init_lastuser":"{{ current_user.username }}",
+                    "case_init_lastdate":get_date(),
+                    "case_priority": case_priority
+                };
+        $("#tb_add_init").bootstrapTable('insertRow', {
+                        index: 0,
+                        row: data
+                    });
+        $("#tb_edit_init").bootstrapTable('insertRow', {
+                        index: 0,
+                        row: data
+                    });
+        $("#btn_init_cancel").click();
+
+    });
+</script>
+

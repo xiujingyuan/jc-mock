@@ -1,0 +1,495 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}质量报告-数据获取{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block page_content %}
+
+    <!--获取map对应的功能--开始-->
+    <div class="container-fluid" style="margin: 20px;">
+        <div class="col-sm-2"><button id="exec_debug_map" type="button" class="btn btn-primary">缺陷MAP</button></div>
+        <div class="col-sm-2"><button id="exec_story_map" type="button" class="btn btn-primary">需求MAP</button></div>
+        <div class="col-sm-2"><button id="exec_iteration_map" type="button" class="btn btn-primary">迭代MAP</button></div>
+        <div class="col-sm-2"><button id="exec_workspace_map" type="button" class="btn btn-primary">项目名称MAP</button></div>
+        <div class="col-sm-2"><button id="exec_iteration_info" type="button" class="btn btn-primary">项目迭代信息</button></div>
+        <div class="col-sm-2"><button id="exec_monitor_story" type="button" class="btn btn-primary">监控需求</button></div>
+    </div>
+    <!--获取map对应的功能--结束-->
+
+    <!--获取时间段对应的数据功能--开始-->
+    <div class="container-fluid" style="margin: 20px;">
+        <div class="col-sm-1">
+            <label>开始日期：</label>
+        </div>
+        <div class="col-sm-2">
+            <div class='input-group date' id='query_start_time'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+                    </div>
+        <div class="col-sm-1">
+            <label>结束日期：</label>
+                    </div>
+        <div class="col-sm-2">
+            <div class='input-group date' id='query_end_time'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-sm-1">
+            <label>选择项目：</label>
+                    </div>
+        <div class="col-sm-1">
+            <select id="sel_program" name="country" class="form-control selectpicker " data-style="btn-primary">
+                {% for program in program_works %}
+                    <option value="{{ program.work_id }}">{{ program.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_story_data" type="button" class="btn btn-primary">获取需求</button>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_bug_data" type="button" class="btn btn-primary">获取缺陷</button>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_tag_data" type="button" class="btn btn-primary">获取上线Tag</button>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_sonar_data" type="button" class="btn btn-primary">获取sonar</button>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_case_data" type="button" class="btn btn-primary">获取用例</button>
+        </div>
+        <div class="col-sm-1">
+            <button id="exec_test_plan_data" type="button" class="btn btn-primary">获取测试计划</button>
+        </div>
+    </div>
+    <!---获取时间段对应的数据功能--结束-->
+
+    <!---统计数据功能--开始-->
+    <div class="container-fluid" style="margin: 20px;">
+        <div class="col-sm-6">
+            <div class="col-sm-2">
+            <select id="sel_month" name="country" class="form-control selectpicker " data-style="btn-primary">
+                <option value="2020-06">2020-06</option>
+                <option value="2020-05">2020-05</option>
+                <option value="2020-04">2020-04</option>
+                <option value="2020-03">2020-03</option>
+                <option value="2020-02">2020-02</option>
+                <option value="2020-01">2020-01</option>
+                <option value="2019-12">2019-12</option>
+                <option value="2019-11">2019-11</option>
+                <option value="2019-10">2019-10</option>
+                <option value="2019-09">2019-09</option>
+            </select>
+            <select id="sel_iteration" name="country" class="form-control selectpicker " data-style="btn-primary">
+                {% for iter in iteration %}
+                    {% if loop.first %}
+                        {% for iter_info in iter[program_works[0].work_id] %}
+                            <option value="{{ iter_info.id }}">{{ iter_info.name }}</option>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_statics_story_data" type="button" class="btn btn-primary">需求统计数据</button>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_statics_bug_data" type="button" class="btn btn-primary">缺陷统计数据</button>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_statics_build_data" type="button" class="btn btn-primary">构建统计数据</button>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_statics_tag_data" type="button" class="btn btn-primary">Tag统计数据</button>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_statics_coverage_data" type="button" class="btn btn-primary">覆盖率统计数据</button>
+            </div>
+            <div class="col-sm-2">
+                <button id="exec_git_commit" type="button" class="btn btn-primary">获取git提交信息</button>
+            </div>
+        </div>
+    </div>
+    <!---统计数据功能--结束-->
+
+    <div class="container-fluid" style="margin: 10px;">
+        <div id="rllfx" style="width: 600px;height:400px;"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="{{ cdn_host }}moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $("#sel_program").on('changed.bs.select', function (e) {
+            $.ajax({
+                url: "/api/report/get_iteration/" + $(this).val(),
+                type: "get",
+                success: function (data) {
+                    if(data.code == 0 ){
+                        var opt = "";
+                        $("#sel_iteration").empty();
+                        $.each(data.data, function (index, item) {
+                            opt += "<option value='" + item["id"] + "'>" +
+                                    item["name"] + "</option>"
+                        });
+                        $("#sel_iteration").append(opt);
+                        $("#sel_iteration").selectpicker("refresh");
+                    }
+                    else{
+                        toastr.warning(data.msg, 'warning');
+                    }
+                }
+            });
+        });
+
+        $('#query_start_time').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+
+        $('#query_end_time').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+
+        $("#sel_story_program").change(function () {
+            init_story_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_bug_status_program").change(function () {
+            init_bug_status_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_bug_severity_program").change(function () {
+            init_bug_severity_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_time").change(function () {
+            var month_date = $("#sel_time").val();
+            var year = month_date.split("-")[0];
+            var month = month_date.split("-")[1];
+            init_story_bug_build_month_data(year, month);
+        });
+
+        $("#exec_debug_map").click(function () {
+            $.ajax({
+                url: "/tasks/get_bug_map/",
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取缺陷MAP成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取缺陷MAP失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_bug_data").click(function () {
+            var query_start_time = $("#query_start_time input").val();
+            var query_end_time = $("#query_end_time input").val();
+            var work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_bug_data/" + work_id + "/" + query_start_time + "/" + query_end_time,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取缺陷MAP成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取缺陷MAP失败", 'fail');
+                    }
+                }
+        })
+        });
+
+
+        $("#exec_sonar_data").click(function () {
+            $.ajax({
+                url: "/tasks/get_sonar",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取sonar信息成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取sonar信息失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        //
+        $("#exec_case_data").click(function () {
+            var query_start_time = $("#query_start_time input").val();
+            var query_end_time = $("#query_end_time input").val();
+            $.ajax({
+                url: "/tasks/get_case_data/" + query_start_time + "/" + query_end_time,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取用例成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取用例失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_test_plan_data").click(function () {
+            var query_start_time = $("#query_start_time input").val();
+            var query_end_time = $("#query_end_time input").val();
+            var work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_test_plan_data/" + work_id + "/" + query_start_time + "/" + query_end_time,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取测试计划成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取测试计划失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_tag_data").click(function () {
+            var query_start_time = $("#query_start_time input").val();
+            var query_end_time = $("#query_end_time input").val();
+            $.ajax({
+                url: "/tasks/get_gitlab_data/" + query_start_time + "/" + query_end_time,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取项目Tag成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取项目Tag失败", 'fail');
+                    }
+                }
+        })
+        });
+
+
+        $("#exec_iteration_info").click(function () {
+            $.ajax({
+                url: "/tasks/get_iteration_info/",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取项目迭代信息成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取项目迭代信息失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_monitor_story").click(function () {
+            $.ajax({
+                url: "/tasks/get_for_test",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("执行需求状态监控成功", 'success');
+                    }
+                    else {
+                        toastr.fail("执行需求状态监控失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_workspace_map").click(function () {
+            $.ajax({
+                url: "/tasks/get_workspace_info/",
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取工作空间MAP成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取工作空间MAP失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_story_map").click(function () {
+            $.ajax({
+                url: "/tasks/get_story_map/",
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取需求MAP成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取需求MAP失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_iteration_map").click(function () {
+            $.ajax({
+                url: "/tasks/get_iteration_map/",
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取迭代MAP成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取迭代MAP失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_story_data").click(function () {
+            var query_start_time = $("#query_start_time input").val();
+            var query_end_time = $("#query_end_time input").val();
+            var work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_story_data/" + work_id + "/" + query_start_time + "/" + query_end_time,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取需求数据成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取需求数据失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_statics_story_data").click(function () {
+            var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_statistics_story/" + work_id + "/" + sel_iteration,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("统计需求数据成功", 'success');
+                    }
+                    else {
+                        toastr.fail("统计需求数据失败", 'fail');
+                    }
+                }
+        })
+        });
+
+
+        $("#exec_statics_coverage_data").click(function () {
+           var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_statistics_coverage/" + work_id + '/' + sel_iteration,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("统计项目覆盖率成功", 'success');
+                    }
+                    else {
+                        toastr.fail("统计项目覆盖率失败", 'fail');
+                    }
+                }
+        })
+        });
+
+
+        $("#exec_git_commit").click(function () {
+            var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_git_commit_data/" + work_id + "/" + sel_iteration,
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("获取分支提交信息成功", 'success');
+                    }
+                    else {
+                        toastr.fail("获取分支提交信息失败", 'fail');
+                    }
+                }
+        })
+        });
+
+
+        $("#exec_statics_bug_data").click(function () {
+            var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_statistics_bug/" + work_id + "/" + sel_iteration,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("统计数据成功", 'success');
+                    }
+                    else {
+                        toastr.error("统计数据失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_statics_build_data").click(function () {
+            var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_statistics_build/" + work_id + "/" + sel_iteration,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("统计构建数据成功", 'success');
+                    }
+                    else {
+                        toastr.error("统计构建数据失败", 'fail');
+                    }
+                }
+        })
+        });
+
+        $("#exec_statics_tag_data").click(function () {
+            var sel_iteration = $("#sel_iteration").val(),
+                work_id = $("#sel_program").val();
+            $.ajax({
+                url: "/tasks/get_statistics_tag/" + work_id + "/" + sel_iteration,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        toastr.success("统计构建数据成功", 'success');
+                    }
+                    else {
+                        toastr.error("统计构建数据失败", 'fail');
+                    }
+                }
+        })
+        });
+    });
+
+    </script>
+{% endblock %}

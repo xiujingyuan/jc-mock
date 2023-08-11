@@ -1,0 +1,68 @@
+<div class="modal fade" id="menuEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--编辑菜单开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">编辑菜单</div>
+                        <div class="panel-body">
+                            <div id="" class="form-horizontal">
+                                <div class="form-group" style="margin-top: 15px;padding: 20px;">
+
+                                    <label class="control-label col-sm-4" for="txt_menu_name">菜单名称</label>
+                                    <input type="text" class="form-control" id="txt_menu_name" maxlength="200">
+
+                                    <label class="control-label col-sm-4" for="sel_parent">父级菜单</label>
+                                    <select id="sel_parent" name="country" class="form-control selectpicker " data-style="btn-primary" >
+                                        <option value="-">-</option>
+                                        {% for menu in level_menu %}
+                                        <option value="{{ menu.name }}">{{ menu.name }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <label class="control-label col-sm-4" for="txt_route">路由</label>
+                                    <input type="text" class="form-control" id="txt_route" maxlength="200">
+
+                                    <label class="control-label col-sm-4" for="txt_menu_order">顺序</label>
+                                    <input type="text" class="form-control" id="txt_menu_order" maxlength="200">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--初始化基础信息结束-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_init_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_menu_save">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+
+    function init_menu(row) {
+        var data = $("#tb_menu_lists").bootstrapTable('getData')[row - 1];
+        console.log(data);
+        $("#txt_menu_order").val(data["order"]);
+        $("#txt_menu_name").val(data["name"]);
+        $("#sel_parent").val(data["parent"]);
+        $("#txt_route").val(data["route"]);
+        if (data["parent"] == "-"){
+            $("#sel_parent").attr("disabled", true);
+        }
+
+        if (data["route"] == "/"){
+            $("#txt_route").attr("disabled", true);
+        }
+
+    }
+
+    $("#btn_menu_save").click(function () {
+        console.log("btn_menu_save");
+    });
+
+</script>

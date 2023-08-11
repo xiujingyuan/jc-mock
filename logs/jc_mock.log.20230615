@@ -1,0 +1,6 @@
+2023-06-15 11:13:47 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-06-15 11:13:47 INFO log_info: 传入国家：CN，environment=test
+2023-06-15 11:13:47 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-06-15 11:13:47 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-06-15 11:14:10 INFO get_overseas_intimacy: {'code': 1000, 'message': '成功', 'data': {'asset_number': 'php_test_20210427_000001', 'contacts': [{'phone_num_loc': '', 'intimacy': 392, 'call_cnt': '', 'phone_num_enc': 'enc_01_4510741596215981056_626', 'relation_ship': 4, 'call_len': 9, 'name_enc': 'enc_04_4121214877795098624_762', 'source': 'sms'}], 'long_contacts': []}}
+2023-06-15 11:14:10 INFO _log: 127.0.0.1 - - [15/Jun/2023 11:14:10] "[37mGET /api/dh/get/overseas/intimacy?count=1&region=MX&source=sms HTTP/1.1[0m" 200 -

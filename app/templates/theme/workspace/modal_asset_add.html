@@ -1,0 +1,57 @@
+
+<div class="modal fade" id="addAsset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--case相关信息开始-->
+                <div style="margin-top: 10px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">新增资产</div>
+                        <div class="panel-body">
+                            <div id="" class="form-horizontal">
+                                <div class="form-group form-content">
+                                    <select id="sel_add_type" name="sel_add_type" class="selectpicker show-tick form-control auto-item" data-live-search="false">
+                                        <option value="add_exist">添加已存在资产</option>
+                                        <option value="auto_create">脚本创建资产</option>
+                                    </select>
+                                    <div id="add_exist_content">
+                                        <input type="text" class="form-control auto-item" id="txt_business_cname" placeholder="多笔资产用,分割" maxlength="200">
+                                    </div>
+                                    <div id="auto_create_content" class="hidden">
+                                        <select id="sel_country" name="sel_country" class="selectpicker show-tick form-control auto-item" data-live-search="false">
+                                            <option value="china">国内</option>
+                                            <option value="ind">印度</option>
+                                            <option value="ind">印尼</option>
+                                            <option value="ind">泰国</option>
+                                        </select>
+                                        <select id="sel_count" name="sel_count" class="selectpicker show-tick form-control auto-item" data-live-search="false">
+                                            <option value="1">1期</option>
+                                            <option value="6">6期</option>
+                                            <option value="12">12期</option>
+                                        </select>
+                                        <select id="sel_loan_channel" name="sel_loan_channel" class="selectpicker show-tick form-control auto-item" data-live-search="false">
+                                            <option value="hami_tianshan">哈密天山</option>
+                                            <option value="weishenma_daxinganling">微神马</option>
+                                        </select>
+                                        <label>当天是否放款日：</label>
+                                        <select id="sel_grant_day" name="sel_grant_day" class="selectpicker show-tick form-control auto-item" data-live-search="false">
+                                            <option value="is_grant_day">是</option>
+                                            <option value="not_grant_day">否</option>
+                                        </select>
+                                        <input type="text" class="form-control auto-item" id="txt_advance_month" placeholder="提前多少个月（负数），推后多个月（正数）" maxlength="200">
+                                        <input type="text" class="form-control auto-item" id="txt_advance_day" placeholder="提前多少天（负数），推后多个天（正数）" maxlength="200">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_asset_create_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_asset_create">新增资产</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

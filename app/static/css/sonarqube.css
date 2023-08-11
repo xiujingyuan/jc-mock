@@ -1,0 +1,3376 @@
+img,svg{vertical-align:top;overflow:visible}hr{margin:4px 0;padding:0;height:1px;border:none;background-color:#e6e6e6}
+.spacer{width:5px;display:inline-block}.formError{display:inline-block;background-color:#ed7d20;color:#000;padding:0 5px}
+input[type=date]:active,input[type=date]:focus,input[type=email]:active,input[type=email]:focus,input[type=number]:active,input[type=number]:focus,input[type=password]:active,input[type=password]:focus,input[type=search]:active,input[type=search]:focus,input[type=text]:active,input[type=text]:focus,select:active,select:focus,textarea:active,textarea:focus{border-color:#4b9fd5;box-shadow:none;outline:0}input[type=date]:invalid,input[type=email]:invalid,input[type=number]:invalid,input[type=password]:invalid,input[type=search]:invalid,input[type=text]:invalid,select:invalid,textarea:invalid{box-shadow:none;outline:0}input:-ms-input-placeholder,textarea:-ms-input-placeholder{color:#777}input::-ms-input-placeholder,textarea::-ms-input-placeholder{color:#777}input::placeholder,textarea::placeholder{color:#777}
+.is-valid>.Select-control,input[type=date].is-valid,input[type=email].is-valid,input[type=number].is-valid,input[type=password].is-valid,input[type=search].is-valid,input[type=text].is-valid,select.is-valid,textarea.is-valid{border-color:#0a0}.is-invalid>.Select-control,input[type=date].is-invalid,input[type=email].is-invalid,input[type=number].is-invalid,input[type=password].is-invalid,input[type=search].is-invalid,input[type=text].is-invalid,select.is-invalid,textarea.is-invalid{border-color:#d4333f}input.disabled,input:disabled,select.disabled,select:disabled,textarea.disabled,textarea:disabled{color:#bbb!important;border-color:#ddd!important;background:#ebebeb!important;cursor:not-allowed!important;pointer-events:none!important;box-shadow:none!important}input[type=date],input[type=email],input[type=number],input[type=password],input[type=search],input[type=text]{height:24px;padding:0 6px}input[type=search]{-webkit-appearance:textfield}input[type=search]::-webkit-search-decoration{-webkit-appearance:none}textarea{padding:3px}
+textarea.width-100{max-width:100%}select{height:24px;line-height:24px}.input-tiny{width:60px!important}.input-small{width:100px!important}.input-medium{width:150px!important}.input-large{width:200px!important}.input-super-large{width:100%!important;max-width:300px;min-width:200px}.input-ghost{padding:0!important;border:none!important;background-color:transparent!important}.input-clear{background-color:transparent!important}.input-code{font-family:Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px}em.mandatory{color:#900;font-style:italic}.form-field{clear:both;display:block;padding-bottom:16px}.form-field label{display:block;font-weight:700;padding-bottom:4px}.form-field-description{line-height:1.4;color:#777;font-size:12px;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.form-field .Select,.form-field input[type=email],.form-field input[type=password],.form-field input[type=text],.form-field select,.form-field textarea{width:250px}.radio-toggle{display:inline-block;vertical-align:middle;font-size:0;white-space:nowrap}.radio-toggle>li{display:inline-block;vertical-align:middle;font-size:12px}.radio-toggle>li:first-child>label{border-top-left-radius:2px;border-bottom-left-radius:2px}.radio-toggle>li:last-child>label{border-top-right-radius:2px;border-bottom-right-radius:2px}.radio-toggle>li+li>label{border-left:none}.radio-toggle>li>label{display:inline-block;padding:0 12px;margin:0;border:1px solid #236a97;color:#236a97;height:22px;line-height:22px}.radio-toggle input[type=radio]{display:none}.radio-toggle input[type=radio]:checked+label{background-color:#236a97;color:#fff;font-weight:600}.radio-toggle input[type=radio]:disabled+label{color:#bbb;border-color:#ddd;background:#ebebeb;cursor:not-allowed}[class*=' icon-'],[class^=icon-]{line-height:1;vertical-align:middle}a[class*=' icon-'],a[class^=icon-]{border-bottom:none}.icon-half-transparent{opacity:.5}.icon-gray{color:#999}.icon-gray path{fill:#999}.icon-color-link{color:#236a97}.icon-checkbox{display:inline-block;vertical-align:top;padding:1px 2px;box-sizing:border-box}.icon-checkbox:focus{outline:0}.icon-checkbox:before{content:' ';display:inline-block;width:10px;height:10px;border:1px solid #236a97;border-radius:2px;transition:border-color .2s ease,background-color .2s ease,background-image .2s ease,box-shadow .4s ease}.icon-checkbox:not(.icon-checkbox-disabled):focus:before,.link-checkbox:not(.disabled):focus:focus .icon-checkbox:before{box-shadow:0 0 0 3px rgba(35,106,151,.25)}.icon-checkbox-disabled:before{border:1px solid #bbb;cursor:not-allowed}.icon-checkbox-disabled.icon-checkbox-checked:before{background-color:#bbb}.icon-checkbox-invisible{visibility:hidden}.icon-radio{position:relative;display:inline-block;vertical-align:top;width:14px;height:14px;margin:1px;border:1px solid #cdcdcd;border-radius:12px;box-sizing:border-box;transition:border-color .3s ease}.icon-radio:after{position:absolute;top:2px;left:2px;display:block;width:8px;height:8px;border-radius:8px;background-color:#236a97;content:'';opacity:0;transition:opacity .3s ease}a:hover>.icon-radio{border-color:#4b9fd5}.icon-radio.is-checked:after{opacity:1}.icon-outline{transition:all .2s ease!important}.icon-outline path{stroke:#777;stroke-opacity:1;fill-opacity:0;vector-effect:non-scaling-stroke;transition:all .2s ease}.icon-outline.is-filled path{fill:currentColor;stroke:currentColor;fill-opacity:1}.vertical-top{vertical-align:top!important}.vertical-bottom{vertical-align:bottom!important}.vertical-middle{vertical-align:middle!important}.vertical-text-top{vertical-align:text-top!important}.vertical-baseline{vertical-align:baseline!important}.nowrap{white-space:nowrap!important}table.nowrap td,td.nowrap,th.nowrap{white-space:nowrap!important}.hidden{display:none!important;visibility:hidden!important}.note{color:#777;font-size:12px}.spacer-left{margin-left:8px!important}.spacer-right{margin-right:8px!important}.spacer-bottom{margin-bottom:8px!important}.spacer-top{margin-top:8px!important}.big-spacer-left{margin-left:16px!important}.big-spacer-right{margin-right:16px!important}.big-spacer-bottom{margin-bottom:16px!important}.big-spacer-top{margin-top:16px!important}.huge-spacer-bottom{margin-bottom:40px!important}.huge-spacer-top{margin-top:40px!important}.huge-spacer-left{margin-left:40px!important}.huge-spacer-right{margin-right:40px!important}.little-spacer-left{margin-left:4px!important}.little-spacer-right{margin-right:4px!important}.little-spacer-bottom{margin-bottom:4px!important}.little-spacer-top{margin-top:4px!important}td.little-spacer-left{padding-left:4px!important}td.little-spacer-right{padding-right:4px!important}td.spacer-left{padding-left:8px!important}td.spacer-right{padding-right:8px!important}td.spacer-bottom{padding-bottom:8px!important}td.spacer-top{padding-top:8px!important}td.big-spacer-left,th.big-spacer-left{padding-left:16px!important}td.big-spacer-right{padding-right:16px!important}td.big-spacer-bottom{padding-bottom:16px!important}td.big-spacer-top{padding-top:16px!important}.pull-left{float:left!important}.pull-right{float:right!important}.bordered{border:1px solid #e6e6e6}.bordered-left{border-left:1px solid #e6e6e6}.bordered-right{border-right:1px solid #e6e6e6}.bordered-bottom{border-bottom:1px solid #e6e6e6}.bordered-top{border-top:1px solid #e6e6e6}.overflow-hidden{overflow:hidden!important}.max-width-100{max-width:100%!important}.width-100{width:100%!important}.width-80{width:80%!important}.width-60{width:60%!important}.width-55{width:55%!important}.width-50{width:50%!important}.width-40{width:40%!important}.width-30{width:30%!important}.width-25{width:25%!important}.width-20{width:20%!important}.width-15{width:15%!important}.width-10{width:10%!important}.abs-width-150{width:150px!important}.abs-width-240{width:240px!important}.abs-width-300{width:300px!important}.abs-width-400{width:400px!important}.abs-width-600{width:600px!important}.justify{margin-bottom:-1em;text-align:justify}.justify>.ib{display:inline-block}.justify:after{display:inline-block;width:100%;content:' '}.first-letter-uppercase::first-letter{text-transform:uppercase}.disabled-pointer-events{pointer-events:none!important}.display-block{display:block!important}.display-inline-block{display:inline-block!important}.display-flex-row{display:flex!important;flex-direction:row}.display-flex-column{display:flex!important;flex-direction:column}.display-flex-center{display:flex!important;align-items:center}.display-flex-space-around{display:flex!important;justify-content:space-around}.display-flex-space-between{display:flex!important;justify-content:space-between}.display-flex-stretch{display:flex!important;align-items:stretch}.display-inline-flex-baseline{display:inline-flex!important;align-items:baseline}.display-inline-flex-center{display:inline-flex!important;align-items:center}.position-absolute{position:absolute!important}.position-relative{position:relative!important}.rounded{border-radius:2px}.flex-1{flex:1}.flex-0{flex:0 0 auto}.flex-shrink{flex-shrink:1;min-width:0}.space-between{justify-content:space-between!important}.new-loading{opacity:.5;transition:opacity .5s ease}.slash-separator{margin-left:5px;margin-right:5px}.slash-separator:after{content:'/';color:rgba(68,68,68,.3)}.horizontal-pipe-separator{display:flex;align-items:center;margin-top:32px;margin-bottom:32px}.horizontal-pipe-separator>.horizontal-separator{margin:0 4px}.horizontal-separator{min-width:16px;height:1px;flex-grow:1;background-color:#e6e6e6}.vertical-separator{width:1px;min-height:16px;flex-grow:1;background-color:#e6e6e6}.vertical-pipe-separator{display:flex;flex-direction:column;margin-left:60px;margin-right:60px}.vertical-pipe-separator>.vertical-separator{margin:4px auto}.capitalize{text-transform:capitalize!important}.cursor-not-allowed{cursor:not-allowed!important}.no-select{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important}.no-outline,.no-outline:focus{outline:0!important}.bg-danger{background-color:#d4333f;color:#fff}.bg-warning{background-color:#ed7d20;color:#fff}.bg-info{background-color:#4b9fd5;color:#fff}.bg-success{background-color:#0a0;color:#fff}.bg-muted{background-color:#f3f3f3;color:inherit}.leak-box{background-color:#fbf3d5;border:1px solid #eae3c7;padding:4px 6px}.shortcut-button{display:inline-block;min-width:24px;height:24px;line-height:21px;padding:0 4px;box-sizing:border-box;border:1px solid #ccc;border-radius:3px;background-image:linear-gradient(to bottom,#f5f5f5,#eee);box-shadow:inset 0 1px 0 #fff,0 1px 0 #ccc;color:#777;font-size:11px;text-align:center}.shortcut-button-small{min-width:16px;height:16px;line-height:14px;margin-left:4px;margin-right:4px}.flash{background-color:transparent;transition:all .5s ease}.flash.in{background-color:#fcf8e3}.flash-heavy.in{background-color:#ffe456}.identity-provider{display:inline-block;line-height:14px;padding:2px 5px;border:1px solid rgba(0,0,0,.15);border-radius:3px;box-sizing:border-box;background-color:#236a97;font-size:12px;color:#fff}.spinner{position:relative;vertical-align:middle;width:16px;height:16px;border:2px solid #4b9fd5;border-radius:50%;animation:spin .75s infinite linear}.spinner-placeholder{position:relative;display:inline-block;vertical-align:middle;width:16px;height:16px;visibility:hidden}.spinner:after,.spinner:before{left:-2px;top:-2px;display:none;position:absolute;content:'';width:inherit;height:inherit;border:inherit;border-radius:inherit}.spinner,.spinner:after,.spinner:before{display:inline-block;box-sizing:border-box;border-color:transparent;border-top-color:#4b9fd5;animation-duration:1.2s}.spinner:before{transform:rotate(120deg)}.spinner:after{transform:rotate(240deg)}.spinner-margin{margin:10px}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}.global-loading{width:300px;margin:200px auto 0;white-space:nowrap}.global-loading-spinner{vertical-align:middle;width:80px;height:80px}.global-loading-text{display:inline-block;vertical-align:middle;margin-left:30px;font-size:36px;font-weight:300}.ReactModal__Content,.modal{position:fixed;z-index:6001;top:0;left:50%;margin-left:-270px;width:540px;background-color:#fff;opacity:0;transition:all .2s ease;border-radius:3px}.ReactModal__Content:focus,.modal:focus{outline:0}.ReactModal__Content--after-open,.modal.in{top:15%;opacity:1}.modal-small{width:450px;margin-left:-225px}.modal-medium{width:830px;margin-left:-415px}.modal-large{width:calc(100% - 40px);max-width:1280px;min-width:1040px;margin-left:0;transform:translateX(-50%)}.ReactModal__Overlay,.modal-overlay{position:fixed;z-index:6000;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,.7);opacity:0;transition:all .2s ease}.ReactModal__Overlay--after-open,.modal-overlay.in{opacity:1}.modal-no-backdrop{background-color:transparent}.ReactModal__Body--open,.modal-open{overflow:hidden;}.modal-head h1,.modal-head h2{margin:0;font-size:16px;font-weight:700;line-height:normal}.modal-body{padding:20px 32px}.modal-container{max-height:60vh;box-sizing:border-box;overflow-y:scroll;border-top:1px solid #e6e6e6;margin-top:20px;}.modal-container>:last-child{margin-bottom:20px}.modal-field,.modal-validation-field{clear:both;display:block;padding:0;margin-bottom:16px}.modal-field label,.modal-validation-field label{display:block;font-weight:700;padding-bottom:4px}.modal-field .Select,.modal-field a.icon-checkbox,.modal-field input,.modal-field select,.modal-field textarea{margin-right:5px}.modal-field a.icon-checkbox{height:24px}.modal-field input[type=checkbox],.modal-field input[type=radio]{margin-top:5px;margin-bottom:4px}.modal-field>.icon-checkbox{padding-top:6px;padding-right:8px}.modal-field .Select,.modal-field input[type=email],.modal-field input[type=password],.modal-field input[type=text],.modal-field select,.modal-field textarea{width:100%}.modal-validation-field .Select,.modal-validation-field input,.modal-validation-field textarea{margin-right:8px;margin-bottom:2px;width:calc(100% - 24px)}.modal-field textarea,.modal-validation-field textarea{max-width:100%;min-width:100%;max-height:50vh;min-height:24px}.modal-validation-field .Select:not(.is-invalid),.modal-validation-field input:not(.is-invalid){margin-bottom:18px}.modal-field-description{line-height:1.4;color:#777;font-size:12px;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.modal-foot{padding:20px 32px;border-top:1px solid #e6e6e6;background-color:#f3f3f3;border-radius:3px;text-align:right}.modal-foot .button,.modal-foot button,.modal-foot input[type=button],.modal-foot input[type=submit]{margin-left:8px}.modal-error,.modal-notice,.modal-warning{display:none}.alert{margin-bottom:8px;border:1px solid;border-radius:2px}.alert.is-inline{display:inline-flex}.alert:empty{display:none}.alert-inner{display:flex;align-items:stretch}.alert-inner.is-banner{min-width:1080px;max-width:1320px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px;box-sizing:border-box}.alert-icon{flex:0 0 auto;display:flex;justify-content:center;align-items:center;width:32px;border-right:1px solid}.alert-icon.is-banner{width:16px;border-right:none}.alert-content{flex:1 0 0;padding:8px 16px;overflow:auto;text-align:left}.alert-content .button-link,.alert-content a{border-color:#236a97}.alert-error{border-color:#ebccd1;background-color:#f2dede;color:#862422}.alert-error .alert-icon{border-color:#ebccd1}.alert-warning{border-color:#faebcc;background-color:#fcf8e3;color:#6f4f17}.alert-warning .alert-icon{border-color:#faebcc}.alert-info{border-color:#b1dff3;background-color:#d9edf7;color:#0e516f}.alert-info .alert-icon{border-color:#b1dff3}.alert-success{border-color:#d6e9c6;background-color:#dff0d8;color:#215821}.alert-success .alert-icon{border-color:#d6e9c6}.issue-list{margin:10px 0}.issue,.issue-list{max-width:980px}.dropdown{position:relative;display:inline-block;vertical-align:middle}.dropdown-bottom-hint{line-height:16px;margin-bottom:-5px;padding:5px 10px;border-top:1px solid #e6e6e6;background-color:#f3f3f3;color:#777;font-size:11px}.menu{min-width:160px;padding:5px 0;list-style:none;font-size:12px;text-align:left;background-color:#fff;background-clip:padding-box}.menu:focus{outline:0}.menu.is-container{padding:5px}.menu-item,.menu>li>a,.menu>li>span{display:block;padding:4px 16px;line-height:16px;clear:both;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.menu>li>a{color:#444;border-bottom:none;transition:none}.menu>li>a.rich-item{display:flex;align-items:center;border:1px solid #cdcdcd;border-radius:4px;margin:4px 10px;padding:2px 8px;white-space:normal}.menu .divider{height:1px;margin:6px 0;overflow:hidden;background-color:#e6e6e6}.menu>li>a.disabled{color:#bbb!important;cursor:not-allowed!important;pointer-events:none!important}.menu>li>a.text-muted{color:#777}.menu>li>a:focus,.menu>li>a:hover{text-decoration:none;color:#444;background-color:#f3f3f3}.menu>.active>a,.menu>.active>a:focus,.menu>.active>a:hover,.menu>li>.active,.menu>li>.active:focus,.menu>li>.active:hover{color:#444;text-decoration:none;outline:0;background-color:#f3f3f3}.menu>li>a.text-danger,.menu>li>a.text-danger:hover{color:#d4333f!important}.menu .menu-vertically-limited,.menu.menu-vertically-limited{max-height:300px;overflow-y:auto}.menu-vertically-limited.with-top-separator{border-top:1px solid #e6e6e6}.menu-vertically-limited.with-bottom-separator{border-bottom:1px solid #e6e6e6}.menu .menu-footer>a>span{border-bottom:1px solid #cdcdcd;color:#777}.menu .menu-footer-note{opacity:0;transition:opacity .3s ease}.menu .menu-footer.active .menu-footer-note{opacity:1}.menu-search{position:relative;padding:8px 16px 0}.menu-search .search-box,.menu-search .search-box-input{max-width:none;min-width:240px}.menu-search~.menu>li>a:focus,.menu-search~.menu>li>a:hover{background-color:transparent}.menu-search~.menu>.active>a,.menu-search~.menu>.active>a:focus,.menu-search~.menu>.active>a:hover,.menu-search~.menu>li>.active,.menu-search~.menu>li>.active:focus,.menu-search~.menu>li>.active:hover{background-color:#f3f3f3}.menu-message{display:block;padding:4px 16px;line-height:16px}.menu-header{padding:8px;font-size:12px;color:#777;white-space:nowrap}.divider+.menu-header,.menu-header:first-child{padding-top:3px}.white-page{background-color:#fff!important}.global-container{display:flex;flex-direction:column;height:100%;min-height:100vh}.page{position:relative;z-index:2;padding:10px 20px}.page:after,.page:before{display:table;content:'';line-height:0}.page:after{clear:both}.page-limited{max-width:1280px;margin-left:auto;margin-right:auto;padding-top:20px;padding-bottom:20px}.page-container{min-width:1080px}.page-wrapper{box-sizing:border-box;flex:1 0 auto}.page-wrapper-simple{display:flex;justify-content:center;align-items:center;margin:100px 0}.page-simple{width:400px;padding:40px;border:1px solid #e6e6e6;background-color:#fff}.page-header{position:relative;margin-bottom:20px}.page-header:after,.page-header:before{display:table;content:'';line-height:0}.page-header:after{clear:both}.page-header .spinner{position:relative;top:3px;margin-left:8px}.page-title{float:left;margin-bottom:0;line-height:24px}.page-actions{float:right;margin-bottom:10px;margin-left:10px;line-height:24px}.page-actions .badge{margin:3px 0}.page-actions .spinner{top:0!important}.page-description{float:left;clear:left;max-width:800px;line-height:1.5;margin-top:6px}.page-footer{min-height:60px;padding:10px;line-height:1.5;border-top:1px solid #e6e6e6;box-sizing:border-box;background-color:#f3f3f3;color:#595959;font-size:12px;text-align:center}.page-footer a{border-bottom:1px solid #d0d0d0;color:#444}.page-footer a:active,.page-footer a:focus,.page-footer a:hover{border-bottom-color:#cae3f2;color:#4b9fd5}.sidebar-page #footer{padding-left:calc(50vw - 360px)!important}.sidebar-page #footer .page-footer-menu,.sidebar-page #footer div{max-width:980px}.page-footer-menu-item{display:inline-block}.page-footer-menu-item+.page-footer-menu-item::before{content:'-';padding:0 4px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.page-with-sidebar{display:flex}.page-main{flex-grow:1}.page-sidebar{width:30%;min-width:300px;flex-shrink:0;padding-left:40px;box-sizing:border-box}.page-sidebar-fixed{min-width:300px;flex-shrink:0;padding-left:40px;box-sizing:border-box;width:300px}.page-sidebar-sticky{width:320px!important;padding-right:0}.page-limited .page-sidebar-sticky{margin:-20px 0 -20px -20px;padding-right:0!important}.page-limited .page-sidebar-sticky .page-sidebar-sticky-inner{padding:20px 0}.page-sidebar-sticky .page-sidebar-sticky-inner{position:fixed;z-index:10;top:30px;bottom:0;left:0;overflow:auto;width:calc(50vw - 357px);border-right:1px solid #e6e6e6;box-sizing:border-box;background:#f3f3f3}@media (max-width:1335px){.page-sidebar-sticky .page-sidebar-sticky-inner{width:310px}}.layout-page{display:flex;align-items:stretch;width:100%;flex-grow:1}.layout-page-filters{width:260px;padding:20px}.layout-page-main{flex-grow:1;min-width:740px;padding:20px;z-index:50}.layout-page-main-inner{position:relative;z-index:2;min-width:740px;max-width:980px}.layout-page-side-outer{width:calc(50vw - 370px);flex-grow:0;flex-shrink:0;background-color:#f3f3f3}.layout-page-side{position:fixed;z-index:40;top:30px;bottom:0;left:0;width:calc(50vw - 370px);border-right:1px solid #e6e6e6;overflow-y:auto;overflow-x:hidden;background-color:#f3f3f3}.layout-page-side-inner{width:300px;margin-left:calc(50vw - 670px);background-color:#f3f3f3}.layout-page-header-panel,.layout-page-header-panel-inner{height:56px;box-sizing:border-box}.layout-page-header-panel{margin-top:-20px}.layout-page-header-panel-inner{position:fixed;z-index:30;line-height:24px;padding-top:16px;padding-bottom:16px;border-bottom:1px solid #e6e6e6;background-color:#f3f3f3}.layout-page-main-header{position:relative;z-index:3;margin-bottom:20px}.layout-page-main-header .component-name{line-height:24px}.layout-page-main-header-inner{left:calc(50vw - 369px);right:0;padding-left:20px;padding-right:20px}@media (max-width:1320px){.layout-page-side-outer{width:300px}.layout-page-side{width:300px}.layout-page-side-inner{margin-left:0}.layout-page-main-header-inner{left:301px}.sidebar-page #footer{padding-left:310px!important}}.component-name{line-height:16px;font-size:12px}.component-name:after,.component-name:before{display:table;content:'';line-height:0}.component-name:after{clear:both}.component-name-parent{float:left;margin-right:20px}.component-name-parent:last-child{margin-right:0}.component-name-path{float:left;clear:left}.component-name-parent+.component-name-path{margin-top:4px}.component-name-favorite{position:relative;top:-1px;margin-left:4px;padding:2px 0}.list-group{margin-bottom:20px;padding-left:0}.list-group-item{position:relative;z-index:2;display:block;margin-bottom:-1px;padding:5px 10px;border:1px solid transparent}.list-group-item:last-child{margin-bottom:0}.list-group-item.active,.list-group-item.active:focus,.list-group-item.active:hover{z-index:3;border-color:#4b9fd5!important;background-color:#cae3f2}.list-group-item:hover{z-index:3;border-color:#4b9fd5!important}.list-group-item+.list-group-item{border-top-color:#e6e6e6}a.list-group-item{color:#444;transition:none}.list-group-item-heading{margin-top:5px;margin-bottom:5px}.list-group-item-heading:after{content:'';display:table;clear:both}.panel{padding:10px}.panel:not(:last-child){border-bottom:1px solid #e6e6e6}.panel-vertical{padding-left:0;padding-right:0}.panel-white{border:1px solid #e6e6e6;background-color:#fff}.panel-warning{border:1px solid #faebcc;background-color:#fcf8e3;color:#8a6d3b}.badge{display:inline-block;vertical-align:middle;height:20px;line-height:19px;padding:0 8px;border-radius:2px;font-size:12px;min-width:10px;letter-spacing:.03em;color:#fff;white-space:nowrap;text-align:center;background-color:#4b9fd5}.badge:empty{display:none}a.badge:active,a.badge:focus,a.badge:hover{color:#fff}a.badge{border-bottom:none}.badge.is-rounded{padding-left:5px;padding-right:5px;border-radius:50px}.badge-medium{height:24px;line-height:24px;letter-spacing:.01em}.list-group-item-heading>.badge,.list-group-item>.badge{float:right;margin:3px}.list-group-item-heading>.badge+.badge,.list-group-item>.badge+.badge{margin-right:5px}.badge-normal-size{font-size:inherit;letter-spacing:inherit}.badge-tiny-height{height:16px!important;line-height:15px!important}.badge-new{height:18px;font-size:10px;text-transform:uppercase;background-color:#cae3f2;color:#236a97}.badge-muted{background-color:transparent;color:#777}.badge-muted:active,.badge-muted:focus,.badge-muted:hover{color:#4b9fd5}.badge-ok,.badge-success{background-color:#0a0}.badge-warn,.badge-warning{background-color:#ed7d20}.badge-danger,.badge-error{background-color:#d4333f}.badge-danger-light{border:1px solid #ebccd1!important;border-radius:3px;background-color:#f2dede;color:#a94442}a.badge-danger-light:active,a.badge-danger-light:focus,a.badge-danger-light:hover{color:#a94442}.badge-focus{border:1px solid #faebcc;border-radius:3px;background-color:#fcf8e3;color:#8a6d3b;font-weight:400}a.badge-focus:active,a.badge-focus:focus,a.badge-focus:hover{color:#8a6d3b}.badge-secondary{background-color:#b4b4b4}.outline-badge{display:inline-block;vertical-align:middle;height:20px;line-height:19px;padding:0 8px;border:1px solid #cdcdcd;border-radius:2px;box-sizing:border-box;color:#777;font-size:12px;font-weight:400;white-space:nowrap}.outline-badge.active{color:#444;border-color:#4b9fd5;background-color:#cae3f2}.outline-badge.badge-info{border-color:#4b9fd5}.outline-badge.badge-icon{padding-left:4px}.outline-badge.badge-icon svg{height:18px}.columns{margin-left:-10px;margin-right:-10px;overflow:hidden}.columns:after,.columns:before{display:table;content:'';line-height:0}.columns:after{clear:both}.column-half{float:left;width:50%;padding:0 10px;box-sizing:border-box}.column-half.column-one{margin:0 25%}.flex-columns{display:flex}.flex-column+.flex-column{margin-left:20px}.flex-column-half{width:50%}.flex-column-third{width:33.33333%}.boxed-group{margin-bottom:20px;border:1px solid #e6e6e6;border-radius:2px;background-color:#fff}.boxed-group-centered{margin-left:auto;margin-right:auto;max-width:500px}.boxed-group>h2{line-height:24px;padding:16px 20px 0}.boxed-group>h2.boxed-title{padding:0 0 8px;margin:0;font-weight:600}.boxed-group hr{height:0;border-top:1px solid #efefef;margin:16px -20px}.boxed-group-header{position:relative;z-index:10;padding:0px 10px 0}.boxed-group-header>h2{display:inline-block;vertical-align:middle;line-height:24px}.boxed-group-actions{position:relative;z-index:12;float:right;margin-top:16px;margin-right:20px}.boxed-group-inner{padding:16px 20px}.boxed-group-inner:empty{padding-top:0}.boxed-group-list>li{margin-left:-20px;margin-right:-20px;padding:8px 20px}.boxed-group-accordion{margin-bottom:8px;transition:border-color .3s ease}.boxed-group-accordion:not(.no-hover):hover{border-color:#4b9fd5}.boxed-group-accordion:not(.no-hover):hover .boxed-group-accordion-title{color:#4b9fd5}.boxed-group-accordion .boxed-group-header{cursor:pointer;padding-bottom:16px}.boxed-group-accordion-alert.boxed-group-accordion-alert{vertical-align:middle;margin-bottom:-6px;margin-top:-6px}.boxed-group-accordion .boxed-group-inner{padding-top:0}.boxed-group-accordion-title{display:inline-flex;align-items:center;vertical-align:middle;font-weight:700;transition:color .3s ease}.tabs{height:20px;border-bottom:1px solid #ddd;margin:0;padding:0;font-size:93%}.tabs li{display:inline;list-style-type:none;font-weight:400;color:#777;vertical-align:baseline;white-space:nowrap;margin:0;border:0;padding:0}.tabs li a{float:left;color:#777;vertical-align:bottom;height:17px;margin:0 1px 0 0;padding:1px 5px;border-bottom:none;transition:none}.tabs li a.selected{text-decoration:none;color:#555!important;font-weight:700;margin:0 1px 0 0}.markdown-tips{font-size:12px;color:#777}.markdown,.rule-desc{line-height:1.5}.cut-margins>.markdown-content>:first-child,.cut-margins>:first-child{margin-top:0!important}.cut-margins>.markdown-content>:last-child,.cut-margins>:last-child{margin-bottom:0!important}.markdown blockquote,.markdown h2,.markdown h3,.markdown h4,.markdown h5,.markdown h6,.markdown ol,.markdown p,.markdown pre,.markdown table,.markdown ul,.rule-desc blockquote,.rule-desc h2,.rule-desc h3,.rule-desc h4,.rule-desc h5,.rule-desc h6,.rule-desc ol,.rule-desc p,.rule-desc pre,.rule-desc table,.rule-desc ul{margin:1em 0}.markdown h2,.rule-desc h2{font-size:16px;font-weight:400}.markdown h3,.markdown h4,.markdown h5,.markdown h6,.rule-desc h3,.rule-desc h4,.rule-desc h5,.rule-desc h6{font-size:13px;font-weight:600}.markdown code,.markdown pre,.rule-desc code,.rule-desc pre{font-family:Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px}.markdown pre,.rule-desc pre{padding:10px;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;line-height:18px;overflow:auto}.markdown code,.rule-desc code{padding:.2em .45em;margin:0;background-color:rgba(0,0,0,.06);border-radius:3px;white-space:nowrap}.markdown pre>code,.rule-desc pre>code{padding:0;background-color:transparent;white-space:pre}.markdown blockquote,.rule-desc blockquote{line-height:1.5;padding-left:15px;padding-right:15px}.markdown ul,.rule-desc ul{padding-left:40px;list-style:disc}.markdown li>ul,.rule-desc li>ul{margin:.3em 0}.markdown ol,.rule-desc ol{padding-left:40px;list-style:decimal}.markdown table,.rule-desc table{min-width:50%;border-collapse:collapse;border:1px solid #e6e6e6}.markdown th,.rule-desc th{padding:5px 10px;border:1px solid #e6e6e6;background-color:#f3f3f3;font-weight:600;text-align:center}.markdown td,.rule-desc td{padding:5px 10px;border:1px solid #e6e6e6}.property p{margin-top:10px}.coding-rules-detail-parameter pre,.property pre{display:inline-block;min-width:100%;margin:10px 0!important;padding:10px!important;border:1px dashed #aaa;box-sizing:border-box;font-size:12px;font-family:Consolas,'Liberation Mono',Menlo,Courier,monospace}.coding-rules-detail-parameter blockquote,.property blockquote{margin-top:10px;padding:10px}.property ul{list-style-type:disc;list-style-position:inside;margin:10px}.property ol{list-style-type:decimal;list-style-position:inside;margin:10px}.width100{width:100%}textarea.width100{width:100%;box-sizing:border-box}.property{margin-bottom:10px}.property h3{float:none;max-width:20em}.property>td,.property>th{vertical-align:top;padding:10px}.property>th{text-align:right}.property table.data{width:480px}.property textarea{vertical-align:text-top}.property .note{margin-top:5px}@media print{.noprint{display:none!important}a{color:#444;border-bottom:none}.page-footer{display:none!important}body,html{background-color:#fff!important}.widget tfoot,.widget thead{display:table-row-group}}.code .a{color:olive}.code .c{color:#660e80;font-style:normal;font-weight:700}.code .j{color:#666;font-style:normal}.code .cd{color:#666;font-style:italic}.code .cppd{color:#666;font-style:italic}.code .k{color:#0071ba;font-weight:600}.code .s{color:#277b31;font-weight:400}.code .h{color:navy;font-weight:400}.code .p{color:#347235;font-weight:400}.sym{cursor:hand;cursor:pointer}.highlighted{background-color:#b3d4ff;animation:highlightedFadeIn .3s forwards}@keyframes highlightedFadeIn{from{background-color:transparent}to{background-color:#b3d4ff}}.clearfix:after,.clearfix:before{display:table;content:'';line-height:0}.clearfix:after{clear:both}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.tooltip {
+  position: absolute;
+  z-index: 8000;
+  display: block;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.tooltip {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  animation: fadeIn 0.3s forwards;
+}
+
+.tooltip.top {
+  padding: 5px 0;
+  margin-top: -3px;
+}
+
+.tooltip.right {
+  padding: 0 5px;
+  margin-left: 3px;
+}
+
+.tooltip.bottom {
+  padding: 5px 0;
+  margin-top: 3px;
+}
+
+.tooltip.left {
+  padding: 0 5px;
+  margin-left: -3px;
+}
+
+.tooltip-inner {
+  max-width: 300px;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 4px;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.tooltip-inner {
+  padding: 12px 17px;
+  color: #fff;
+  background-color: #475760;
+  letter-spacing: 0.04em;
+}
+
+.tooltip-inner .alert {
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.tooltip-inner a {
+  border-bottom-color: #8da6b3;
+  color: #a5d0ea;
+}
+
+.tooltip-inner hr {
+  background-color: #5d6d75;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: solid transparent;
+}
+
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  border-width: 5px 5px 0;
+  transform: translateX(-5px);
+}
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #475760;
+}
+
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  transform: translateY(-5px);
+  border-width: 5px 5px 5px 0;
+  border-right-color: #475760;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: #475760;
+}
+
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  transform: translateY(-5px);
+  border-width: 5px 0 5px 5px;
+  border-left-color: #475760;
+}
+
+.tooltip.left .tooltip-arrow {
+  border-left-color: #475760;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  transform: translateX(-5px);
+  border-width: 0 5px 5px;
+  border-bottom-color: #475760;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #475760;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.popup {
+  position: absolute;
+  z-index: 5000;
+  margin-top: -16px;
+  margin-left: 8px;
+  padding: 8px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  cursor: default;
+}
+
+.popup.no-padding {
+  padding: 0;
+}
+
+/* #region .popup-arrow */
+.popup-arrow,
+.popup-arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+}
+
+.popup-arrow {
+  top: 15px;
+  left: -6px;
+  border-left-width: 0;
+  border-right-color: #e6e6e6;
+}
+
+.popup-arrow:after {
+  content: ' ';
+  left: 1px;
+  bottom: -6px;
+  border-left-width: 0;
+  border-right-color: #ffffff;
+}
+/* #endregion */
+
+/* #region .popup.is-bottom */
+.popup.is-bottom {
+  top: 100%;
+  left: 0;
+  margin: 0;
+  margin-left: 50%;
+  transform: translate(-50%, 6px);
+}
+
+.popup.is-bottom .popup-arrow {
+  top: -6px;
+  left: calc(50% - 6px);
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #e6e6e6;
+}
+
+.popup.is-bottom .popup-arrow.is-left {
+  left: 8px;
+}
+
+.popup.is-bottom .popup-arrow:after {
+  left: -6px;
+  bottom: -7px;
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #ffffff;
+}
+/* #endregion */
+
+/* #region .popup.is-bottom-right */
+.popup.is-bottom-right {
+  top: 100%;
+  right: 0;
+  margin: 0;
+
+  /* TODO Update like .is-bottom-left, currently it's */
+  transform: translateY(6px);
+}
+
+.popup.is-bottom-right .popup-arrow {
+  top: -6px;
+  left: auto;
+  right: 8px;
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #e6e6e6;
+}
+
+.popup.is-bottom-right .popup-arrow:after {
+  left: -6px;
+  bottom: -7px;
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #ffffff;
+}
+/* #endregion */
+
+/* #region .popup.is-bottom-left */
+.popup.is-bottom-left {
+  top: 100%;
+  left: 0;
+  margin: 0;
+  transform: translate(-8px, 6px);
+}
+
+.popup.is-bottom-left .popup-arrow {
+  top: -6px;
+  right: auto;
+  left: 8px;
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #e6e6e6;
+}
+
+.popup.is-bottom-left .popup-arrow:after {
+  left: -6px;
+  bottom: -7px;
+  border-left-width: 6px;
+  border-top-width: 0;
+  border-right-color: transparent;
+  border-bottom-color: #ffffff;
+}
+/* #endregion */
+
+/* #region .popup.is-left-top */
+.popup.is-left-top {
+  top: -4px;
+  right: 100%;
+  margin: 0;
+  transform: translateX(-6px);
+}
+
+.popup.is-left-top .popup-arrow {
+  right: -6px;
+  left: auto;
+  top: 8px;
+  border-right-width: 0;
+  border-left-width: 6px;
+  border-left-color: #e6e6e6;
+  border-right-color: transparent;
+}
+
+.popup.is-left-top .popup-arrow:after {
+  top: -6px;
+  left: -7px;
+  border-right-width: 0;
+  border-left-width: 6px;
+  border-left-color: #ffffff;
+  border-right-color: transparent;
+}
+/* #endregion */
+
+/* #region .popup.is-right-top */
+.popup.is-right-top {
+  top: -4px;
+  left: 100%;
+  margin: 0;
+  transform: translateX(6px);
+}
+
+.popup.is-right-top .popup-arrow {
+  left: -6px;
+  right: auto;
+  top: 8px;
+  border-left-width: 0;
+  border-right-width: 6px;
+  border-right-color: #e6e6e6;
+  border-left-color: transparent;
+}
+
+.popup.is-right-top .popup-arrow:after {
+  top: -6px;
+  right: -7px;
+  border-left-width: 0;
+  border-right-width: 6px;
+  border-right-color: #ffffff;
+  border-left-color: transparent;
+}
+/* #endregion */
+
+/* #region .popup & .menu or .multi-select */
+.popup:not(.no-padding) > .menu,
+.popup:not(.no-padding) > .multi-select {
+  margin: -8px;
+}
+/* #endregion */
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar-context-avatar {
+  display: inline-flex;
+  vertical-align: top;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e6e6e6;
+}
+
+.navbar-context-avatar.no-border {
+  border: none;
+}
+
+.navbar-context-avatar.is-small {
+  width: 16px;
+  height: 16px;
+}
+
+.navbar-context-avatar img {
+  vertical-align: top;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.navbar-context-avatar img,
+.navbar-context-avatar svg {
+  transform: none;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  height: 24px;
+  line-height: 22px;
+  padding: 0 12px;
+  border: 1px solid #236a97;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: transparent;
+  color: #236a97;
+  font-weight: 600;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover,
+.button.button-active {
+  background: #236a97;
+  color: #fff;
+}
+
+.button:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.button:focus {
+  box-shadow: 0 0 0 3px rgba(35, 106, 151, 0.25);
+}
+
+.button.disabled,
+.button:disabled,
+.button:disabled:hover,
+.button:disabled:active,
+.button:disabled:focus {
+  color: #bbb !important;
+  border-color: #ddd !important;
+  background: #ebebeb !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+/* #region .button-red */
+.button-red {
+  border-color: #d4333f;
+  color: #d4333f;
+}
+
+.button-red:hover,
+.button-red.active {
+  background: #d4333f;
+  color: #fff;
+}
+
+.button-red:focus {
+  box-shadow: 0 0 0 3px rgba(212, 51, 63, 0.25);
+}
+
+/* #endregion */
+
+/* #region .button-success */
+.button-success {
+  border-color: #00aa00;
+  color: #00aa00;
+}
+
+.button-success:hover,
+.button-success.active {
+  background: #00aa00;
+  color: #fff;
+}
+
+.button-success:focus {
+  box-shadow: 0 0 0 3px rgba(0, 170, 0, 0.25);
+}
+
+/* #endregion */
+
+/* #region .button-grey */
+.button-grey {
+  border-color: #b4b4b4;
+  color: #777;
+}
+
+.button-grey:hover,
+.button-grey.active {
+  background: #b4b4b4;
+  color: #ffffff;
+}
+
+.button-grey:focus {
+  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.25);
+}
+
+/* #endregion */
+
+/* #region .button-link */
+.button-link {
+  display: inline-flex;
+  height: auto;
+  /* Keep this to not inherit the height from .button */
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #236a97;
+  border-bottom: 1px solid #cae3f2;
+  font-weight: 400;
+  font-size: inherit;
+  transition: all 0.2s ease;
+}
+
+.dropdown .button-link {
+  border-bottom: none;
+}
+
+.button-link:hover {
+  background: transparent;
+  color: #4b9fd5;
+}
+
+.button-link:active {
+  box-shadow: none;
+  outline: thin dotted #ccc;
+}
+
+.button-link:disabled,
+.button-link:disabled:hover,
+.button-link:disabled:active,
+.button-link:disabled:focus {
+  color: #777;
+  background: transparent !important;
+  cursor: default;
+}
+
+/* #endregion */
+
+.button-small {
+  height: 20px;
+  line-height: 18px;
+  padding: 0 6px;
+  font-size: 11px;
+}
+
+.button-large {
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.button-huge {
+  flex-direction: column;
+  padding: 16px;
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border: solid 1px #fff;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 1px 1px #e6e6e6;
+}
+
+.button-huge:hover,
+.button-huge:focus,
+.button-huge:active {
+  background-color: #fff;
+  color: #236a97;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  transform: translateY(-2px);
+}
+
+/* #region .button-group */
+.button-group {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.button-group > button,
+.button-group > .button {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  cursor: pointer;
+}
+
+.button-group > .button:hover:not(:disabled),
+.button-group > .button:focus:not(:disabled),
+.button-group > .button:active:not(:disabled),
+.button-group > .button.active:not(:disabled) {
+  z-index: 3;
+}
+
+.button-group > .button:disabled {
+  z-index: 1;
+}
+
+.button-group > .button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.button-group > .button:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.button-group > .button + .button {
+  margin-left: -1px;
+}
+
+.button-group > a:not(.button) {
+  vertical-align: middle;
+  margin: 0 8px;
+  font-size: 12px;
+}
+
+/* #endregion */
+
+/* #region .button-icon */
+.button-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
+
+.button-icon.button-small {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+.button-icon.button-small svg {
+  margin-top: 0;
+}
+
+.button-icon.button-tiny {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
+.button-icon.button-tiny svg {
+  margin-top: 0;
+}
+
+.button-icon:hover,
+.button-icon:focus {
+  background-color: currentColor;
+}
+
+.button-icon:hover svg,
+.button-icon:focus svg {
+  color: #fff;
+}
+
+/* #endregion */
+
+.button-list {
+  display: inline-flex;
+  justify-content: space-between;
+  height: auto;
+  border: 1px solid #e6e6e6;
+  padding: 8px;
+  margin: 4px;
+  color: #777;
+  font-weight: normal;
+}
+
+.button-list:hover {
+  background-color: white;
+  border-color: #4b9fd5;
+  color: #236a97;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.search-box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.search-box,
+.search-box-input {
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-box-input {
+  /* for magnifier icon */
+  padding-left: 24px !important;
+  /* for clear button */
+  padding-right: 24px !important;
+  font-size: 13px;
+}
+
+.search-box-input::-webkit-search-decoration,
+.search-box-input::-webkit-search-cancel-button,
+.search-box-input::-webkit-search-results-button,
+.search-box-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.search-box-input::-ms-clear,
+.search-box-input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.search-box-note {
+  position: absolute;
+  top: 1px;
+  left: 40px;
+  right: 24px;
+  line-height: 24px;
+  color: #777;
+  font-size: 12px;
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.search-box-input:focus ~ .search-box-magnifier {
+  color: #4b9fd5;
+}
+
+.search-box-magnifier {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.search-box > .spinner {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
+
+.search-box-clear {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.search-box-input-note {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  line-height: 1;
+  color: #777;
+  font-size: 12px;
+  white-space: nowrap;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar-search {
+  position: relative;
+  padding: 8px 0;
+}
+
+.navbar-search .search-box,
+.navbar-search .search-box-input {
+  width: 26vw;
+  max-width: 310px;
+  min-width: 260px;
+  height: 32px;
+}
+
+.navbar-search .search-box-input {
+  border-color: #fff;
+}
+
+.navbar-search .search-box-note {
+  line-height: 30px;
+}
+
+.navbar-search .search-box-magnifier,
+.navbar-search .search-box-clear {
+  top: 8px;
+}
+
+.navbar-search-input {
+  vertical-align: middle;
+  width: 310px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-left: 26px !important;
+}
+
+.navbar-search-input-hint {
+  position: absolute;
+  top: 1px;
+  right: 27px;
+  line-height: 24px;
+  font-size: 12px;
+  color: #777;
+}
+
+.navbar-search-icon {
+  position: relative;
+  z-index: 3;
+  vertical-align: middle;
+  width: 16px;
+  margin-left: 4px;
+  margin-right: -20px;
+  background-color: #fff;
+  color: #777;
+}
+
+.navbar-search-icon:before {
+  font-size: 14px;
+}
+
+.navbar-search-item-link {
+  display: flex !important;
+}
+
+.navbar-search-item-match {
+  flex-grow: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-search-item-right {
+  flex-grow: 1;
+  padding-left: 10px;
+  text-align: right;
+}
+
+.navbar-search-item-icons {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+.navbar-search-item-icons > * {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+}
+
+.navbar-search-item-icons > .icon-outline,
+.navbar-search-item-icons > .icon-clock {
+  z-index: 6;
+  top: -4px;
+  left: -5px;
+}
+
+.navbar-search-no-results {
+  margin-top: 4px;
+  padding: 5px 10px;
+}
+
+.global-navbar-search-dropdown {
+  top: 100% !important;
+  max-height: 80vh;
+  width: 440px;
+  padding: 0 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.global-navbar-search-dropdown .dropdown-bottom-hint {
+  margin-bottom: 0;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar,
+[class^='navbar-'],
+[class*=' navbar-'] {
+  box-sizing: border-box;
+}
+
+.navbar {
+}
+
+.navbar-inner {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+
+
+.navbar-limited {
+  position: relative;
+  min-width: 1080px;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar-global,
+.navbar-global .navbar-inner {
+  background-color: #262626;
+  z-index: 421;
+}
+
+.navbar-global .navbar-limited {
+  display: flex;
+}
+
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  margin-left: -8px;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-bottom: 4px solid transparent;
+}
+
+.navbar-login {
+  margin-right: -10px;
+  white-space: nowrap;
+}
+
+.navbar-avatar {
+  margin-right: -8px;
+  padding: 8px !important;
+  border: none !important;
+}
+
+.navbar-icon {
+  display: inline-block;
+  height: 48px;
+  padding: 16px 12px !important;
+  border-bottom: none !important;
+  color: #fff !important;
+}
+
+.navbar-plus {
+  margin-right: -8px;
+}
+
+.global-navbar-menu {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.global-navbar-menu > li > a {
+  display: block;
+  height: 48px;
+  padding: 8px 10px;
+  line-height: 32px;
+  border-bottom: 4px solid transparent;
+  box-sizing: border-box;
+  color: #ccc;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus,
+.global-navbar-menu > li > a.active,
+.global-navbar-menu > li > a:hover,
+.global-navbar-menu > li > a:focus,
+.global-navbar-menu > .dropdown.open > a {
+  background-color: #020202;
+}
+
+.global-navbar-menu > li > a.active {
+  border-bottom-color: #646464;
+}
+
+.global-navbar-menu-right {
+  flex: 1;
+  justify-content: flex-end;
+  margin-left: 40px;
+}
+
+.global-navbar-menu-right .navbar-search {
+  flex: 0 1 240px; /* Workaround for SONAR-10971 */
+  min-width: 0;
+}
+
+.global-navbar-menu-right .navbar-search .search-box,
+.global-navbar-menu-right .navbar-search .search-box-input {
+  min-width: 0;
+  width: 100%;
+}
+
+@media print {
+  .navbar-global {
+    display: none !important;
+  }
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.processes-container {
+  position: fixed;
+  z-index: 7000;
+  top: 0;
+  left: 50%;
+  width: 350px;
+  margin-left: -175px;
+}
+
+.process-spinner {
+  position: relative;
+  padding: 0 10px;
+  line-height: 24px;
+  border-radius: 0 0 3px 3px;
+  box-sizing: border-box;
+  background-color: #f0e8ac;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.process-spinner.shown {
+  opacity: 1;
+}
+
+.process-spinner + .process-spinner {
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.process-spinner-failed {
+  padding-right: 30px;
+  background-color: #d4333f;
+  color: #ffffff;
+}
+
+.process-spinner-success {
+  padding-right: 30px;
+  background-color: #00aa00;
+  color: #ffffff;
+}
+
+.process-spinner-close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.process-spinner-close:hover path,
+.process-spinner-close:focus path {
+  fill: #d4333f !important;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.workspace-nav {
+  position: fixed;
+  z-index: 451;
+  bottom: 0;
+  right: 0;
+  height: 28px;
+}
+
+.workspace-nav-list {
+  float: right;
+}
+
+.workspace-nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.workspace-nav-item-link {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 28px 0 8px;
+  border: none;
+  background-color: #404040;
+  color: #fff;
+  font-size: 12px;
+}
+
+.workspace-nav-item-link:hover,
+.workspace-nav-item-link:focus {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.workspace-nav-item-close {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.workspace-viewer {
+  position: fixed;
+  z-index: 450;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.workspace-viewer-header {
+  position: relative;
+  height: 30px;
+  padding: 3px 10px;
+  box-sizing: border-box;
+  background-color: #404040;
+  color: #fff;
+  font-weight: 300;
+}
+
+.workspace-viewer-name {
+  float: left;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.workspace-viewer-name i {
+  margin-top: 3px;
+}
+
+.workspace-viewer-resize {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  width: 30px;
+  height: 5px;
+  margin-left: -15px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzBweCIgaGVpZ2h0PSI1cHgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxLjQxNDIxOyI+PGc+PGcgaWQ9IkxheWVyMSI+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwwLDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsNCwwKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDgsMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwxMiwwKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDE2LDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMjAsMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwyNCwwKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDI4LDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMCwzKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDQsMykiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSw4LDMpIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMTIsMykiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwxNiwzKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDIwLDMpIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMjQsMykiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwyOCwzKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAsMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSw0LDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsOCwwKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDEyLDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMTYsMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwyMCwwKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMiIgc3R5bGU9ImZpbGw6Izc3NztmaWxsLW9wYWNpdHk6MC41OyIvPjwvZz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDI0LDApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIiBzdHlsZT0iZmlsbDojNzc3O2ZpbGwtb3BhY2l0eTowLjU7Ii8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLDEsMjgsMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHN0eWxlPSJmaWxsOiM3Nzc7ZmlsbC1vcGFjaXR5OjAuNTsiLz48L2c+PC9nPjwvZz48L3N2Zz4=);
+  cursor: ns-resize;
+}
+
+.workspace-viewer-actions {
+  float: right;
+}
+
+.workspace-viewer-actions a {
+  color: inherit;
+}
+
+.workspace-header-icon:hover path,
+.workspace-header-icon:focus path {
+  color: #404040;
+}
+
+.workspace-viewer-container {
+  height: calc(40vh - 30px);
+  min-height: 100px;
+  max-height: calc(95vh - 30px);
+  padding: 5px 10px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.with-workspace .source-viewer {
+  padding-bottom: 40vh;
+}
+
+.with-workspace .workspace-viewer .source-viewer {
+  padding-bottom: 0;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar-context,
+.navbar-context .navbar-inner {
+  background-color: #fff;
+  z-index: 420;
+}
+
+.navbar-context .navbar-inner {
+  padding-top: 8px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.navbar-context .navbar-inner-with-notif {
+  border-bottom: none;
+}
+
+.navbar-context-justified {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* use `min-width: 0` to cut breadcrumb links (to end with "...") */
+/* https://stackoverflow.com/questions/38223879/white-space-nowrap-breaks-flexbox-layout */
+.navbar-context-header {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 32px;
+  font-size: 16px;
+}
+
+/* disallow icons and slash separators to shrink */
+.navbar-context-header > *:not(.navbar-context-header-breadcrumb-link) {
+  flex-shrink: 0;
+}
+
+.navbar-context-header-breadcrumb-link {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-context-header .slash-separator {
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.navbar-context-header .slash-separator::after {
+  color: rgba(68, 68, 68, 0.2);
+}
+
+/* set `min-width: 0` to allow flexbox item to shrink */
+/* https://stackoverflow.com/questions/38223879/white-space-nowrap-breaks-flexbox-layout */
+.navbar-context-meta {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 32px;
+  padding-left: 20px;
+  color: #777;
+  font-size: 12px;
+  text-align: right;
+}
+
+.navbar-context-meta-secondary {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+
+.navbar-context-description {
+  display: inline-block;
+  line-height: 24px;
+  margin-left: 8px;
+  padding-top: 4px;
+  color: #777;
+  font-size: 12px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.navbar-tabs {
+  display: flex;
+  align-items: center;
+  clear: left;
+  height: 24px;
+  margin-top: 8px;
+}
+
+.navbar-tabs > li + li {
+  margin-left: 20px;
+}
+
+.navbar-tabs > li > a {
+  display: block;
+  height: 24px;
+  line-height: 16px;
+  padding-top: 2px;
+  border-bottom: 3px solid transparent;
+  box-sizing: border-box;
+  color: #444;
+  transition: none;
+}
+
+.navbar-tabs > li > a.active,
+.navbar-tabs > li > a:hover,
+.navbar-tabs > li > a:focus {
+  border-bottom-color: #4b9fd5;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.Select {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  text-align: left;
+}
+
+.Select,
+.Select div,
+.Select input,
+.Select span {
+  box-sizing: border-box;
+}
+
+.Select.is-disabled > .Select-control {
+  background-color: #ebebeb !important;
+  border-color: #ddd !important;
+}
+
+.Select.is-disabled > .Select-control:hover {
+  box-shadow: none !important;
+}
+
+.Select.is-disabled .Select-arrow-zone {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.Select.is-disabled .Select-placeholder,
+.Select.is-disabled .Select-value {
+  color: #bbb !important;
+}
+
+.Select-control {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 24px;
+  line-height: 22px;
+  border: 1px solid #cdcdcd;
+  border-collapse: separate;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+  outline: none;
+  overflow: hidden;
+}
+
+.is-searchable.is-open > .Select-control {
+  cursor: text;
+}
+
+.is-open > .Select-control {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #fff;
+}
+
+.is-open > .Select-control > .Select-arrow {
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+
+.is-searchable.is-focused:not(.is-open) > .Select-control {
+  cursor: text;
+}
+
+.is-focused:not(.is-open) > .Select-control {
+  border-color: #4b9fd5;
+}
+
+.Select-placeholder {
+  color: #777;
+}
+
+.Select-placeholder,
+:not(.Select--multi) > .Select-control .Select-value {
+  bottom: 0;
+  left: 0;
+  line-height: 23px;
+  padding-left: 8px;
+  padding-right: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Select-value [class^='icon-'] {
+  padding-top: 5px;
+}
+
+.Select-value svg,
+.Select-value img {
+  padding-top: 4px;
+}
+
+.Select-value .outline-badge,
+.Select-option .outline-badge {
+  height: 20px;
+  line-height: 19px;
+  margin-top: 1px;
+}
+
+.Select-option svg,
+.Select-option img,
+.Select-option [class^='icon-'] {
+  padding-top: 2px;
+}
+
+.has-value:not(.Select--multi) > .Select-control > .Select-value .Select-value-label,
+.has-value.is-pseudo-focused:not(.Select--multi)
+  > .Select-control
+  > .Select-value
+  .Select-value-label {
+  color: #444;
+}
+
+.has-value:not(.Select--multi) > .Select-control > .Select-value a.Select-value-label,
+.has-value.is-pseudo-focused:not(.Select--multi)
+  > .Select-control
+  > .Select-value
+  a.Select-value-label {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.has-value:not(.Select--multi) > .Select-control > .Select-value a.Select-value-label:hover,
+.has-value.is-pseudo-focused:not(.Select--multi)
+  > .Select-control
+  > .Select-value
+  a.Select-value-label:hover,
+.has-value:not(.Select--multi) > .Select-control > .Select-value a.Select-value-label:focus,
+.has-value.is-pseudo-focused:not(.Select--multi)
+  > .Select-control
+  > .Select-value
+  a.Select-value-label:focus {
+  color: #007eff;
+  outline: none;
+  text-decoration: underline;
+}
+
+.Select-input {
+  vertical-align: top;
+  height: 22px;
+  padding-left: 8px;
+  padding-right: 8px;
+  outline: none;
+}
+
+.Select-input > input {
+  background: none transparent;
+  border: 0 none;
+  cursor: default;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 12px;
+  height: 22px;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
+.is-focused .Select-input > input {
+  cursor: text;
+}
+
+.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+
+.Select-control:not(.is-searchable) > .Select-input {
+  outline: none;
+}
+
+.Select-loading-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+}
+
+.Select-loading {
+  animation: Select-animation-spin 400ms infinite linear;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-right-color: #444;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
+.Select-clear-zone {
+  animation: Select-animation-fadeIn 200ms;
+  color: #999;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  padding-right: 4px;
+}
+
+.Select-clear-zone:hover .Select-clear {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxNCAxNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEuNDE0MjE7Ij4gICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMC4wMjM0Mzc1LDAsMCwwLjAyMzQzNzUsLTUuMDE1NjIsLTUuMDE1NjIpIj4gICAgICAgIDxwYXRoIGQ9Ik04MTAsMjc0TDU3Miw1MTJMODEwLDc1MEw3NTAsODEwTDUxMiw1NzJMMjc0LDgxMEwyMTQsNzUwTDQ1Miw1MTJMMjE0LDI3NEwyNzQsMjE0TDUxMiw0NTJMNzUwLDIxNEw4MTAsMjc0WiIgc3R5bGU9ImZpbGw6cmdiKDIzMSwyMCw1Nik7ZmlsbC1ydWxlOm5vbnplcm87Ii8+ICAgIDwvZz48L3N2Zz4=);
+}
+
+.Select-clear {
+  display: block;
+  width: 9px;
+  height: 9px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxNCAxNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEuNDE0MjE7Ij4gICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMC4wMjM0Mzc1LDAsMCwwLjAyMzQzNzUsLTUuMDE1NjIsLTUuMDE1NjIpIj4gICAgICAgIDxwYXRoIGQ9Ik04MTAsMjc0TDU3Miw1MTJMODEwLDc1MEw3NTAsODEwTDUxMiw1NzJMMjc0LDgxMEwyMTQsNzUwTDQ1Miw1MTJMMjE0LDI3NEwyNzQsMjE0TDUxMiw0NTJMNzUwLDIxNEw4MTAsMjc0WiIgc3R5bGU9ImZpbGw6cmdiKDE1MywxNTMsMTUzKTtmaWxsLXJ1bGU6bm9uemVybzsiLz4gICAgPC9nPjwvc3ZnPg==);
+  background-size: 9px 9px;
+  text-indent: -9999px;
+}
+
+.Select--multi .Select-clear-zone {
+  width: 17px;
+}
+
+.Select-arrow-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 20px;
+  padding-right: 5px;
+}
+
+.Select-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 4px 4px 2px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+}
+
+.is-open .Select-arrow,
+.Select-arrow-zone:hover > .Select-arrow {
+  border-top-color: #666;
+}
+
+@keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.Select-menu-outer {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-color: #e6e6e6;
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 7500;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.Select-menu {
+  max-height: 198px;
+  padding: 5px 0;
+  overflow-y: auto;
+}
+
+.Select-option {
+  display: block;
+  line-height: 20px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  color: #444;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Select-option:last-child {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.Select-option.is-focused {
+  background-color: #f3f3f3;
+}
+
+.Select-option.is-disabled {
+  font-weight: 600;
+  cursor: default;
+}
+
+.Select-noresults {
+  box-sizing: border-box;
+  color: #999;
+  cursor: default;
+  display: block;
+  padding: 8px 10px;
+}
+
+.Select--multi .Select-value {
+  background-color: rgba(0, 126, 255, 0.08);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 126, 255, 0.24);
+  color: #444;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 1px 4px 1px 1px;
+  vertical-align: top;
+}
+
+.Select-value-label {
+  font-size: 12px;
+}
+
+.is-searchable.is-open .Select-value-label {
+  opacity: 0.5;
+}
+
+.Select-big .Select-control {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.Select-big .Select-placeholder {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.Select-big .Select-value-label {
+  display: inline-block;
+  margin-top: 7px;
+  line-height: 16px;
+}
+
+.Select-big .Select-option {
+  padding: 7px 8px;
+  line-height: 16px;
+}
+
+.Select-big img,
+.Select-big svg {
+  padding-top: 0;
+}
+
+.Select--multi .Select-value-icon,
+.Select--multi .Select-value-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Select--multi .Select-value-label {
+  display: inline-block;
+  max-width: 200px;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  cursor: default;
+  padding: 2px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Select--multi a.Select-value-label {
+  color: #007eff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.Select--multi a.Select-value-label:hover {
+  text-decoration: underline;
+}
+
+.Select--multi .Select-value-icon {
+  cursor: pointer;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px;
+}
+
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  background-color: rgba(0, 113, 230, 0.08);
+  color: #0071e6;
+}
+
+.Select--multi .Select-value-icon:active {
+  background-color: rgba(0, 126, 255, 0.24);
+}
+
+.Select--multi.is-disabled .Select-value {
+  background-color: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  color: #444;
+}
+
+.Select--multi.is-disabled .Select-value-icon {
+  cursor: not-allowed;
+  border-right: 1px solid #e3e3e3;
+}
+
+.Select--multi.is-disabled .Select-value-icon:hover,
+.Select--multi.is-disabled .Select-value-icon:focus,
+.Select--multi.is-disabled .Select-value-icon:active {
+  background-color: #fcfcfc;
+}
+
+.Select-aria-only {
+  display: none;
+}
+
+@keyframes Select-animation-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.level {
+  display: inline-block;
+  width: auto;
+  min-width: 80px;
+  padding-left: 9px;
+  padding-right: 9px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  box-sizing: border-box;
+  color: #fff;
+  letter-spacing: 0.02em;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.level-small {
+  width: auto;
+  min-width: 64px;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.level-muted {
+  background-color: #bdbdbd !important;
+}
+
+a > .level {
+  margin-bottom: -1px;
+  border-bottom: 1px solid;
+  transition: all 0.2s ease;
+}
+
+a > .level:hover {
+  opacity: 0.8;
+}
+
+.level-OK {
+  background-color: #00aa00;
+}
+
+.level-WARN {
+  background-color: #ed7d20;
+}
+
+.level-ERROR {
+  background-color: #d4333f;
+}
+
+.level-NONE {
+  background-color: #b4b4b4;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.help-tooltip {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.help-toolip-link {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: none;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.rating {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.rating-muted {
+  background-color: #bdbdbd !important;
+  color: #fff !important;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35) !important;
+}
+
+a > .rating {
+  margin-bottom: -1px;
+  border-bottom: 1px solid;
+  transition: all 0.2s ease;
+}
+
+a > .rating:hover {
+  opacity: 0.8;
+}
+
+.rating-A {
+  line-height: 23px;
+  background-color: #00aa00;
+}
+
+a > .rating-A {
+  border-bottom-color: #00aa00;
+}
+
+.rating-B {
+  background-color: #b0d513;
+}
+
+a .rating-B {
+  border-bottom-color: #b0d513;
+}
+
+.rating-C {
+  background-color: #eabe06;
+}
+
+a .rating-C {
+  border-bottom-color: #eabe06;
+}
+
+.rating-D {
+  background-color: #ed7d20;
+}
+
+a .rating-D {
+  border-bottom-color: #ed7d20;
+}
+
+.rating-E {
+  background-color: #e00;
+}
+
+a .rating-E {
+  border-bottom-color: #e00;
+}
+
+.rating-small {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  font-size: 12px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.tags-list {
+  white-space: nowrap;
+  line-height: 16px;
+}
+
+.tags-list i::before {
+  font-size: 12px;
+}
+
+.tags-list span {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  max-width: 220px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.duplications-rating {
+  position: relative;
+  display: inline-flex;
+  vertical-align: top;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ed7d20;
+  border-radius: 24px;
+  box-sizing: border-box;
+}
+
+.duplications-rating-small {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.duplications-rating-big {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.duplications-rating-huge {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+  border-radius: 30px;
+}
+
+.duplications-rating-muted {
+  border-color: #bdbdbd !important;
+}
+
+.duplications-rating-muted:after {
+  background-color: #bdbdbd !important;
+}
+
+.duplications-rating:after {
+  border-radius: 24px;
+  content: '';
+}
+
+.duplications-rating-A {
+  border-color: #00aa00;
+}
+
+.duplications-rating-A:after {
+  display: none;
+}
+
+.duplications-rating-B {
+  border-color: #b0d513;
+}
+
+.duplications-rating-B:after {
+  width: 6px;
+  height: 6px;
+  background-color: #b0d513;
+}
+
+.duplications-rating-small.duplications-rating-B:after {
+  width: 2px;
+  height: 2px;
+}
+
+.duplications-rating-big.duplications-rating-B:after {
+  width: 12px;
+  height: 12px;
+}
+
+.duplications-rating-huge.duplications-rating-B:after {
+  width: 18px;
+  height: 18px;
+}
+
+.duplications-rating-C {
+  border-color: #eabe06;
+}
+
+.duplications-rating-C:after {
+  width: 8px;
+  height: 8px;
+  background-color: #eabe06;
+}
+
+.duplications-rating-small.duplications-rating-C:after {
+  width: 6px;
+  height: 6px;
+}
+
+.duplications-rating-big.duplications-rating-C:after {
+  width: 16px;
+  height: 16px;
+}
+
+.duplications-rating-huge.duplications-rating-C:after {
+  width: 24px;
+  height: 24px;
+}
+
+.duplications-rating-D {
+  border-color: #ed7d20;
+}
+
+.duplications-rating-D:after {
+  width: 12px;
+  height: 12px;
+  background-color: #ed7d20;
+}
+
+.duplications-rating-small.duplications-rating-D:after {
+  width: 8px;
+  height: 8px;
+}
+
+.duplications-rating-big.duplications-rating-D:after {
+  width: 24px;
+  height: 24px;
+}
+
+.duplications-rating-huge.duplications-rating-D:after {
+  width: 36px;
+  height: 36px;
+}
+
+.duplications-rating-E {
+  border-color: #d4333f;
+}
+
+.duplications-rating-E:after {
+  width: 14px;
+  height: 14px;
+  background-color: #d4333f;
+}
+
+.duplications-rating-small.duplications-rating-E:after {
+  width: 10px;
+  height: 10px;
+}
+
+.duplications-rating-big.duplications-rating-E:after {
+  width: 28px;
+  height: 28px;
+}
+
+.duplications-rating-huge.duplications-rating-E:after {
+  width: 42px;
+  height: 42px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.size-rating {
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-color: #4b9fd5;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.size-rating-small {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  font-size: 10px;
+}
+
+.size-rating-muted {
+  background-color: #bdbdbd;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.empty-search {
+  padding: 60px 0;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  color: #777;
+  text-align: center;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.onboarding-step {
+  position: relative;
+  padding-left: 34px;
+}
+
+.onboarding-step:not(.is-open):not(.is-finished) {
+  opacity: 0.4;
+}
+
+.onboarding-step .boxed-group-actions {
+  height: 24px;
+  line-height: 24px;
+}
+
+.onboarding-step hr {
+  margin-left: -54px;
+}
+
+.onboarding-step-number {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-color: #b9b9b9;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.onboarding-step.is-open .onboarding-step-number {
+  background-color: #236a97;
+}
+
+.onboarding-step.is-finished {
+  cursor: pointer;
+  outline: none;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.organization-empty {
+  margin: 100px auto 0;
+  width: 472px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.color-box-legend {
+  display: flex;
+  justify-content: center;
+}
+
+.color-box-legend > *:not(:first-child) {
+  margin-left: 24px;
+}
+
+.color-box-legend .color-box-legend-rect {
+  display: inline-block;
+  margin-top: 1px;
+  margin-right: 4px;
+  border: 1px solid;
+}
+
+.color-box-legend .color-box-legend-rect-inner {
+  display: block;
+  width: 8px;
+  height: 8px;
+  opacity: 0.2;
+}
+
+.color-box-legend.color-box-full .color-box-legend-rect-inner {
+  opacity: 1;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.bubble-chart text {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.bubble-chart-bubble {
+  fill: #4b9fd5;
+  fill-opacity: 0.2;
+  stroke: #4b9fd5;
+  cursor: pointer;
+  transition: fill-opacity 0.2s ease;
+}
+
+.bubble-chart-bubble:hover {
+  fill-opacity: 0.8;
+}
+
+.bubble-chart-grid {
+  shape-rendering: crispedges;
+  stroke: #eee;
+}
+
+.bubble-chart-tick {
+  fill: #777;
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.bubble-chart-tick-y {
+  text-anchor: end;
+}
+
+.bubble-chart-zoom {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 3;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+/* TODO this file is HUGE and should be cut into smaller components */
+
+.search-navigator.sticky .search-navigator-workspace-header {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 300px;
+  right: 0;
+}
+
+.search-navigator.sticky .search-navigator-workspace-list,
+.search-navigator.sticky .search-navigator-workspace-details {
+  padding-top: 43px;
+}
+
+.search-navigator-facet-box {
+  background-color: #f3f3f3;
+  font-size: 13px;
+}
+
+.search-navigator-facet-box.leak-facet-box {
+  background-color: #fbf3d5;
+  border: 1px solid #eae3c7;
+}
+
+.search-navigator-facet-box.is-inner {
+  margin-left: 8px;
+  padding-left: 12px;
+  border-left: 1px solid #e6e6e6;
+}
+
+.search-navigator-facet-box.is-inner .search-navigator-facet-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.leak-facet-box:not(.hidden) + .leak-facet-box {
+  border-top: none;
+}
+
+.search-navigator-facet-box-forbidden {
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.search-navigator-facet-box-forbidden .search-navigator-facet-list,
+.search-navigator-facet-box-forbidden .search-navigator-facet-empty,
+.search-navigator-facet-box-forbidden .search-navigator-facet-container {
+  display: none;
+}
+
+.search-navigator-facet-box-forbidden .search-navigator-facet-header {
+  color: #777;
+}
+
+.search-navigator-facet-box-forbidden .search-navigator-facet-header:hover {
+  color: #4b9fd5;
+}
+
+.search-navigator-facet-box-forbidden .search-navigator-facet-header {
+  cursor: default;
+}
+
+.search-navigator-facet-box-forbidden .search-navigator-facet-header:hover {
+  color: #777;
+}
+
+.search-navigator-facet-box > .spinner {
+  float: right;
+  margin-top: -24px;
+}
+
+.search-navigator-facet {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 24px;
+  margin: 0 0 1px 0;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-sizing: border-box;
+  white-space: normal;
+  opacity: 0.3;
+  cursor: not-allowed;
+  transition: none;
+}
+
+a.search-navigator-facet {
+  opacity: 1;
+  cursor: pointer;
+}
+
+a.search-navigator-facet .facet-name {
+  color: #444;
+}
+
+a.search-navigator-facet:hover,
+a.search-navigator-facet:focus,
+.search-navigator-facet.active {
+  border-color: #4b9fd5;
+}
+
+.search-navigator-facet.facet-category {
+  opacity: 1;
+  cursor: default;
+}
+
+.search-navigator-facet.facet-category .facet-name {
+  color: #777;
+}
+
+.search-navigator-facet .facet-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  line-height: 16px;
+  padding: 1px 0; /* needed to fit small ratings and levels */
+  color: #777;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-navigator-facet .facet-stat {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+.search-navigator-facet .facet-toggle {
+  display: none;
+  float: left;
+  height: 16px;
+  line-height: 16px;
+  margin-top: -1px;
+  padding: 0 5px;
+  border-radius: 2px;
+  font-size: 11px;
+  text-transform: lowercase;
+}
+
+.search-navigator-facet .facet-toggle:hover {
+  color: #444;
+}
+
+.search-navigator-facet .facet-toggle-active.facet-toggle-green {
+  background-color: #00aa00;
+  color: #ffffff;
+}
+
+.search-navigator-facet .facet-toggle-active.facet-toggle-red {
+  background-color: #d4333f;
+  color: #ffffff;
+}
+
+.leak-facet-box .search-navigator-facet .facet-name {
+  background-color: #fbf3d5;
+}
+
+.leak-facet-box .search-navigator-facet .facet-stat {
+  background-color: #fbf3d5;
+}
+
+.leak-facet-box .search-navigator-facet .facet-stat:before {
+  background-image: linear-gradient(to right, rgba(251, 243, 213, 0), #fbf3d5 75%);
+}
+
+.search-navigator-facet.active {
+  background-color: #cae3f2;
+  text-decoration: none;
+}
+
+.search-navigator-facet.active .facet-toggle {
+  display: inline;
+}
+
+.search-navigator-facet.compare .facet-toggle {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.search-navigator-facet.compare .facet-toggle.facet-toggle-green {
+  background-color: #00aa00;
+  color: #ffffff;
+}
+
+.search-navigator-facet.compare .facet-toggle.facet-toggle-red {
+  background-color: transparent;
+  color: #777;
+}
+
+.search-navigator-facet-half {
+  width: 45%;
+}
+
+.search-navigator-facet-half:nth-child(odd) {
+  margin-right: 10%;
+}
+
+.search-navigator-facet-highlight-under-container {
+  margin-bottom: 1px;
+}
+
+.search-navigator-facet-highlight-under-container .search-navigator-facet {
+  margin-bottom: 0;
+}
+
+.search-navigator-facet-highlight-under-container .search-navigator-facet:hover,
+.search-navigator-facet-highlight-under-container .search-navigator-facet.active {
+  border-bottom: none;
+  padding-bottom: 1px;
+  border-radius: 2px 2px 0 0;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet:hover
+  ~ .search-navigator-facet,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet {
+  border-top: none;
+  border-bottom: none;
+  border-left-color: #4b9fd5;
+  border-right-color: #4b9fd5;
+  border-radius: 0;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet:hover
+  ~ .search-navigator-facet:last-of-type,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:last-of-type {
+  border-bottom: 1px solid #4b9fd5;
+  border-radius: 0 0 2px 2px;
+}
+
+.search-navigator-facet-highlight-under-container .search-navigator-facet:hover:last-of-type,
+.search-navigator-facet-highlight-under-container .search-navigator-facet.active:last-of-type {
+  border-bottom: 1px solid #4b9fd5;
+  border-radius: 2px;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet {
+  background-color: #cae3f2;
+  text-decoration: none;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet
+  .facet-toggle {
+  display: inline;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:hover,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet:hover
+  ~ .search-navigator-facet.active {
+  border-top: 1px solid #4b9fd5;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:hover,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:hover
+  ~ .search-navigator-facet {
+  background-color: #a1cde8;
+  text-decoration: none;
+}
+
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:hover
+  .facet-toggle,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet:hover
+  ~ .search-navigator-facet
+  .facet-toggle {
+  display: inline;
+}
+
+.search-navigator-facet-header {
+  display: block;
+  flex-shrink: 0;
+  padding: 8px 0;
+  color: #444;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-navigator-facet-header > a {
+  border-bottom: none;
+  color: #444;
+}
+
+.search-navigator-facet-header > a:hover {
+  color: #4b9fd5;
+}
+
+.search-navigator-facet-header > .note {
+  font-weight: 400;
+}
+
+.search-navigator-facet-header-value {
+  display: block;
+  overflow: hidden;
+}
+
+.search-navigator-facet-header-value > .badge {
+  display: block;
+}
+
+.search-navigator-facet-header-button {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.search-navigator-facet-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search-navigator-facet-list {
+  padding-bottom: 8px;
+  font-size: 0;
+}
+
+.search-navigator-facet-empty {
+  margin: 0 0 0 0;
+  padding: 0 10px 10px;
+  color: #444;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.search-navigator-facet-footer {
+  display: block;
+  padding-bottom: 8px;
+  border-bottom: none;
+}
+
+.search-navigator-facet-container {
+  margin-top: 6px;
+  padding: 0 10px 16px;
+}
+
+.search-navigator-date-facet-selection {
+  position: relative;
+  padding-left: 8px;
+  font-size: 12px;
+}
+
+.search-navigator-date-facet-selection:before,
+.search-navigator-date-facet-selection:after {
+  display: table;
+  content: '';
+  line-height: 0;
+}
+
+.search-navigator-date-facet-selection:after {
+  clear: both;
+}
+
+.search-navigator-date-facet-selection .date-input-control-input {
+  width: 115px !important;
+}
+
+.search-navigator-date-facet-selection-dropdown-left {
+  float: left;
+  border-bottom: none;
+}
+
+.search-navigator-date-facet-selection-dropdown-right {
+  float: right;
+  border-bottom: none;
+}
+
+.search-navigator-date-facet-selection-input-left {
+  position: absolute;
+  left: 0;
+  width: 100px;
+  visibility: hidden;
+}
+
+.search-navigator-date-facet-selection-input-right {
+  position: absolute;
+  right: 0;
+  width: 100px;
+  visibility: hidden;
+}
+
+.search-navigator-date-facet-selection
+  .date-input-control:not(:nth-of-type(1))
+  .date-input-calendar {
+  left: auto;
+  right: 0;
+}
+
+.search-navigator-filters {
+  position: relative;
+  padding: 5px 10px;
+  background-color: #f3f3f3;
+}
+
+.search-navigator-filters:before,
+.search-navigator-filters:after {
+  display: table;
+  content: '';
+  line-height: 0;
+}
+
+.search-navigator-filters:after {
+  clear: both;
+}
+
+.search-navigator-filters-header {
+  margin-bottom: 12px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.search-navigator-intro {
+  width: 500px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+/*
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+.projects-topbar-items {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.projects-topbar-item + .projects-topbar-item {
+  padding-left: 24px;
+}
+
+.projects-topbar-item .spinner {
+  top: -1px;
+}
+
+.projects-topbar-item.is-last {
+  margin-left: auto;
+  padding-left: 32px;
+}
+
+.projects-topbar-item.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.projects-topbar-item.disabled * {
+  pointer-events: none !important;
+}
+
+.projects-topbar-item-search {
+  position: relative;
+  flex: 1;
+  height: 24px;
+}
+
+.projects-list .page-actions {
+  margin-bottom: 0;
+}
+
+.project-card {
+  position: relative;
+  min-height: 103px;
+  box-sizing: border-box;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.project-card-header-right {
+  margin-left: auto;
+}
+
+.project-card-name {
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:#2467a6;
+}
+
+.project-card-dates {
+  width: 100%;
+  margin-top: -25px;
+  margin-bottom: -10px;
+}
+
+.project-card-leak-date {
+  padding: 4px 8px;
+  margin: -5px -4px -5px 24px;
+  background-color: #fbf3d5;
+  border: 1px solid #eae3c7;
+}
+
+.project-card-measures {
+  display: flex;
+  padding-top: 8px;
+  margin: 0 -15px;
+}
+
+.project-card-leak-measures {
+  display: flex;
+  padding: 8px 0;
+  margin: 4px -4px;
+  background-color: #fbf3d5;
+  border: 1px solid #eae3c7;
+}
+
+.projects-leak-sorting-option {
+  background-color: #fbf3d5;
+  margin-bottom: 2px;
+}
+
+.projects-leak-sorting-option.is-focused {
+  background-color: #eae3c7;
+}
+
+.project-card-measure {
+  width: 130px;
+}
+
+.project-card-measure {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.project-card-measure + .project-card-measure:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 24px;
+  margin-top: -12px;
+  border-left: 1px solid #e6e6e6;
+  content: '';
+}
+
+.project-card-measure .level {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.project-card-measure-inner {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.project-card-measure-number {
+  line-height: 25px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.project-card-measure-label {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.project-card-measure-label-with-icon {
+  margin-top: 2px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.project-card-ncloc {
+  margin-left: auto;
+  text-align: right;
+}
+
+.project-card-ncloc:before {
+  display: none;
+}
+
+.project-card-ncloc .project-card-measure-inner {
+  text-align: right;
+}
+
+.project-card-languages {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-card-quality-gate {
+  line-height: 24px;
+  margin: 10px 10px 0 10px;
+}
+
+.project-card-not-analyzed {
+  padding: 14px 0;
+}
+
+.projects-facet-header {
+  padding: 10px;
+  transition: none;
+}
+
+.projects-facet-list {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.projects-facets-header {
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.projects-facets-reset {
+  float: right;
+}
+
+.projects-facets-reset .button {
+}
+
+.projects-facet-bar {
+  display: inline-block;
+  width: 60px;
+  margin-left: 8px;
+}
+
+.projects-facet-bar-inner {
+  min-width: 1px;
+  height: 10px;
+  background-color: #b4b4b4;
+  transition: width 0.3s ease;
+}
+
+.search-navigator-facet.active .projects-facet-bar-inner,
+.search-navigator-facet-highlight-under-container
+  .search-navigator-facet.active
+  ~ .search-navigator-facet
+  .projects-facet-bar-inner {
+  background-color: #4b9fd5;
+}
+
+.projects-visualization {
+  position: relative;
+  height: 600px;
+}
+
+.projects-visualization .measure-details-bubble-chart-axis.y {
+  width: 300px;
+  left: 15px;
+  margin-top: 150px;
+  transform-origin: 0 0;
+  text-align: center;
+}
+
+.projects-visualizations-footer {
+  margin-top: 8px;
+  padding: 15px 60px;
+  border-top: 1px solid #e6e6e6;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.projects-visualizations-footer .note {
+  font-style: italic;
+}
+
+.measure-details-bubble-chart-title {
+  position: absolute;
+  left: 20px;
+}
+
+.measure-details-bubble-chart-axis {
+  position: absolute;
+  color: #777;
+  font-size: 12px;
+}
+
+.measure-details-bubble-chart-axis.x {
+  left: 50%;
+  bottom: 16px;
+  width: 500px;
+  margin-left: -250px;
+  text-align: center;
+}
+
+.measure-details-bubble-chart-axis.y {
+  top: 50%;
+  left: -20px;
+  transform: rotate(-90deg);
+}
+
+.measure-details-bubble-chart-axis.size {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 16px;
+  width: 100%;
+}
+
+.projects-empty-list {
+  padding: 32px 0;
+  text-align: center;
+}
+
+@keyframes resizeanim { from { opacity: 0; } to { opacity: 0; } }
+.resize-triggers { animation: 1ms resizeanim; visibility: hidden; opacity: 0; }
+.resize-triggers, .resize-triggers > div, .contract-trigger:before { content: " "; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; z-index: -1; } .resize-triggers > div { background: #eee; overflow: auto; }
+.contract-trigger:before { width: 200%; height: 200%; }

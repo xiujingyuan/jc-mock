@@ -1,0 +1,103 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}基础测试组{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}font-awesome/4.7.0/css/font-awesome.min.css">
+{#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome/font-awesome.min.css') }}">#}
+{#    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">#}
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu/metisMenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu/menu.css') }}">
+    <link href="{{ url_for('static', filename='css/metisMenu/metisMenu.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('analytics.script') }}" type="text/javascript"></script>
+{#    <script src="/static/bootstrap/jquery.js?bootstrap=3.0.3.1"></script>#}
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+    <style>
+    body {  padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5}
+    </style>
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="container-fluid" style="margin: 0px;padding: 0px;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;background-color: #428bca;">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a style="background-color: transparent;font-size: 24px;color: white;margin-left: 10px;" href="{{ url_for('customer.index') }}" >
+                    <i class="fa fa-graduation-cap fa-fw"></i>测试平台</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                {% if current_user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" style="background-color: #428bca;color: white;">
+                        <img src="{{ current_user.avatar }}" style="width: 24px;height: 24px;">
+                        Account <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" >
+                        <li><a style="background-color: transparent;" href="{{ url_for('customer.user', username=current_user.username) }}">Person Info</a></li>
+                        <li><a style="background-color: transparent;" href="{{ url_for('auth.change_password') }}">Change Password</a></li>
+                        <li><a style="background-color: transparent;" href="{{ url_for('auth.change_email_request') }}">Change Email</a></li>
+                        <li><a style="background-color: transparent;" href="{{ url_for('auth.logout') }}">Sign out</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li><a style="background-color: #428bca;color: white;" href="{{ url_for('auth.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="container-fluid" style="margin: 0px;padding: 0px;margin-top: -20px;margin-left: -20px;">
+        <div class="col-sm-2 " style="margin: 0px;padding: 0px;">
+           {% include 'menu.html' %}
+        </div>
+        <div class="row-fluid col-lg-10" style="margin-left: 300px;overflow-x: auto;">
+            <div id="page-content" class="span9" style="margin-top: 10px;margin-left: -30px;">
+                {% block page_content %}
+                {% endblock %}
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+    <script src="{{ url_for('static', filename='js/metisMenu.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/menu/menu.js') }}"></script>
+    <script>
+    $(function() {
+        $('#side-menu').metisMenu(); // ul.nav#side-menu
+        var content_height = $('#page-content').height();
+        var screen_height = $(document).height();
+        var page_menu_height;
+        if (content_height < screen_height)
+        {
+            page_menu_height = screen_height
+        }
+        else
+        {
+            page_menu_height = content_height
+        }
+        console.log(page_menu_height);
+        if (page_menu_height < 990)
+        {
+            page_menu_height = 990
+        }
+        $('#page_menu').height(page_menu_height)
+    });
+    </script>
+
+{% endblock %}

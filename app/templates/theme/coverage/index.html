@@ -1,0 +1,72 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}测试覆盖率{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/index.css') }}">
+    <link href="{{ cdn_host }}bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap-table/1.14.1/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/coverage/coverage_index.css') }}">
+{% endblock %}
+
+{% block content_page_header %}
+{% endblock %}
+
+{% block page_content %}
+    <div id="coverage_content" class="container-fluid jacoco-div-show" style="overflow-x: hidden;overflow-y: auto;">
+        <div class="page-header" style="margin: 0px;padding: 0px;border:0px;">
+            <div class="h3" style="margin: 10px 0;">{{ system }}系统-{{ branch }}分支在环境[{{ env }}]对比master分支{{ commit_id }}的增量覆盖率报告   <br>最近更新: {{ update }}
+                <div class="navbar-form navbar-right" style="margin-top: -5px;margin-right: -29px;">
+                    <div class="input-group">
+                        <input type="text" id="tree-query" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                              <a class="btn btn-default">
+                                  <i class="glyphicon glyphicon-search"></i>
+                              </a>
+                                <a id="header-search-query"></a>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 10px;">
+                <div id="record-tree">
+                    <li class="list-group-item" onclick="itemOnclick(this)"></li>
+                </div>
+            </div>
+            <div class="col-md-9" style="padding: 0px;">
+                <table id="tb_content" class="hidden"></table>
+                <pre class="jacoco-content-show" id="data-panel"></pre>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.14.1/bootstrap-table.js"></script>
+    <script>
+    $(function () {
+        var csrf_token = "{{ csrf_token() }}",
+            system = "{{ system }}",
+            branch = "{{ branch }}";
+        init_tree(eval("{{ ret | safe }}"), system, branch, csrf_token);
+        console.log("{{ error }}");
+        if(!$.isEmptyObject("{{ error }}")){
+            toastr.warning("{{ error }}", "warning");
+        }
+    })
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/coverage/coverage_index.js') }}"></script>
+{% endblock %}

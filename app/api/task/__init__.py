@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+ @author: snow
+ @software: PyCharm
+ @time: 2019/07/15
+ @file: __init__.py.py
+ @site:
+ @email:
+"""
+from flask import Blueprint
+api_task = Blueprint('api_task', __name__)
+
+from . import task_api

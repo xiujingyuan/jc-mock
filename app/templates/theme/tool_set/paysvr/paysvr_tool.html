@@ -1,0 +1,48 @@
+<div class="panel-body paysvr-content">
+    <form id="formSearch" class="form-horizontal">
+        <div class="form-group" style="margin-top:15px">
+            <div class="col-sm-3">
+                <select id="sel_request_funcation" name="country" data-live-search="true"
+                        class="form-control selectpicker" data-style="btn-primary" style="height: 55px;">
+                </select>
+            </div>
+            <div class="col-sm-8" style="...">
+                <input type="text" class="form-control" id="tool_http_address" readonly>
+                <input type="text" class="form-control hidden" id="tool_http_method">
+                <input type="text" class="form-control hidden" id="tool_table_id" hidden>
+            </div>
+            <div class="col-sm-1" style="...">
+                <button type="button" class="btn btn-primary" id="btn_send_request" onclick="send_request()">发送</button>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:15px">
+            <div class="col-sm-3">
+                <label class="control-label" for="txt_case_type">请求参数</label>
+                <div>参数说明：</div>
+                <div>country：""不填表示中国，印度: india，泰国: thailand</div>
+            </div>
+                <div class="col-sm-8">
+                    <div id="tool_request_params" aria-placeholder="fdafds" class="json-content"></div>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top:15px">
+                <div class="col-sm-3">
+                    <label class="control-label" for="txt_case_type">返回值</label>
+                    <div>说明：当返回code=0时，会在msg中提示放款成功</div>
+                </div>
+                <div class="col-sm-8">
+                    <div id="tool_request_response" class="json-content"></div>
+                </div>
+            </div>
+
+    </form>
+</div>
+
+<div class="modal fade" id="loadingModal">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        <div class="progress progress-striped active" style="margin-bottom: 0;">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+        <h5>正在加载...</h5>
+    </div>
+</div>

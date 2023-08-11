@@ -1,0 +1,327 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}测试平台-首页{% endblock %}
+<!-- Tell the browser to be responsive to screen width -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+{% block head %}
+<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/bootstrap.css') }}">
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/font-awesome.css') }}">
+<!-- Ionicons -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/ionicons.css') }}">
+<!-- Theme style -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/AdminLTE.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/left_menu.css') }}">
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+      page. However, you can choose any other skin. Make sure you
+      apply the skin class to the body tag so the changes take effect. -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/skins/skin-blue.min.css') }}">
+<link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/index/index.css') }}">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Google Font -->
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+{% endblock %}
+
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+{% block content %}
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!-- 左边菜单栏 -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='theme/img/test_logo2.png') }}" class="img-circle" alt="Logo Image">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree" id="left_menu">
+                <!-- Optionally, you can add icons to the links -->
+                <li class="hidden">
+                    <a href="/workspace/" id="menu_case">
+                        <i class="fa fa-suitcase fa-fw"></i>
+                        <div class="left-tree-text">工作台</div>
+                    </a>
+                </li>
+                <li  class="hidden">
+                    <a href="/case" id="menu_case">
+                        <i class="fa fa-suitcase fa-fw"></i>
+                        <div class="left-tree-text">用例库</div>
+                    </a>
+                </li>
+                 <li  class="hidden">
+                    <a href="/tasks/list" id="menu_case_exec">
+                        <i class="fa fa-briefcase fa-fw"></i>
+                        <div class="left-tree-text">用例集</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="menu_assumpt_task">
+                        <i class="fa fa-tasks fa-fw"></i>
+                        <div class="left-tree-text">任务</div>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:void(0)" id="menu_report">
+                        <i class="fa fa-paper-plane fa-fw"></i>
+                        <div class="left-tree-text">报告</div>
+                    </a>
+{#                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)" class="myLeftMenu" data="/report/new/add">我是add</a></li>
+                        <li><a href="javascript:void(0)" class="myLeftMenu" data="/report/new/checkbox">点击是checkbox页面</a></li>
+                        <li><a href="javascript:void(0)" class="myLeftMenu" data="/report/new/userList">我是userList</a></li>
+                    </ul>#}
+                </li>
+                <li>
+                    <a href="/tool/set/" id="menu_tool">
+                        <i class="fa fa-archive fa-fw"></i>
+                        <div class="left-tree-text">工具箱</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/int/" id="menu_int">
+                        <i class="fa fa-archive fa-fw"></i>
+                        <div class="left-tree-text">联调</div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+
+            <!-- 用户菜单页面 -->
+            {% if current_user.is_authenticated %}
+            <li class="dropdown account-menu">
+                <a id="account_a" class="dropdown-toggle"
+                   data-delay="100" data-toggle="dropdown">
+                    <img src="{{ current_user.avatar }}" class="account-img">
+                </a>
+                <ul class="dropdown-menu login-content">
+                    <li><a style="background-color: transparent;" href="{{ url_for('customer.user', username=current_user.username) }}">Person Info</a></li>
+                    <li><a style="background-color: transparent;" href="{{ url_for('auth.change_password') }}">Change Password</a></li>
+                    <li><a style="background-color: transparent;" href="{{ url_for('auth.change_email_request') }}">Change Email</a></li>
+                    <li><a style="background-color: transparent;" href="{{ url_for('auth.logout') }}">Sign out</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <li><a style="background-color: #428bca;color: white;" href="{{ url_for('auth.login') }}">Log In</a></li>
+            {% endif %}
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 895px;">
+
+        <!-- Content Header (Page header) -->
+
+        <section class="content-header">
+            {% block content_page_header %}
+            <h1>
+                Page Header
+                <small>Optional description</small>
+            </h1>
+            {% endblock %}
+            <ol class="breadcrumb hidden">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        {% block page_content %}
+        <section class="content container-fluid">
+            <div id="container">
+                我是内容~~~~~
+            </div>
+
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+
+        </section>
+        <!-- /.content -->
+        {% endblock %}
+    </div>
+    <!-- /.content-wrapper -->
+
+{#    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>#}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark pull-left hidden">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-stats-tab" data-toggle="tab"><i class="fa fa-stumbleupon"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="pull-right-container">
+                    <span class="label label-danger pull-right">70%</span>
+                  </span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">
+                <header>Stats Tab Content</header>
+                <small>go go go,rocking roll!</small>
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+    </aside>
+    <!-- second menu Sidebar -->
+    <aside class="second-menu-sidebar control-sidebar-blue " id="second_menu">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-program-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li class="active"><a href="#control-sidebar-group-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <!-- Home tab content -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="control-sidebar-program-tab">
+                <h3 class="control-sidebar-heading" id="side_title"><i class="menu-head-icon fa fa-circle"></i>提测任务</h3>
+                <ul class="control-sidebar-menu">
+                    {% for program in sys_programs %}
+                        <li>
+                            <a href="/assumpt_task/{{ program.sys_program_id }}/">
+                                <div class="menu-info">
+                                    <i class="menu-icon fa fa-heart-o" id="menu_1"></i>
+                                    <i class="project-logo project-logo-{{ program.sys_program_id % 5 }}">{{ program.sys_program_name[0] }}</i>
+                                    <h4 class="control-sidebar-subheading">{{ program.sys_program_name }}</h4>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <div class="tab-pane active hidden" id="control-sidebar-group-tab">
+                <h3 class="control-sidebar-heading" id="side_title"><i class="menu-head-icon fa fa-circle"></i>质量报告</h3>
+                <ul class="control-sidebar-menu">
+                    {% for org in sys_organizations %}
+                    <li>
+                        <a href="/report/new/{{ org.sys_organization_id }}">
+                            <div class="menu-info">
+                                <i class="menu-icon fa fa-heart-o" id="menu_1"></i>
+                                <i class="project-logo project-logo-{{ loop.index % 5 }}">{{ org.sys_organization_name[0] }}</i>
+                                <h4 class="control-sidebar-subheading">{{ org.sys_organization_name }}</h4>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+<!-- REQUIRED JS SCRIPTS -->
+{% block scripts %}
+    <script src="{{ url_for('static', filename='theme/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='theme/js/bootstrap.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='theme/js/adminlte.js') }}"></script>
+<!-- 基础页面的JS文件 -->
+<script src="{{ url_for('static', filename='theme/js/base/base_menu.js') }}"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+{% endblock %}

@@ -1,0 +1,492 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}测试用例{% endblock %}
+
+{% block head %}
+
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/case/case_add.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+{% endblock %}
+{% block content_page_header %}
+{% endblock %}
+{% block page_content %}
+
+    <ul class="case-add-title nav nav-tabs" id="myTabCase">
+        <li class="active"><a href="#tab_case_info" data-toggle="tab">用例基础信息</a></li>
+        <li><a href="#tab_case_actual" data-toggle="tab">获取实际值</a></li>
+        <li><a href="#tab_case_expect" data-toggle="tab">预期值</a></li>
+        <li><a href="#tab_case_pre" data-toggle="tab">前置处理</a></li>
+        <li><a href="#tab_case_init" data-toggle="tab">初始化</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_case_info">
+        <div class="tab-pane active" id="tab_case_info">
+            <!--用例基础信息开始-->
+            <div class="get-real-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">用例基础信息</div>
+                    <div class="panel-body">
+                        <div id="" class="form-horizontal">
+                            <div class="form-group" style="margin-top: 15px;">
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="txt_case_device">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="复杂场景的用例使用group，简单场景的用例使用common" class="glyphicon glyphicon-question-sign"></label>
+                                        用例类型</label>
+                                    <div class="col-sm-8">
+                                        <select id="sel_run_device" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                            <option value="common">简单场景</option>
+                                            <option value="group">复杂场景</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 hidden" id="div_group_property">
+                                    <label class="control-label col-sm-4" for="txt_case_group_property">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="用于区分该用例是复杂场景的main case 还是复杂场景的sub case ，如果是简单场景的用例该字段无需填值" class="glyphicon glyphicon-question-sign"></label>
+                                        复杂用例属性</label>
+                                    <div class="col-sm-8">
+                                        <select id="sel_run_group_property" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 hidden" id="div_exec_group">
+                                    <label class="control-label col-sm-4" for="txt_case_exec_group">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="复杂场景时，该字段用来填写复杂用例的名称，一组复杂用例的值必须是一样的。 简单场景不需要填写该字段" class="glyphicon glyphicon-question-sign"></label>
+                                        复杂用例名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_exec_group">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 15px;">
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="txt_case_name">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="用例名称，用于描述该用例简单的功能" class="glyphicon glyphicon-question-sign"></label>
+                                        用例名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="txt_case_description">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="用于描述用例的用途" class="glyphicon glyphicon-question-sign"></label>
+                                        用例描述</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_description">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="txt_case_type">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="描述用例分类，比如一个功能中的多个用例，可以用同一个分类区分" class="glyphicon glyphicon-question-sign"></label>
+                                        用例分类</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_type">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 15px;">
+
+                                <div class="col-sm-4" >
+                                    <label class="control-label col-sm-4" for="txt_case_priority"  >
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用例执行的优先级，如果是复杂用例首先执行main case ，然后根据该字段的升序执行" class="glyphicon glyphicon-question-sign"></label>
+                                        用例优先级</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_run_priority">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="txt_case_vars_name">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="如果该用例需要保存请求参数和返回参数需要指定该字段的值。框架会将填入的值加上_request、或者_response作为保存值的key" class="glyphicon glyphicon-question-sign"></label>
+                                        变量名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_vars_name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="sel_case_from_system">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="手功用例ID" class="glyphicon glyphicon-question-sign"></label>
+                                        TAPD_ID</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="case_ref_tapd_id">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 15px;">
+
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4 " for="txt_case_wait_time" >
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="该用例在执行前需要等待的时间" class="glyphicon glyphicon-question-sign"></label>
+                                        等待时间</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="txt_case_wait_time">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="sel_case_from_system">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用例所属的系统，比如放款系统，放款系统" class="glyphicon glyphicon-question-sign"></label>
+                                        所属系统</label>
+                                    <div class="col-sm-8">
+                                        <select id="sel_case_from_system" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                            {% for program in sys_programs %}
+                                                 {% if program.sys_program_group_id != 8 %}
+                                                    <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                                 {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label col-sm-4" for="">所属业务</label>
+                                    <div class="col-sm-7">
+                                        <select id="sel_case_belong_business" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                            <option value=""></option>
+                                        </select>
+
+                                    </div>
+                                    <button type="button" id="btn_business_add" class="btn btn-primary col-sm-1"
+                                            style="margin-left: -20px;">+</button>
+
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 15px;">
+
+                                <div class="col-sm-12">
+                                    <div class ="col-sm-1">
+                                        <label class="control-label" style="width: 117px; float:right" for="txt_case_next_task">
+                                            <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用例执行前或者请求发出后，需要执行的任务名称" class="glyphicon glyphicon-question-sign"></label>
+                                            运行任务</label>
+                                    </div>
+                                    <div class="col-sm-11">
+
+                                        <input type="text" class="form-control" style="width:97.7%; float:right" id="txt_case_next_task">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 15px;">
+
+                                <div class="col-sm-12">
+                                    <label class="control-label col-sm-1" for="txt_case_next_msg">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用例执行前或者请求发出后，需要发送的sendmsg" class="glyphicon glyphicon-question-sign"></label>
+                                        运行消息</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" style="width:97.7%; float:right" id="txt_case_next_msg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--用例基础信息结束-->
+        </div>
+        <div class="tab-pane" id="tab_case_actual">
+            <!--获取实际值请求开始-->
+            <div class="get-real-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">获取实际值请求</div>
+                    <div class="panel-body">
+                        <div class="panel-group" >
+                            <div id="accordion">
+                                <label class="checkbox-inline" >
+                                    <input type="radio" name="groupCaseRadios" id="is_case_http_request" value="1" style="margin:5px;padding: 5px;" >http请求
+                                    <div class="collapseRow" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" ></div>
+                                </label>
+
+                                <label class="checkbox-inline" >
+                                    <input type="radio" name="groupCaseRadios" id="is_case_db_reqeust" value="2" style="margin:5px;padding: 5px;">数据库请求
+                                    <div class="collapseRow" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" ></div>
+                                </label>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form id="formSearch" class="form-horizontal">
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_request_url">请求URL</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="txt_case_request_url">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_request_method">
+                                                请求方式</label>
+                                            <div class="col-sm-4">
+                                                <select id="sel_request_method" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                                    <option>POST</option>
+                                                    <option>GET</option>
+                                                    <option>DELETE</option>
+                                                    <option>PUT</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_request_args">
+                                                请求头信息</label>
+                                            <div class="col-sm-10">
+                                                <div id="sel_request_header"></div>
+                                                <div class="form-group">
+                                                    <pre id="result_args" class="fail" style="display: none; color: red;"></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_request_args">
+                                                请求参数</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_case_request_args"></div>
+                                                <div class="form-group">
+                                                    <pre id="result_args" class="fail" style="display: none; color: red;"></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px;display: none;">
+                                            <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_replace">
+                                                <label data-toggle="tooltip" data-html="true" title="<br>替换表达式，用于替换GET请求中querystring 的参数化</br>
+                                                            <br>处理的逻辑如下:</br>
+                                                            <br>1. 通过替换表达式现将值填充到请求参数中</br>
+                                                            <br>2. 将请求参数的字段通过替换用户变量的模式替换api 地址中的querystring 参数</br>
+                                                            eg ：
+                                                               address：http://www.baidu.com?kw=\{\{search_keywords\}\}
+                                                               params:{'search_keywords':''}
+                                                               replace_expression:{'$.main_reponse.data.keywords'
+                                                               :'$.search_keywords'}"
+
+                                                       class="glyphicon glyphicon-question-sign"></label>
+                                                替换表达式</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_case_replace"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px;margin-left: 10px;display: none;">
+                                            <div class="checkbox-custom checkbox-default">
+                                                <input type="checkbox" onclick="show_mock(1)" id="is_http_mock">
+                                                <label for="is_http_mock">是否需要mock数据</label>
+                                            </div>
+                                            <div id="collapse_case_http_mock" class="panel-body collapse col-sm-12" style="margin-top: -10px;">
+
+                                                <div class="form-group" style="...">
+                                                    <div class ="col-sm-6">
+                                                        <label class="control-label col-sm-4"  style="width: 150px;" for="txt_http_mock_name">mock名称</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="txt_http_mock_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class ="col-sm-6">
+                                                        <label class="control-label col-sm-4"  style="width: 150px;" for="txt_http_mock_path">mock路径</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="txt_http_mock_path">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-top:15px">
+                                                    <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_expect">
+                                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'item_no':'201245121450021'}
+                                                           在请求发出去之前会直接用这个字段的值作为结果返回。（支持http请求和DB 请求） "
+                                                               class="glyphicon glyphicon-question-sign"></label>
+                                                        MOCK预期值</label>
+                                                    <div class="col-sm-10">
+                                                        <div id="json_http_mock_expect"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-top:15px">
+                                                    <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_replace">
+                                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'$.data.asset_item_no':'$.main_request.data.asset.item_no'}
+                                                           在mock 预期值返回之前，先用$.data.asset_item_no 提取全局变量的值，替换mock预期值中$.main_request.data.asset.item_no指定的值 "
+                                                               class="glyphicon glyphicon-question-sign"></label>
+                                                        MOCK替换表达式</label>
+                                                    <div class="col-sm-10">
+                                                        <div id="json_http_mock_replace"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form id="formSearch" class="form-horizontal">
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql">
+                                                <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="填写sql语句，改sql 语句一定是一个select 语句，参数化时使用%s 代替eg：
+                                                    select * from asset where asset_item_no =%s and asset_loan_channel =%s
+                                                    " class="glyphicon glyphicon-question-sign"></label>
+                                                sql语句</label>
+                                            <div class="col-sm-10">
+                                                <textarea id="txt_case_sql" rows="5" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql_args">
+                                                <label data-toggle="tooltip"  data-html="true" data-placement="bottom" title="填写sql 的参数
+                                                    eg：{'task_order_no':'20123112231132','loan_channel':'hengfeng'}
+                                                    " class="glyphicon glyphicon-question-sign"></label>
+                                                sql参数</label>
+                                            <div class="col-sm-10">
+                                                <div id="json_case_sql_args"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px;display: none;">
+                                            <label class="control-label col-sm-1" style="width: 120px;" for="txt_case_sql_replace">
+                                                <label class="control-label col-sm-1"  style="width: 120px;"for="txt_case_sql_args">
+                                                    <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="用全局变量中的值替换sql 参数
+                                                    eg:{'$.data.asset.item_no':'$.task_order_no'}
+                                                    " class="glyphicon glyphicon-question-sign"></label>
+                                                    sql参数</label>
+                                                替换表达式</label>
+                                            <div class="col-sm-5">
+                                                <div id="json_case_sql_replace"></div>
+                                            </div>
+
+                                            <label class="control-label col-sm-2" for="txt_case_run_sql_device">执行数据库</label>
+                                            <div class="col-sm-3">
+                                               <input type="text" class="form-control" id="sel_run_sql_device" maxlength="100">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-top:15px;margin-left: 10px;display: none;">
+                                            <div class="checkbox-custom checkbox-default">
+                                                <input type="checkbox" onclick="show_mock(2)" id="is_mock">
+                                                <label for="is_mock">是否需要mock数据</label>
+                                            </div>
+                                            <div id="collapse_case_mock" class="panel-body collapse col-sm-12" style="margin-top: -10px;">
+                                                <div class="form-group" style="...">
+                                                    <div class ="col-sm-6">
+                                                        <label class="control-label col-sm-4"  style="width: 150px;"for="txt_sql_mock_name">mock名称</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="txt_sql_mock_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class ="col-sm-6">
+                                                        <label class="control-label col-sm-4"  style="width: 150px;"for="txt_sql_mock_path">mock路径</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="txt_sql_mock_path">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-top:15px">
+                                                    <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_expect">MOCK预期值</label>
+                                                    <div class="col-sm-10">
+                                                        <div id="json_sql_mock_expect"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-top:15px">
+                                                    <label class="control-label col-sm-1"  style="width: 150px;"for="txt_mock_replace">MOCK替换表达式</label>
+                                                    <div class="col-sm-10">
+                                                        <div id="json_sql_mock_replace"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--获取实际值请求结束-->
+        </div>
+        <div class="tab-pane" id="tab_case_expect">
+            <!--预期值相关开始-->
+            <div class="get-real-content">
+            <div class="panel panel-default">
+            <div class="panel-heading">预期值相关</div>
+            <div class="panel-body">
+            <div id="" class="form-horizontal">
+                <div class="form-group" >
+                    <label class="control-label col-sm-1" style="width: 120px;margin-top: 30px;" for="txt_case_expect">
+                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  title="json 格式的值。eg:{'$.data.asset_item_no':'201245121450021'}
+                                               表示需要通过 $.data.asset_item_no jsonpath 从实际返回的值从提取值，与 201245121450021 进行比较   "
+                               class="glyphicon glyphicon-question-sign"></label>
+                        用例预期值</label>
+                    <div class="col-sm-10">
+                        <div id="json_case_expect"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!--预期值相关结束-->
+        </div>
+        <div class="tab-pane" id="tab_case_pre">
+            <!--添加前置处理开始-->
+            <div class="get-real-content">
+            <div class="panel panel-default">
+            <div class="panel-heading">前置处理</div>
+            <div class="panel-body content-show">
+            <div id="toolbar" class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#initEdit">添加初始化</button>
+            </div>
+            <table id="tb_add_pre" class="table-no-bordered"></table>
+            </div>
+            </div>
+            </div>
+            <!--添加前置处理结束-->
+        </div>
+        <div class="tab-pane" id="tab_case_init">
+            <!--添加初始化开始-->
+            <div class="get-real-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">初始化</div>
+                    <div class="panel-body content-show">
+                        <div id="toolbar" class="btn-group">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#preEdit">添加前置处理</button>
+                        </div>
+                        <table id="tb_add_init" class="table-no-bordered"></table>
+                    </div>
+                </div>
+            </div>
+            <!--添加初始化结束-->
+        </div>
+    </div>
+
+    <footer class="navbar footer navbar-fixed-bottom " >
+        <div class="container">
+            <div class="pull-right" style="margin-bottom: 20px;">
+                <button type="button" id="btn_save" class="btn btn-primary" onclick="saveCase()">保 存</button>
+            </div>
+        </div>
+    </footer>
+
+    {% include 'theme/case/modal_case_init.html' %}
+    {% include 'theme/case/modal_case_pre.html' %}
+    {% include 'theme/case/modal_case_pre_edit.html' %}
+    {% include 'theme/case/modal_case_pre_edit.html' %}
+    {% include 'theme/case/bootstrab_warnging.html' %}
+    {% include 'theme/case/modal_business_add.html' %}
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script>
+    var current_user = "{{ current_user.username }}",
+        csrf_token = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/case/case_add.js') }}"></script>
+
+{% endblock %}

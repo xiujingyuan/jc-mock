@@ -1,0 +1,853 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}质量报告-趋势图{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/index.css') }}">
+    <link href="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block page_content %}
+    <div class="container-fluid" style="margin: 10px;">
+        <div class="col-sm-6" style="display: none;">
+            <label>缺陷趋势</label>
+            <select id="sel_time" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                    <option value="2019-11">2019-11</option>
+            </select>
+            <div id="bug_month" style="width: 600px;height:400px;"></div>
+        </div>
+        <div class="col-sm-6" style="display: none;">
+            <label>需求趋势</label>
+            <select id="sel_time" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                    <option value="2019-11">2019-11</option>
+            </select>
+            <div id="story_month" style="width: 600px;height:400px;"></div>
+        </div>
+        <div class="col-sm-12" style="margin: 10px;">
+            <div class="col-sm-2">
+            <label>项目需求趋势图</label>
+            </div>
+            <div class="col-sm-2">
+            <select id="sel_story_program" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                {% for program in sys_programs %}
+                    <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-sm-2">
+            <select id="sel_story_date" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                <option value="9">九月</option>
+                <option value="9">十月</option>
+                <option value="9">十一月</option>
+            </select>
+            </div>
+        </div>
+        <div class="col-sm-12">
+        <div id="program_story" style="width: 1200px;height:400px;"></div>
+        </div>
+        <div class="col-sm-12" style="margin: 10px;">
+            <div class="col-sm-2">
+            <label>项目BUG状态趋势图</label>
+            </div>
+            <div class="col-sm-2">
+            <select id="sel_bug_status_program" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                {% for program in sys_programs %}
+                    <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-sm-2">
+            <select id="sel_bug_status_date" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                <option value="9">九月</option>
+                <option value="10">十月</option>
+                <option value="11">十一月</option>
+            </select>
+            </div>
+
+        </div>
+        <div class="col-sm-12">
+            <div id="program_bug_status" style="width: 1200px;height:400px;"></div>
+        </div>
+        <div class="col-sm-12" style="margin: 10px;">
+            <div class="col-sm-2">
+            <label>项目BUG严重程度趋势图</label>
+            </div>
+            <div class="col-sm-2">
+                <select id="sel_bug_severity_program" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                    {% for program in sys_programs %}
+                        <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select id="sel_bug_severity_date" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 150px;">
+                    <option value="9">九月</option>
+                    <option value="10">十月</option>
+                    <option value="11">十一月</option>
+                </select>
+            </div>
+        </div>
+         <div class="col-sm-12">
+        <div id="program_bug_severity" style="width: 1200px;height:400px;"></div>
+         </div>
+    </div>
+    <div class="container-fluid" style="margin: 10px;">
+        <div id="rllfx" style="width: 600px;height:400px;"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="{{ cdn_host }}moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+
+        init_story_day_data($("#sel_story_program").val(), $("#sel_story_program").find("option:selected").text());
+        init_bug_status_day_data($("#sel_bug_status_program").val(), $("#sel_bug_status_program").find("option:selected").text());
+        init_bug_severity_day_data($("#sel_bug_severity_program").val(), $("#sel_bug_severity_program").find("option:selected").text());
+
+
+        $("#sel_story_program").change(function () {
+            init_story_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_bug_status_program").change(function () {
+            init_bug_status_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_bug_severity_program").change(function () {
+            init_bug_severity_day_data($(this).val(), $(this).find("option:selected").text());
+        });
+
+        $("#sel_time").change(function () {
+            var month_date = $("#sel_time").val();
+            var year = month_date.split("-")[0];
+            var month = month_date.split("-")[1];
+            init_story_bug_build_month_data(year, month);
+        });
+
+    });
+
+    // 基于准备好的dom，初始化echarts实例
+    function init_story_day_data(program_id, program_name) {
+        console.log("program_id", program_id);
+        $.ajax({
+                url: "/api/statistics_report/story/day/" + program_id,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        // toastr.success("获取工作空间MAP成功", 'success');
+                        showStory(data.data, program_name);
+                    }
+                    else {
+                        toastr.error("获取工作空间MAP失败", 'fail');
+                    }
+                }
+        });
+    }
+
+    function init_bug_status_day_data(program_id, program_name) {
+        console.log("program_id", program_id);
+        $.ajax({
+                url: "/api/statistics_report/bug/day/" + program_id,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        // toastr.success("获取工作空间MAP成功", 'success');
+                        showBugStatus(data.data, program_name);
+                    }
+                    else {
+                        toastr.error("获取工作空间MAP失败", 'fail');
+                    }
+                }
+        });
+    }
+
+    function init_bug_severity_day_data(program_id, program_name) {
+        console.log("program_id", program_id);
+        $.ajax({
+                url: "/api/statistics_report/bug/day/" + program_id,
+                type: "GET",
+                success: function (data) {
+                    if (data.code == 0) {
+                        // toastr.success("获取工作空间MAP成功", 'success');
+                        showBugSeverity(data.data, program_name);
+                    }
+                    else {
+                        toastr.error("获取工作空间MAP失败", 'fail');
+                    }
+                }
+        });
+    }
+
+    /*showStoryBugBuildMonth*/
+
+    /*显示需求状态*/
+    function showStory(data, program_name) {
+        var main = echarts.init(document.getElementById("program_story"));
+        var mainOption = getStoryOption(program_name);
+        for(var i = 0;i < data.length;i++){
+            mainOption.xAxis.data.push(data[i].static_time);
+            mainOption.series[0].data.push(data[i].story_develop);
+            mainOption.series[1].data.push(data[i].story_plan);
+            mainOption.series[2].data.push(data[i].story_publish);
+            mainOption.series[3].data.push(data[i].story_test);
+        }
+        main.setOption(mainOption);
+    }
+
+    function getStoryOption(program_name) {
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: program_name + '项目需求趋势图',
+                subtext: program_name + '项目需求趋势图'
+            },
+            color: ["#24a4f8", "#56bc43", "#d82727", "#d414cd"],
+            tooltip: {},
+            legend: {
+                data:['开发中-需求', '规划中-需求', '已完成-需求', '测试中-需求'],
+                x: 'center',
+                y: 'bottom'
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '开发中-需求',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '规划中-需求',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '已完成-需求',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '测试中-需求',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        return option
+    }
+
+    /*显示缺陷状态*/
+    function showBugStatus(data, program_name) {
+        var main = echarts.init(document.getElementById("program_bug_status"));
+        var mainOption = getBugStatusOption(program_name);
+        for(var i = 0;i < data.length;i++){
+            mainOption.xAxis.data.push(data[i].static_time);
+            mainOption.series[0].data.push(data[i].bug_new);
+            mainOption.series[1].data.push(data[i].bug_in_progress);
+            mainOption.series[2].data.push(data[i].bug_verified);
+            mainOption.series[3].data.push(data[i].bug_reopened);
+            mainOption.series[4].data.push(data[i].bug_resolved);
+            mainOption.series[5].data.push(data[i].bug_rejected);
+            mainOption.series[6].data.push(data[i].bug_closed);
+        }
+        main.setOption(mainOption);
+    }
+
+    function getBugStatusOption(program_name) {
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: program_name + '项目缺陷状态趋势图',
+                subtext: program_name + '项目缺陷状态趋势图'
+            },
+            color: ['#3e359f', "#24a4f8", "#56bc43", "#d82727", "#d414cd", "#d8c527", "#d6a437"],
+            tooltip: {},
+            legend: {
+                data:['新增', '接受处理', '已验证', '重新打开', '已解决', '已拒绝', '已关闭'],
+                x: 'center',
+                y: 'bottom'
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '新增',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '接受处理',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '已验证',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '重新打开',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '已解决',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '已拒绝',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '已关闭',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        return option
+    }
+
+
+    /*显示缺陷等级*/
+    function showBugSeverity(data, program_name) {
+        var main = echarts.init(document.getElementById("program_bug_severity"));
+        var mainOption = getBugSeverityOption(program_name);
+        for(var i = 0;i < data.length;i++){
+            mainOption.xAxis.data.push(data[i].static_time);
+            mainOption.series[0].data.push(data[i].bug_advice);
+            mainOption.series[1].data.push(data[i].bug_normal);
+            mainOption.series[2].data.push(data[i].bug_prompt);
+            mainOption.series[3].data.push(data[i].bug_serious);
+            mainOption.series[4].data.push(data[i].bug_fatal);
+        }
+        main.setOption(mainOption);
+    }
+
+    function getBugSeverityOption(program_name) {
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: program_name + '项目需求趋势图',
+                subtext: program_name + '项目需求趋势图'
+            },
+            color: ['#3e359f', "#24a4f8", "#56bc43", "#d82727", "#d414cd"],
+            tooltip: {},
+            legend: {
+                data:['建议', '一般', '提示', '严重', '致命'],
+                x: 'center',
+                y: 'bottom'
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '建议',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '一般',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '提示',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '严重',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            },{
+                name: '致命',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, //开启显示
+                            position: 'inside', //在上方显示
+                            textStyle: { //数值样式
+                                color: 'white',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                },
+            }]
+        };
+        return option
+    }
+
+    function bingtu() {
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        myChart1.setOption({
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:235, name:'视频广告'},
+                    {value:274, name:'联盟广告'},
+                    {value:310, name:'邮件营销'},
+                    {value:335, name:'直接访问'},
+                    {value:400, name:'搜索引擎'}
+                ]
+            }
+        ]
+    });
+    }
+
+
+    function showBarChart(data){
+        var elecBarChart = echarts.init(document.getElementById('elecBarChart'));
+        var elecBarOption = getElecBarOption();
+        var barMax;
+        var barMin;
+        barMax = parseFloat(data[0].qoq);
+        barMin = parseFloat(data[0].qoq);
+        for(var i = 0;i < data.length;i++){
+            var cur = parseFloat(data[i].qoq);
+            var cur2 = parseFloat(data[i].qoq);
+            cur > barMax ? barMax = cur : null;
+            cur2 < barMin ? barMin = cur2 : null;
+
+            elecBarOption.xAxis[0].data.push(data[i].area_name);
+            elecBarOption.series[0].data.push(data[i].biz_num);
+            elecBarOption.series[1].data.push(data[i].qoq);
+        }
+        elecBarOption.yAxis[1].min = Math.floor(barMin);//折线图y轴的最大坐标
+        elecBarOption.yAxis[1].max = Math.ceil(barMax);//折线图y轴的最小坐标
+        elecBarChart.setOption(elecBarOption);
+    }
+
+    function getElecBarOption() {
+        var option = {
+            legend: {//图例组件
+                x: 'center',
+                y: 'bottom',
+                show: true,
+                textStyle: {//图例的公用文本样式。
+                    fontSize: 14,
+                    color: "#333",
+                },
+                itemGap: 20,//图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+                data: ['业务办理量', '环比'],//图例的数据数组。
+                inactiveColor: '#ccc',//图例关闭时的颜色。
+            },
+            grid: {//直角坐标系内绘图网格
+                bottom: '12%',//grid 组件离容器下侧的距离。
+                left: '1%',
+                right: '10%',
+                containLabel: true//grid 区域是否包含坐标轴的刻度标签。
+            },
+            dataZoom: [//dataZoom 组件 用于区域缩放，从而能自由关注细节的数据信息，或者概览数据整体，或者去除离群点的影响。
+                {
+                    show: true,
+                    start: 0,
+                    end: 100
+                },
+                {
+                    type: 'inside',
+                    start: 0,
+                    end: 100
+                },
+            ],
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [],
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    axisTick: {
+                        show: true,
+                        interval: 0
+                    },
+                    axisLabel: {
+                        fontSize: 14,
+                        color: "#333",
+                    },
+                }],
+            yAxis: [
+                {
+                    type: 'value',
+                    show: true,
+                    splitNumber: 10,//坐标轴的分割段数
+                    axisLabel: {
+                        fontSize: 14,
+                        color: "#333",
+                    },
+                    splitLine: {
+                        show: false//是否显示分隔线。
+                    },
+                },
+                {
+                    type: 'value',
+                    min: '',//最小坐标
+                    max: '',//最大坐标
+                    axisLabel: {
+                        fontSize: 14,
+                        color: "#333",
+                        formatter: '{value} %'
+                    },
+                    splitLine: {
+                        show: false//是否显示分隔线。
+                    },
+                }
+            ],
+            series: [
+                {
+                    name: '业务办理量',
+                    type: 'bar',
+                    data: [],
+                    barWidth: '50%',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{//图例使用渐变色
+                                offset: 0,
+                                color: 'rgb(0, 102, 255)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(0, 153, 255)'
+                            }]),
+                            label: {
+                                show: true,
+                                position: 'top',
+                                textStyle: {
+                                    fontSize: '15',
+                                    fontWeight: 'bold',
+                                    color: 'rgb(51, 51, 51)',
+                                }
+                            },
+                        },
+                    },
+                },
+                {
+                    name: '环比',
+                    type: 'line',
+                    yAxisIndex: 1,    //这里要设置哪个y轴，默认是最左边的是0，然后1，2顺序来。
+                    data: [],
+                    symbolSize: 10,
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgb(255, 204, 102)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255, 153, 51)'
+                            }]),
+                            label: {
+                                show: true,
+                                position: 'top',
+                                textStyle: {
+                                    fontSize: '14',
+                                    color: 'rgb(255, 156, 54)',
+                                }
+                            }
+                        },
+                    },
+                },
+            ]
+        };
+        return option;
+    }
+
+    function showHunBi(data) {
+        var rllfx = echarts.init(document.getElementById("rllfx"));
+        var rllfxOption = getRllfxOption();
+        for(var i = 0;i < data.length;i++){
+            rllfxOption.xAxis.data.push(data[i].month);
+            rllfxOption.series[0].data.push(data[i].story);
+            rllfxOption.series[0].markPoint.data.push({value:data[i].story, xAxis: i, yAxis: data[i].story});
+            rllfxOption.series[1].data.push(data[i].bug);
+            rllfxOption.series[1].markPoint.data.push({value:data[i].bug, xAxis: i, yAxis: data[i].bug});
+        }
+        rllfx.setOption(rllfxOption);
+    }
+
+    function getRllfxOption() {
+        var option = {
+            /* 线条颜色，可设置多个颜色 */
+            color: ["#24a4f8", "#56bc43"],
+            /* 图像四周边距设置 */
+            grid:{
+                left:30,
+                top:40,
+                right:20,
+                bottom:30
+         },
+         /* 图例说明 */
+         legend: {
+             // 图例排项 vertical-"竖向"; horizontal-"横向"
+                 orient: 'horizontal',
+                 // 图例组件离容器左侧的距离
+                right : 60,
+            top: 0,
+            //图例文字的样式
+            /*textStyle:{
+            	color:'#6ab2ec',
+            },*/
+                // 与series中每个name一一对应
+                data:['需求', "缺陷"]
+            },
+         /* 鼠标悬浮时显示数据 */
+         tooltip : {
+                 trigger: 'axis',
+                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                     type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                 }
+             },
+            xAxis: {
+                type: 'category',
+                data: [],
+                //设置轴线的属性
+                /*axisLine:{
+                    lineStyle:{
+                        color:'#6ab2ec',
+                    }
+                 },*/
+                 //调整x轴的lable
+                 axisLabel:{
+                    textStyle:{
+                    fontSize:10 // 让字体变小
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+                // 控制网格线是否显示
+                /*splitLine: {
+                     show: true,
+                     //  改变轴线颜色
+                     lineStyle: {
+                         // 使用深浅的间隔色
+                         color: ['#132a6e']
+                     }
+                 },
+                //设置轴线的属性
+                axisLine:{
+                     lineStyle:{
+                         color:'#6ab2ec',
+                     }
+                 }*/
+            },
+            /* 数据配置，若有多条折线则在数组中追加{name: , data: } */
+            series: [{
+                name:'缺陷',
+                data: [],
+                type: 'line',
+                symbol: 'circle',
+                // 设置折点大小
+                symbolSize: 10,
+                // 设置为光滑曲线
+                smooth: true,
+                markPoint: {
+                    "data":[]
+                }
+            },{
+                name:'需求',
+                data: [],
+                type: 'line',
+                symbol: 'circle',
+                // 设置折点大小
+                symbolSize: 10,
+                // 设置为光滑曲线
+                smooth: true,
+                markPoint: {
+                    "data":[]
+                }
+            }]
+        };
+        return option;
+    }
+    </script>
+{% endblock %}

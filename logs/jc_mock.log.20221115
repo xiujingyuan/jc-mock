@@ -1,0 +1,178 @@
+2022-11-15 11:45:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:45:40 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 11:45:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:45:40 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 11:45:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:45:40 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 11:45:40 INFO log_info: #### database=qsq_fox1
+2022-11-15 11:45:41 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 11:45:41 INFO log_info: 数据库执行异常，sql：select atr.* from asset_transaction atr left join asset a on atr.asset_transaction_asset_id = a.asset_id where a.asset_item_number = '20221115114335896187_noloan' and atr.asset_transaction_period =1 and atr.asset_transaction_status=unfinish
+2022-11-15 11:45:41 INFO log_info: 数据库执行异常：(1054, "Unknown column 'unfinish' in 'where clause'")
+2022-11-15 11:46:52 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:46:52 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 11:46:52 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:46:52 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 11:46:52 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:46:52 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 11:46:52 INFO log_info: #### database=qsq_fox1
+2022-11-15 11:46:52 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 11:48:05 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:48:05 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 11:48:05 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:48:05 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 11:48:05 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 11:48:05 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 11:48:05 INFO log_info: #### database=qsq_fox1
+2022-11-15 11:48:05 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 16:57:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 16:57:28 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 16:57:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 16:57:28 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 16:57:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 16:57:28 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 16:57:28 INFO log_info: #### database=qsq_fox1
+2022-11-15 16:57:29 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:40:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:40:56 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:40:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:40:56 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:40:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:40:56 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:40:56 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:40:56 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:41:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:41:50 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:41:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:41:50 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:41:50 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:41:50 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:41:50 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:41:51 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:42:18 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:18 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:42:18 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:18 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:42:18 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:18 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:42:18 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:42:18 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:42:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:40 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:42:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:40 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:42:40 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:40 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:42:40 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:42:40 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:42:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:49 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:42:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:49 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:42:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:42:49 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:42:49 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:42:50 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:43:03 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:43:03 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:43:03 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:43:03 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:43:03 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:43:03 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:43:03 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:43:03 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:47:42 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:47:42 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:47:42 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:47:42 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:47:42 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:47:42 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:47:42 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:47:42 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:51:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:51:12 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:51:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:51:12 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:51:12 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:51:12 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:51:12 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:51:12 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:52:39 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:52:39 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:52:39 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:52:39 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:52:39 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:52:39 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:52:39 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:52:39 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:53:55 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:53:55 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:53:55 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:53:55 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:53:55 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:53:55 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:53:55 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:53:56 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:57:13 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:57:13 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:57:13 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:57:13 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:57:13 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:57:13 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:57:13 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:57:14 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 18:59:23 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:59:23 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 18:59:23 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:59:23 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 18:59:23 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 18:59:23 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 18:59:23 INFO log_info: #### database=qsq_fox1
+2022-11-15 18:59:24 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:00:20 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:00:20 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:00:20 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:00:20 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:00:20 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:00:20 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:00:20 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:00:21 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:01:25 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:25 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:01:25 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:25 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:01:25 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:25 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:01:25 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:01:25 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:01:51 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:51 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:01:51 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:51 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:01:51 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:01:51 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:01:51 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:01:52 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:06:16 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:06:16 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:06:16 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:06:16 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:06:16 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:06:16 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:06:16 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:06:16 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:10:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:08 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:10:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:08 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:10:08 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:08 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:10:08 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:10:09 INFO log_info: connect to qsq_fox1 with port 3321
+2022-11-15 19:10:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:56 INFO log_info: 传入国家：CN，environment=test
+2022-11-15 19:10:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:56 INFO log_info: 传入国家：CN，environment=dev
+2022-11-15 19:10:56 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2022-11-15 19:10:56 INFO log_info: #### DB env=qsq_fox1
+2022-11-15 19:10:56 INFO log_info: #### database=qsq_fox1
+2022-11-15 19:10:57 INFO log_info: connect to qsq_fox1 with port 3321

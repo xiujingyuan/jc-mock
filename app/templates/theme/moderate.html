@@ -1,0 +1,17 @@
+{% extends "theme/base.html" %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}J基础测试组 - Comment Moderation{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Comment Moderation</h1>
+</div>
+{% set moderate = True %}
+{% include '_comments.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.moderate') }}
+</div>
+{% endif %}
+{% endblock %}

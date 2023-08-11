@@ -1,0 +1,49 @@
+<div class="modal fade" id="modal_summary_case" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog"  style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="modal_close_summary_case" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    用例统计
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container"  style="width: 800px;">
+                    <div id="summary_content"></div>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script>
+    function bind_summary_data(data) {
+        var html =''
+        for (var i = 0; i < data.length; ++i) {
+            html = html + '<a href="#" class="col-sm-3" onClick=search_case(\"'+data[i][0]+'\")><div class="col-sm-12">\n' +
+                '                            <div class="panel panel-primary">\n' +
+                '                                <div class="panel-heading" id="case_from_system">'
+            html = html + data[i][0];
+            html = html + '</div>\n' +
+                '                                <div class="panel-body">\n' +
+                '                                    <div>用例个数:'
+            html = html + data[i][1];
+            html = html + ' </div>\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                '                    </div></a>'
+
+        }
+        document.getElementById("summary_content").innerHTML = html
+    }
+    function search_case(case_from_system) {
+        $("#modal_close_summary_case").click();
+        $("#txt_case_from_system").val(case_from_system);
+        $("#btn_query").click();
+    }
+
+</script>

@@ -1,0 +1,94 @@
+.case-add-title {
+    margin: 0 15px 15px 15px;
+    background: white;
+    border: none;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}
+
+.case-add-title li:hover,
+.case-add-title li.active {
+    border-bottom: 2px solid blue;
+}
+
+.case-add-title li a:hover,
+.case-add-title li.active a:hover,
+.case-add-title li.active a:focus,
+.case-add-title li.active a {
+    color: blue;
+    border: none;
+}
+
+.case-add-title li a {
+    color: black;
+    border: none;
+}
+
+.tab-content {
+    margin: 0 15px 15px 0px;
+}
+
+.case-add-modal-title {
+    background: white;
+    border: none;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}
+
+.case-add-modal-title li:hover,
+.case-add-modal-title li.active {
+    border-bottom: 2px solid blue;
+}
+
+.case-add-modal-title li a:hover,
+.case-add-modal-title li.active a:hover,
+.case-add-modal-title li.active a:focus,
+.case-add-modal-title li.active a {
+    color: blue;
+    border: none;
+}
+.case-add-modal-title li a {
+    color: black;
+    border: none;
+}
+
+.case-add-modal-title li:hover,
+.case-add-modal-title li.active {
+    border-bottom: 2px solid blue;
+}
+
+.tab-modal-content {
+    margin: 0 15px 15px 0px;
+}
+
+.panel.panel-default,
+.panel-heading {
+    border: none;
+}
+
+.get-real-content {
+    margin-left: 15px;
+}
+
+.panel-content {
+    height: 500px;
+    overflow: auto;
+}
+
+
+.bootstrap-table .table > thead > tr > th {
+    border: none;
+}
+.bootstrap-table .table {
+    border: none;
+}
+
+.table thead {
+    border: none;
+}
+.fixed-table-container {
+    border: 0px solid;
+    box-shadow: 0 0 10px rgba(128,145,165,0.2);
+}
+
+.th-inner {
+    border: none;
+}

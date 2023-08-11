@@ -1,0 +1,40 @@
+
+<div class="modal fade" id="merge_oa_sel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="jenkins_job_name">
+        <input class="hidden" value="" id="jenkins_task_id">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">OA模块</div>
+                    <div class="panel-body">
+                        <input type="hidden" value="" id="id_assumpt_table">
+                        <input type="hidden" value="" id="id_build_task_id">
+                        <input type="hidden" value="" id="id_build_branch">
+                        <input type="hidden" value="" id="id_program_id">
+                        <input type="hidden" value="" id="id_id">
+                        <input type="hidden" value="" id="id_index">
+                        {% for oa_modal, branches in oa_modals.items() %}
+                        <div class="div_info">
+                            <label class="div_info_lab">{{ oa_modal }}</label>
+                            <select id="txt_{{ oa_modal }}" name="country" class="form-control selectpicker div_info_sel oa-sel-list" data-style="btn-primary" style="height: 55px;">
+                                {% for branch in branches %}
+                                    <option value="{{ branch }}">{{ branch }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_oa_assumput_task_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_oa_assumput_task_build">构建</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

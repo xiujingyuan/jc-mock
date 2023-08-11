@@ -1,0 +1,336 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}报告{% endblock %}
+
+{% block head %}
+
+
+    {{ super() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/bootstrap/bootstrap-select.css') }}">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/bootstrap-datetimepicker.min.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+    <style>
+        .W90 .th-inner {
+            width: 90px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_case_id">分支名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_branch_system">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_name">系统名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_system_name">
+                        </div>
+
+                        <label class="control-label col-sm-1" for="txt_case_description">开发人员</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_devloper">
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_case_from_system">测试人员</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_tester">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_device">产品经理</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_productor">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_device">产品经理</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_productor">
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-sm-1">
+                            <label class="control-label" for="txt_case_type">测试周期</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class='input-group date' >
+                                <input type='text' class="form-control" id='date_test_begin'/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class='input-group date' >
+                                <input type='text' class="form-control" id='date_test_end' />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <button type="button" id="btn_query" class="btn btn-primary">查 询</button>
+                            <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-primary">重 置
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div id="toolbar" class="btn-group">
+            <button id="btn_create_report" type="button" onclick="create_report()" class="btn btn-default">创建报告</button>
+        </div>
+        <table id="tb_report"></table>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+
+        $(function (){
+            var oTable = new TableInit();
+            oTable.Init();
+        });
+
+        var TableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#tb_report').bootstrapTable({
+                    url: '/api/case/report/search',         //请求后台的URL（*）
+                    method: 'GET',                      //请求方式（*）
+                    dataType: "json",
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: true,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: oTableInit.queryParams,//传递参数（*）
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    paginationPreText: "上一页",
+                    paginationNextText: "下一页",
+                    pageSize: 10,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    strictSearch: true,
+                    showColumns: false,                  //是否显示所有的列
+                    showRefresh: false,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: false,                //是否启用点击选中行
+                    //height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                    showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+
+                    columns: [{
+                        checkbox: true
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        events: operateEvents,
+                        formatter: caseFormatter,
+                        class: 'W120',
+                    }, {
+                        field: 'finlab_report_system_name',
+                        title: '系统名称',
+                        visible: true,
+                    }, {
+                        field: 'finlab_report_branch_name',
+                        title: '分支名称',
+                        align: 'left'
+                    }, {
+                        field: 'finlab_report_tester',
+                        title: '测试人员',
+                        align: 'left'
+                    }, {
+                        field: 'finlab_report_productor',
+                        title: '产品经理',
+                        align: 'left'
+                    }, {
+                        field: 'finlab_report_begin',
+                        title: '测试开始时间',
+                        align: 'left'
+                    }, {
+                        field: 'finlab_report_begin',
+                        title: '测试结束时间',
+                        align: 'left'
+
+                    }]
+                });
+            };
+
+            oTableInit.queryParams = function (params) {
+                var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    system_name: $("#text_system_name").val(),
+                    branch_name: $("#txt_branch_system").val(),
+                    tester: $("#text_tester").val(),
+                    productor: $("#text_productor").val(),
+                    devloper: $("#text_devloper").val(),
+                    begin_date: $("#date_test_begin").val(),
+                    end_date: $("#date_test_end").val(),
+                    page_index: (params.offset / params.limit) + 1,
+                    page_size: params.limit,
+                };
+                return temp;
+            };
+            return oTableInit;
+        };
+
+
+        function caseFormatter(value, row, index) {
+            return [
+
+                '<a class="case_update" target="_blank"  style="cursor: pointer" href="/report/detail/' + row.finlab_report_id + '" title="编辑">',
+                {#'<span>编辑</span>',#}
+                '<span class=\'glyphicon glyphicon-pencil\'></span>',
+                '</a>'
+
+            ].join('');
+        };
+
+
+        $("#btn_query").click(function () {
+            var params={
+                offset:0,
+                limit:10
+            }
+            var oTable = new TableInit();
+            oTable.queryParams(params);
+            oTable.Init();
+            $("#").bootstrapTable('selectPage',1);
+        });
+
+
+        function create_report() {
+            window.location.href="/detail/create";
+        }
+
+        window.operateEvents = {
+            'click .case_delete': function (e, value, row, index) {
+                $.ajax({
+                    type: "DELETE",
+                    headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                    url: "/api/case/case/delete/" + row['case_id'],
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (data) {
+
+                        if (data.code != 0) {
+                            toastr.error("error", "程序发生异常，请求联系管理员");
+                            return;
+                        }
+                        if ($("#tb_" + row['case_exec_group']).length > 0) {
+                            $("#tb_" + row['case_exec_group']).bootstrapTable('remove', {
+                                field: 'case_id',
+                                values: [row['case_id']]
+                            });
+                            $("#tb_" + row['case_exec_group']).bootstrapTable('refresh');
+                        }
+                        else {
+                            $("#tb_case").bootstrapTable('remove', {
+                                field: 'case_id',
+                                values: [row['case_id']]
+                            });
+                            $("#tb_case").bootstrapTable('refresh');
+                        }
+
+                        toastr.success("success", "删除成功");
+                    }
+                });
+
+
+            },
+
+            'click .case_exec': function (e, value, row, index) {
+                case_ids = new Array()
+                case_ids.push(row['case_id'])
+
+                var run_case = JSON.stringify({
+                    "case_ids": case_ids,
+                    "email": "{{ current_user.email }}"
+                });
+                $.ajax({
+                    type: "POST",
+                    headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+
+                    url: "/api/case/run/case",
+                    contentType: "application/json; charset=UTF-8",
+                    data: run_case,
+                    success: function (data) {
+
+                        if (data.code != 0) {
+                            toastr.error("error", data.msg);
+                            return;
+                        }
+                        toastr.success("success", "执行请求已经发给后台任务执行，请检查邮箱" + "{{ current_user.email }}");
+
+                    }
+                });
+
+
+            },
+            'click .case_group_copy': function (e, value, row, index) {
+                var copy_group = {
+                    "case_id": row['case_id'],
+                    "case_from_system": row['case_from_system'],
+                    "case_exec_group": row['case_exec_group'],
+                    "case_author": "{{ current_user.username }}"
+                }
+                $.ajax({
+                    type: "POST",
+                    headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                    url: "/api/case/copy/group",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(copy_group),
+                    success: function (data) {
+                        if (data.code != 0) {
+                            toastr.error("error", data.message);
+                            return;
+                        }
+                        $("#tb_case").bootstrapTable('selectPage', 1);
+                        toastr.success("success", "复制成功");
+
+                    }
+                });
+
+
+            }
+        };
+
+    </script>
+
+
+
+{% endblock %}
+
+
+

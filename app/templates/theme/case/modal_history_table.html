@@ -1,0 +1,423 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="modal_history_table" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" >
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">执行日志信息</h4>
+            </div>
+            <div class="modal-body">
+                <div id="" class="form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">执行信息</div>
+                        <div class="panel-body">
+                            <div class="form-group" style="margin-top: 15px;">
+                                <div>
+                                    <label class="control-label col-sm-3" for="txt_case_name">
+                                        <label data-toggle="tooltip" data-html="true" data-placement="bottom"
+                                               title="用例名称，用于描述该用例简单的功能"
+                                               class="glyphicon glyphicon-question-sign"></label>
+                                        执行ID</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" readonly id="txt_history_run_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="" class="form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">用例信息</div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+                                    用例ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例名称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    本次测试结果</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_result"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例实际值</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_actual_value" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例预期值</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_except_value" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例请求地址</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_api_address"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例请求参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_api_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例请求方式</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_api_method"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例替换表达式</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_api_expression" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例获取实际的sql语句</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_case_sql_statement"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例sql 参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_sql_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    用例全局变量</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_case_vars" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="" class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">初始化信息</div>
+                    <div class="panel-body">
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_case_init_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化API地址</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_case_init_api_address"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化API参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_case_init_api_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化API替换表达式</label>
+                                <div class="col-sm-9">
+                                    <div id="json_case_init_api_expression" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化sql 语句</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_case_init_sql_statement"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化sql 参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_case_init_sql_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    初始化sql 执行数据库</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_case_init_sql_database"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="" class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">前置信息</div>
+                    <div class="panel-body">
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置标志</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_flag"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置任务类型</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_task_type"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置API地址</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_api_address"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置API参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_prev_api_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置API替换表达式</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_prev_api_expression" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置公共参数</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_prev_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置公共替换表达式</label>
+                                <div class="col-sm-9">
+                                    <div id="json_history_prev_expression" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置类型</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_setup_type"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置sql语句</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txt_history_prev_sql_statement"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置sql参数</label>
+                                <div class="col-sm-9">
+
+                                    <div id="json_history_prev_sql_params" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <div>
+                                <label class="control-label col-sm-3" for="txt_case_name">
+
+                                    前置sql替换表达式</label>
+                                <div class="col-sm-9">
+
+                                    <div id="json_history_prev_sql_expression" style="height: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+<script>
+    function bind_history_data_table(value) {
+        var result = value['history_case_result']
+        if(result==1){
+            result="成功"
+        }else{
+            result ="失败"
+        }
+        $("#txt_history_run_id").val(value['run_id']);
+        $("#txt_history_case_id").val(value['history_case_id']);
+        $("#txt_history_case_name").val(value['history_case_name']);
+        $("#txt_history_case_result").val(result);
+        json_dict['json_history_case_actual_value'].set(value['history_case_actual_value']);
+        json_dict['json_history_case_except_value'].set(value['history_case_except_value']);
+        $("#txt_history_case_api_address").val(value['history_case_api_address']);
+        json_dict['json_history_case_api_params'].set(value['history_case_api_params']);
+        $("#txt_history_case_api_method").val(value['history_case_api_method']);
+        json_dict['json_history_case_api_expression'].set(value['history_case_replace_expression']);
+        $("#txt_history_case_sql_statement").val(value['history_case_sql_actual_statement']);
+        json_dict['json_history_case_sql_params'].set(value['history_case_sql_params']);
+        json_dict['json_history_case_vars'].set(value['history_case_vars']);
+
+
+        $("#txt_case_init_api_address").val(value['case_init_api_address']);
+        json_dict['json_case_init_api_params'].set(value['case_init_api_params']);
+        json_dict['json_case_init_api_expression'].set(value['case_init_api_expression']);
+        $("#txt_case_init_sql_statement").val(value['case_init_sql']);
+        json_dict['json_case_init_sql_params'].set(value['case_init_sql_params']);
+        $("#txt_case_init_sql_database").val(value['case_init_sql_database']);
+        $("#txt_case_init_id").val(value['case_init_id']);
+
+
+        $("#txt_history_prev_id").val(value['prev_id']);
+        $("#txt_history_prev_flag").val(value['prev_flag']);
+        $("#txt_history_prev_task_type").val(value['prev_task_type']);
+        $("#txt_history_prev_api_address").val(value['prev_api_address']);
+        json_dict['json_history_prev_api_params'].set(value['prev_api_params']);
+        json_dict['json_history_prev_api_expression'].set(value['prev_api_expression']);
+        json_dict['json_history_prev_params'].set(value['prev_params']);
+        $("#txt_history_prev_setup_type").val(value['prev_setup_type']);
+        $("#txt_history_prev_sql_statement").val(value['prev_sql_statement']);
+        json_dict['json_history_prev_sql_params'].set(value['prev_sql_params']);
+        json_dict['json_history_prev_sql_expression'].set(value['prev_sql_expression']);
+        json_dict['json_history_prev_expression'].set(value['prev_expression']);
+
+
+
+
+    }
+
+</script>

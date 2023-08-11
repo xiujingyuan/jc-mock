@@ -1,0 +1,96 @@
+
+.project-logo {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    *line-height: 26px;
+    color: #fff;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 3px;
+    vertical-align: top;
+    font-family: '微软雅黑',Arial,'宋体';
+}
+
+.project-logo-2 {
+        background-color: #eb5945;
+}
+
+.project-logo-3 {
+        background-color: #3ac9c7;
+}
+
+.project-logo-0 {
+        background-color: #8bc93a;
+}
+
+.project-logo-1 {
+        background-color: #5091f9;
+}
+
+.project-logo-4 {
+        background-color: #ffb400;
+}
+.menu-head-icon {
+    font-size: 8px;
+    margin-right: 5px;
+}
+
+.account-img {
+    height: 24px;
+    width: 24px;
+    border-radius:12px
+}
+
+.fa.fa-fw {
+    color: #d7e6fe;
+}
+
+.account-menu {
+    height: 50px;
+    list-style: none;
+    margin-left: 18px;
+    bottom: 0;
+    position: absolute!important;
+    cursor: pointer;
+}
+
+.login-content {
+    left: 60px;
+    top:auto;
+    bottom: 0;
+    position: fixed;
+    min-width: 100px;
+    height: 120px;
+    color: #8091a5;
+    padding: 5px 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    background-color: #fff;
+    z-index: 799;
+}
+
+.dropdown-menu ul {
+    position: relative;
+    z-index: 1;
+    min-width: 114px;
+    background-color: #fff;
+}
+
+.menu-triangle {
+    height: 0;
+    width: 0;
+    border-width: 10px;
+    border-color: transparent #fff transparent transparent;
+    position: absolute;
+    border-style: solid;
+    cursor: pointer;
+}

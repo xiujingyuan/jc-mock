@@ -1,0 +1,32 @@
+
+<div class="modal fade" id="modify_branch_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="modify_branch_index">
+        <input class="hidden" value="" id="modify_branch_task_id">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">修复分支信息</div>
+                    <div class="panel-body">
+                        <div class="div_info">
+                            <label class="div_info_lab">Jenkins任务:</label>
+                            <select id="sel_jenkins_job" name="country" class="form-control selectpicker div_info_sel" data-style="btn-primary" style="height: 55px;">
+                            </select>
+                        </div>
+                        <div class="div_info">
+                            <label class="div_info_lab">提测分支:</label>
+                            <input type="text" id="modify_branch_name" class="div_info_text">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_branch_info_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_branch_info_save">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

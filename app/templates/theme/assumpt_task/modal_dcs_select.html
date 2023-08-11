@@ -1,0 +1,58 @@
+
+<div class="modal fade" id="merge_dcs_sel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="jenkins_job_name">
+        <input class="hidden" value="" id="jenkins_task_id">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin-top: 10px;margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">选择清结算库</div>
+                    <div class="panel-body">
+                        <input type="hidden" value="" id="id_assumpt_table">
+                        <input type="hidden" value="" id="id_build_task_id">
+                        <input type="hidden" value="" id="id_build_branch">
+                        <input type="hidden" value="" id="id_program_id">
+                        <input type="hidden" value="" id="id_id">
+                        <input type="hidden" value="" id="id_index">
+                        <div class="div_info">
+                            <label class="div_info_lab">capital数据库</label>
+                            <select id="txt_dcs_capital" name="country" class="form-control selectpicker div_info_sel" data-style="btn-primary" style="height: 55px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                        <div class="div_info">
+                        <label class="div_info_lab">biz数据库</label>
+                            <select id="txt_dcs_biz" name="country" class="form-control selectpicker div_info_sel" data-style="btn-primary" style="height: 55px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_assumput_task_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_assumput_task_build">构建</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

@@ -1,0 +1,243 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading" >
+            创建任务
+        </div>
+        <div class="panel-body " style="margin-left: -150px;">
+             <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-2" for="txt_from_system">系统来源</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-2">
+                            <input type="checkbox" id="cb_from_system_all" value="all"  style="margin: 10px;">全选
+                        </div>
+                        <div id="cb_from_systems">
+                            {% for from_system_key, from_system_value in from_systems.items() %}
+                                <div class="col-sm-2">
+                                    <input type="checkbox" id="cb_from_system_{{ loop.index }}" value="{{ from_system_key }}" style="margin: 10px;">{{ from_system_value.name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        </div>
+                </div>
+
+            </form>
+
+            <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-2" for="txt_customer_channel">客户渠道</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-2">
+                        <input type="checkbox" id="cb_customer_channel_all" value="all" data-value="all" style="margin: 10px;">全选
+                        </div>
+                        <div id="cb_customer_channels">
+                        {% for customer_channel_key, customer_channel_value in customer_channels.items() %}
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_customer_channel_{{ loop.index }}" value="{{ customer_channel_key }}" style="margin: 10px;">{{ customer_channel_value.desc }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-2" for="txt_client_os">客户操作系统</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-2">
+                        <input type="checkbox" id="cb_client_os_all" value="all" style="margin: 10px;">全选
+                        </div>
+                        <div id="cb_client_oss">
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_os_ios" value="ios" style="margin: 10px;">ios
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_os_android" value="android" style="margin: 10px;">android
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_os_empty" value="" style="margin: 10px;">无
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-2" for="txt_client_app">客户APP</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-2">
+                            <input type="checkbox" id="cb_client_app_all" value="all" style="margin: 10px;">全选
+                        </div>
+                        <div id="cb_client_apps">
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_app_360" value="360jingrong" style="margin: 10px;">360jingrong
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_app_other" value="other" style="margin: 10px;">other
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="cb_client_app_empty" value="" style="margin: 10px;">无
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form id="for_system" class="form-horizontal">
+                <div class="form-group" style="margin-top:15px">
+                    <label class="control-label col-sm-2" for="txt_permission_name">创建条数</label>
+                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        <input type="text" data-toggle="创建条数" id="text_count" style="margin: 10px;" value="1000">
+                    </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-sm-2 pull-right" style="margin-top: 30px;">
+                {% if check %}
+                    <button class="btn btn-primary" id="id_create_task" disabled="disabled">创建任务</button>
+                {% else %}
+                    <button class="btn btn-primary" id="id_create_task" >创建任务</button>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        var get_task = setInterval(function () {ajaxFunc(); }, 2000);
+
+        function ajaxFunc() {
+              $.ajax({
+                url : "/api/tools/tmms/create_task",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken":csrftoken},
+                async : true,
+                type : "GET",
+                dataType : "json",
+                success : function(data) {
+                    if($("#id_create_task").prop("disabled") == false){
+                        clearInterval(get_task);
+                    }
+                    if(data["data"] == false){
+                        $("#id_create_task").removeAttr("disabled");
+                    }
+                }
+            });
+        }
+    });
+
+    $("#cb_client_app_all").click(function () {
+        if(this.checked)
+        {
+            $("#cb_client_apps :checkbox").prop("checked", true);
+
+        }
+        else{
+            $("#cb_client_apps :checkbox").prop("checked", false);
+        }
+    }).click();
+
+    $("#cb_client_os_all").click(function () {
+        if(this.checked)
+        {
+            $("#cb_client_oss :checkbox").prop("checked", true);
+
+        }
+        else{
+            $("#cb_client_oss :checkbox").prop("checked", false);
+        }
+    }).click();
+
+
+    $("#cb_customer_channel_all").click(function () {
+        if(this.checked)
+        {
+            $("#cb_customer_channels :checkbox").prop("checked", true);
+
+        }
+        else{
+            $("#cb_customer_channels :checkbox").prop("checked", false);
+        }
+    }).click();
+
+    $("#cb_from_system_all").click(function () {
+        if(this.checked)
+        {
+            $("#cb_from_systems :checkbox").prop("checked", true);
+
+        }
+        else{
+            $("#cb_from_systems :checkbox").prop("checked", false);
+        }
+    }).click();
+
+    var csrftoken = "{{ csrf_token() }}";
+
+    $("#id_create_task").click(function () {
+        $(this).attr("disabled",true);
+        var from_system = new Array();
+        $("#cb_from_systems :checkbox:checked ").each(function (index, item) {
+            from_system.push(item.value);
+        });
+
+        var customer_channel = new Array();
+        $("#cb_customer_channels :checkbox:checked ").each(function (index, item) {
+            customer_channel.push(item.value);
+        });
+
+
+        var client_os = new Array();
+        $("#cb_client_oss :checkbox:checked ").each(function (index, item) {
+            client_os.push(item.value);
+        });
+
+        var client_app = new Array();
+        $("#cb_client_apps :checkbox:checked ").each(function (index, item) {
+            client_app.push(item.value);
+        });
+
+        var task_count = parseInt($("#text_count").val());
+        $.ajax({
+                url : "/api/tools/tmms/create_task",
+                contentType: "application/json; charset=UTF-8",
+                headers: {"X-CSRFToken":csrftoken},
+                async : true,
+                type : "POST",
+                data : JSON.stringify({
+                        "num": task_count,
+                        "customer_channel": customer_channel,
+                        "customer_os": client_os,
+                        "customer_app": client_app,
+                        "from_system": from_system,
+                        "create_round": 20
+                    }),
+
+                success : function(data) {
+                    if(data["code"] == 1){
+                        toastr.success("success", data.msg);
+                    }
+                    else{
+                            toastr.error("error", data.msg);
+                        }
+                    $("#id_create_task").removeAttr("disabled");
+                },
+                error : function() {
+                    toastr.warning("warning", "网络异常，请求失败");
+                    $("#id_create_task").removeAttr("disabled");
+                },
+                dataType : "json"
+            });
+
+    })
+</script>
+

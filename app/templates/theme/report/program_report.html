@@ -1,0 +1,387 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}质量报告-项目报告{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/index.css') }}">
+    <link href="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sonarqube.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/report/report_index.css') }}">
+{% endblock %}
+
+{% block content_page_header %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="container-fluid">
+        <ul id="myTab" class="nav nav-tabs report-title">
+            <li class="report-title-first">
+                <div class="row program_time">
+                    <div class="pull-left program_start_time">统计时间:</div>
+                    <div class="pull-left program_start_date">
+                        <div class='input-group date col-sm-1' id='sel_total_time_start'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar total-date-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="pull-left program_start_date">
+                        <div class='input-group date col-sm-1' id='sel_total_time_end'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar total-date-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="triangle"></div>
+            </li>
+            <li class="active">
+                <a href="#tab_index_{{ origination }}" data-toggle="tab">总 览</a>
+            </li>
+            {% for program_item in programs %}
+            <li>
+                <a href="#tab{{ program_item.sys_program_id }}" data-toggle="tab">{{  program_item.sys_program_name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="myTabContent" class="tab-content report-content">
+            <div class="tab-pane active" id="tab_index_{{ origination }}">
+                <div>
+                    <div class="row report-row">
+                    <div class="pull-left col-lg-6 col-md-12">
+                        <!--需求/缺陷/日均构建数--开始-->
+                        <div class="col-lg-12 panel panel-danger col_info">
+                            <div class="col-lg-12 panel-heading" style="height: 40px;">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">需求/缺陷/日均构建数</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 panel-body">
+                                <!--需求/缺陷/日均构建情况-->
+                                <div id="story_bug_build_month" class="col-lg-12" style="height:500px;"></div>
+                                <!--需求/缺陷/日均构建情况结束-->
+                            </div>
+                        </div>
+                        <!--需求/缺陷/日均构建数--结束-->
+                    </div>
+                    <div class="pull-right col-lg-6 col-md-12">
+                        <!--上线情况--开始-->
+                        <div class="col-lg-12 panel panel-danger col_info">
+                            <div class="panel-heading" style="height: 40px;">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">上线情况</h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <!--上线情况开始-->
+                                <div id="tag_online_month" class="col-lg-12" style="height:500px;"></div>
+                                <!--上线情况结束-->
+                            </div>
+                        </div>
+                        <!--上线情况--结束-->
+                    </div>
+                    </div>
+                    <div class="total-coverage">
+                    <!--代码覆盖情况--开始-->
+                    <div class="col-lg-12 panel panel-danger col_info">
+                        <div class="panel-heading" style="height: 40px;">
+                            <div class="pull-left">
+                                <h3 class="panel-title">代码覆盖情况</h3>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!--覆盖率情况开始-->
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <table id="tb_program_coverage_month"></table>
+                                </div>
+                            </div>
+                            <!--覆盖率情况结束-->
+                        </div>
+                    </div>
+                    <!--代码覆盖情况--结束-->
+                    </div>
+                    <div class="pull-left col-lg-6 col-md-12">
+                        <!--代码质量--表格-开始-->
+                        <div class="col-lg-12 panel panel-danger col_info">
+                            <div class="panel-heading" style="height: 40px;">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">代码质量-表格</h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                 <!--代码质量开始-->
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <table id="tb_sonar"></table>
+                                    </div>
+                                </div>
+                                <!--代码质量结束-->
+                            </div>
+                        </div>
+                        <!--代码质量--表格-结束-->
+                    </div>
+                    <div class="pull-right col-lg-6 col-md-12">
+                        <!--代码质量--列表-开始-->
+                        <div class="col-lg-12 panel panel-danger col_info">
+                            <div class="panel-heading" style="height: 40px;">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">代码质量-列表</h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                 <!--代码质量开始-->
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List" role="grid" tabindex="0" style="box-sizing: border-box; direction: ltr; height: auto; position: relative; will-change: transform;outline: none;margin-top: 20px;">
+                                            <div id="sonar_list" class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup" style="width: auto; position: relative;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--代码质量结束-->
+                            </div>
+                        </div>
+                        <!--代码质量--列表-结束-->
+                    </div>
+                </div>
+            </div>
+            {% for program_item in programs %}
+                <div class="tab-pane fade" id="tab{{ program_item.sys_program_id }}">
+                    <div class="left_program col-lg-6 col-md-12">
+                        <!--需求、缺陷情况-开始 -->
+                        <div class="pull-left col-md-12">
+                            <div class="col-lg-12 panel panel-danger col_info">
+                                <div class="panel-heading" style="height: 40px;">
+                                    <div class="pull-left">
+                                        <h3 class="panel-title">需求、缺陷情况</h3>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                     <!--代码质量开始-->
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="item">
+                                <div class="item_title"><i class="fa fa-tasks" aria-hidden="true"></i>需求个数</div>
+                                <div class="item_num">
+                                    <a href="#" target="_blank" id="story_close_a_{{ program_item.sys_program_id }}"></a>
+                                    <span class="item_separator">/</span>
+                                    <a href="#" target="_blank" id="story_total_a_{{ program_item.sys_program_id }}"></a>
+                                </div>
+                            </div>
+                                            <div class="item">
+                                                <div class="item_title"><i class="fa fa-bug" aria-hidden="true"></i>缺陷个数</div>
+                                                <div class="item_num">
+                                                    <a href="#" target="_blank" id="bug_close_a_{{ program_item.sys_program_id }}"></a>
+                                                    <span class="item_separator">/</span>
+                                                    <a href="#" target="_blank" id="bug_total_a_{{ program_item.sys_program_id }}"></a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="item_title"><i class="fa fa-bug" aria-hidden="true"></i>线上缺陷</div>
+                                                <div class="item_num">
+                                                    <a href="#" target="_blank" id="online_bug_closed_a_{{ program_item.sys_program_id }}"></a>
+                                                    <span class="item_separator">/</span>
+                                                    <a href="#" target="_blank" id="online_bug_total_a_{{ program_item.sys_program_id }}"></a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="item_title"><i class="fa fa-bug" aria-hidden="true"></i>测试计划</div>
+                                                <div class="item_num">
+                                                    <a href="#" target="_blank" id="test_plan_close_a_{{ program_item.sys_program_id }}"></a>
+                                                    <span class="item_separator">/</span>
+                                                    <a href="#" target="_blank" id="test_plan_total_a_{{ program_item.sys_program_id }}"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--代码质量结束-->
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--需求、缺陷情况-结束 -->
+                    </div>
+{#                    <div class="right_program col-lg-6 col-md-12">#}
+{#                        <!--代码变更情况-开始 -->#}
+{#                        <div class="pull-left col-md-12">#}
+{#                            <div class="col-lg-12 panel panel-danger col_info">#}
+{#                                <div class="panel-heading" style="height: 40px;">#}
+{#                                    <div class="pull-left">#}
+{#                                        <h3 class="panel-title">代码变更情况</h3>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="panel-body">#}
+{#                                     <!--代码质量开始-->#}
+{#                                    <div class="container-fluid">#}
+{#                                        <div class="row">#}
+{#                                            <table id="tb_git_commit_{{ program_item.sys_program_id }}"></table>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!--代码质量结束-->#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <!--代码变更情况-结束 -->#}
+{#                    </div>#}
+                    <!--代码覆盖情况-开始 -->
+                    <div class="pull-left col-md-12">
+                        <div class="col-lg-12 panel panel-danger col_info">
+                        <div class="panel-heading" style="height: 40px;">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">代码覆盖情况</h3>
+                                </div>
+                            </div>
+                        <div class="panel-body">
+                            <!--覆盖率情况开始-->
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div style="margin:10px auto;height: 2px;border: 1px #797979 solid;"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">平均覆盖率</label><br><label class="coverage_month_data" id="average_coverage_{{ program_item.sys_program_id }}">68.82%</label></div>
+                                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">测试覆盖分支数</label><br><label class="coverage_month_data" id="branch_count_{{ program_item.sys_program_id }}">17</label></div>
+                                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">未统计覆盖分支</label><br><label class="coverage_month_data" id="miss_count_{{ program_item.sys_program_id }}">2</label></div>
+                                        <div class="col-md-3"><label class="coverage_month_label">代码变更总行数</label><br><label class="coverage_month_data" id="change_code_{{ program_item.sys_program_id }}">146330</label></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div style="margin:10px auto;height: 2px;border: 1px #797979 solid;"></div>
+                                </div>
+                                <div class="row">
+                                    <table id="tb_program_coverage_month_{{ program_item.sys_program_id }}"></table>
+                                </div>
+                            </div>
+                            <!--覆盖率情况结束-->
+                        </div>
+                    </div>
+                    </div>
+                    <!--代码覆盖情况-结束 -->
+                    <div class="left_program col-lg-6 col-md-12">
+                        <!--代码质量-表格-开始 -->
+                        <div class="pull-left col-md-12">
+                            <div class="col-lg-12 panel panel-danger col_info">
+                                <div class="panel-heading" style="height: 40px;">
+                                    <div class="pull-left">
+                                        <h3 class="panel-title">代码质量-表格</h3>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                     <!--代码质量开始-->
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <table id="tb_sonar_{{ program_item.sys_program_id }}"></table>
+                                        </div>
+                                    </div>
+                                    <!--代码质量结束-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--代码质量-表格-结束 -->
+                        </div>
+                    <div class="right_program col-lg-6 col-md-12">
+                        <!--代码质量-列表-开始 -->
+                        <div class="pull-left col-md-12">
+                            <div class="col-lg-12 panel panel-danger col_info">
+                                <div class="panel-heading" style="height: 40px;">
+                                    <div class="pull-left">
+                                        <h3 class="panel-title">代码质量-列表</h3>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                     <!--代码质量开始-->
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List" role="grid" tabindex="0" style="box-sizing: border-box; direction: ltr; height: auto; position: relative; will-change: transform;outline: none;margin-top: 20px;">
+                                                <div id="sonar_list_{{ program_item.sys_program_id }}" class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup" style="width: auto; position: relative;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--代码质量结束-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--代码质量-列表-结束 -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="{{ cdn_host }}moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ cdn_host }}jquery-resize/1.1/jquery.ba-resize.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script>
+    var program_list = eval("{{ program_ids | safe}}");
+    var organization = "{{ origination }}";
+    console.log("organization", organization);
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/report/report_index.js') }}"></script>
+    <script>
+    $(function () {
+
+        var time_list = new Array("#sel_total_time_start", "#sel_total_time_end");
+        $.each(time_list, function (index, item) {
+            var day = 0;
+            if(item == "#sel_total_time_start"){
+                day = -7
+            }
+            $(item).datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            defaultDate: get_data(day)
+            }).on("dp.change", function (ev) {
+                var current_time = $(item + " input").val();
+                $(item + " input").val(current_time);
+                var program_id = get_current_id();
+                if(program_id === -1){
+                    init_tag_online_month_data(program_list);
+                init_sonar_table(program_list, organization);
+                init_table();
+                init_story_bug_build_month_data(program_list);
+                }else{
+                    update_program_info(program_id);
+                    update_program_table_info(program_id);
+                }
+
+            });
+        });
+
+        init_story_bug_build_month_data(program_list);
+        init_tag_online_month_data(program_list);
+        init_sonar_table(program_list, organization);
+        init_table();
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var program_id = $(this).attr("href").replace("#tab", "");
+            if(!(program_id.indexOf("index") > -1)) {
+                show_program_info(program_id);
+            }
+        });
+
+    });
+    </script>
+
+{% endblock %}

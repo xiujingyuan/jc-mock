@@ -1,0 +1,47 @@
+<div class="modal fade" id="task_list_create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1060px;" >
+        <div class="modal-content">
+            <div class="modal-body" style="height: 600px;">
+                <div class="page-header">
+                    <h2 style="margin-left: 30px;">创建用例集</h2>
+                </div>
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px;">
+                        <label class="control-label col-sm-1" for="txt_case_from_system">任务名</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="modal_txt_task_title" value="test">
+                        </div>
+
+                        <label class="control-label col-sm-1" for="txt_case_from_system" style="padding: 0px;padding-top: 7px;">用例系统:</label>
+                        <div class="col-sm-3">
+                            <select id="sel_system_test" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                {% for program in sys_programs %}
+                                    {% if program.sys_program_group_id != 8 %}
+                                        <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <label class="control-label col-sm-1" for="txt_case_belong_business" style="padding: 0px;padding-top: 7px;">所属业务:</label>
+                        <div class="col-sm-3">
+                            <select id="sel_belong_business" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="row-fluid" style="margin: 20px;">
+                   <select id="duallistbox_case" multiple="multiple" size="10" name="duallistbox_case_all" class="case_all">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_create_task">创建任务</button>
+                <button type="button" class="btn btn-default" style="display: none" data-dismiss="modal" id="btn_create_task_cancel">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+

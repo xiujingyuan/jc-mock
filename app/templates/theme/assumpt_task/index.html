@@ -1,0 +1,118 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}测试任务{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap3-dialog/1.35.4/css/bootstrap-dialog.min.css" rel="stylesheet">
+    <link href="{{ cdn_host }}x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/assumpt_task/assumpt_task.css') }}">
+{% endblock %}
+
+{% block content_page_header %}
+    <div class="master_div " style="text-align: center;">
+        <div class="program-name">
+            <i class="project-logo project-logo-{{ program.sys_program_id % 5 }}">{{ program.sys_program_name[0] }}</i>{{ program.sys_program_name }}
+            <ul class="task-tab" id="taskTab">
+                <li class="active"><a href="#testing" id="1">测试中</a></li>
+                <li><a href="#publish" id="0">已发布</a></li>
+            </ul>
+        </div>
+        <div class="hidden">
+        <div id="lab_branch" style="white-space: nowrap;display: inline-block;">构建分支:master</div>
+        <div id="master_jenkins" style="white-space: nowrap;display: inline-block;">
+             <label class="control-label">Jenkins任务：</label>
+             <select id="master_jenkin_id_{{ program.sys_program_id }}" class="selectpicker " data-style="btn-primary">
+                 {% for jenkins in build_jenkins[program.sys_program_id]  %}
+                    <option>{{ jenkins.jenkins_job_name }}</option>
+                 {% endfor %}
+            </select>
+        </div>
+        <div style="white-space: nowrap;display: inline-block" id="div_master_env">构建环境：
+            <select id="master_build_env_{{ program.sys_program_id }}" class="selectpicker" data-style="btn-primary">
+            {% for test in test_env[program.sys_program_id] %}
+                <option>{{  test.env_id }}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <div style="white-space: nowrap;display: inline-block;">
+             <label class="control-label" id="master_status_{{ program.sys_program_id }}" style="margin-top: 8px;">构建状态:空闲</label>
+        </div>
+        <div id="master_div_edit" style="white-space: nowrap;display: inline-block" class="hidden">
+            {% if program.sys_program_id == 10 %}
+                <a id="master_build_jacoco_{{ program.sys_program_id }}" class="btn btn-primary" href="" target="_blank">覆盖率</a>
+            {% else %}
+            <a id="master_build_jacoco_{{ program.sys_program_id }}" class="btn btn-primary"
+               href="http://jacoco.kuainiujinke.com/{{ program.sys_jacoco_name }}/master_new/summary_report.html" target="_blank">覆盖率</a>
+            {% endif %}
+        </div>
+        <div class="hidden" id="master_div_edit_new" style="white-space: nowrap;display: inline-block;">
+            <a id="master_new_build_jacoco_{{ program.sys_program_id }}" class="btn btn-primary" href="javascript:void(0)">新覆盖率</a>
+        </div>
+        <div id="div_master_build" style="white-space: nowrap;display: inline-block;">
+            <button id="master_build_{{ program.sys_program_id }}" class="btn btn-primary">构建</button>
+        </div>
+        <div id="div_master_cancel" style="white-space: nowrap;display: inline-block;">
+            <button id="master_cancel_{{ program.sys_program_id }}" class="btn btn-primary">终止构建</button>
+        </div>
+        <div id="div_master_log" style="white-space: nowrap;display: inline-block;">
+            <button id="master_log_{{ program.sys_program_id }}" class="btn btn-primary">日志</button>
+        </div>
+        <div class="hidden" id="div_build_record" style="white-space: nowrap;display: inline-block;">
+              <button id="master_record_{{ program.sys_program_id }}" class="btn btn-primary">构建详情</button>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <input type="hidden" value="{{ mdm_url }}" id="mdm_url">
+    <div class="tab-pane active" id="testing">
+        <div class="panel-body">
+            <table id="tb_assumpt_task" class="table-no-bordered"></table>
+        </div>
+    </div>
+    {% include "theme/assumpt_task/build_record.html" %}
+    {% include "theme/assumpt_task/build_email.html" %}
+    {% include "theme/assumpt_task/branch_commit.html" %}
+    {% include "theme/assumpt_task/modal_merge_jacoco.html" %}
+    {% include "theme/assumpt_task/modal_dcs_select.html" %}
+    {% include "theme/assumpt_task/modal_cental_select.html" %}
+    {% include "theme/assumpt_task/modal_oa_select.html" %}
+    {% include "theme/assumpt_task/modal_modify_branch_info.html" %}
+    {% include "theme/assumpt_task/modal_upload.html" %}
+    {% include "theme/assumpt_task/modal_modify_filter_file.html" %}
+    {% include "theme/assumpt_task/modal_quality_info.html" %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-select.js') }}"></script>
+{#    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>#}
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ cdn_host }}socket.io/2.1.1/socket.io.dev.js"></script>
+    <script src="{{ cdn_host }}socket.io/2.1.1/socket.io.dev.js"></script>
+    <script src="{{ cdn_host }}bootstrap3-dialog/1.35.4/js/bootstrap-dialog.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-paginator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-editable.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-editable.js') }}"></script>
+    <script>
+    var pt_csrf_token = "{{ csrf_token() }}",
+        program_name = "{{ program.sys_program_name }}",
+        current_user = "{{ current_user.username }}",
+        oa_modals = "{{ oa_modals.keys() }}",
+        current_user_email = "{{ current_user.email }}";
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/assumpt_task/assumpt_task.js') }}"></script>
+{% endblock %}

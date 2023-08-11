@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "testing"
+  cluster:
+    server: "https://k8s-test-rancher.kuainiujinke.com/k8s/clusters/c-xpl64"
+
+users:
+- name: "testing"
+  user:
+    token: "kubeconfig-u-5vjbt:hwhvn5jfcrtbffr52lrn22lfgvz6zlf96p2v7rl6v57jx4948pc696"
+
+
+contexts:
+- name: "testing"
+  context:
+    user: "testing"
+    cluster: "testing"
+
+current-context: "testing"

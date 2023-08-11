@@ -1,0 +1,93 @@
+.coverage_month_label {
+    font-size: 10px;
+    color:#787878;
+}
+.coverage_month_data {
+    font-size: 30px;
+}
+
+.coverage_row_right {
+    border-right: 1px #797979 dashed;
+}
+
+.col_info {
+    padding: 0px;
+    float:left;
+    display: inline-block;
+}
+
+.item {
+    flex: 1;
+    text-align: center;
+}
+
+.item_title {
+    font-size: 14px;
+    color: #8091a5;
+}
+
+.item_title > i {
+    padding-right: 2px;
+}
+
+.item_num,
+.item_num a {
+    font-size: 20px;
+    color: #3582fb;
+    padding-top: 5px;
+}
+
+.item_separator {
+    color: #b0bac5;
+}
+
+.program_time {
+    margin:20px 0;
+    padding: 0 20px;
+}
+
+.program_time > div {
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 35px;
+}
+
+.program_time input {
+    height: 35px;
+    width: 80px!important;
+}
+
+.program_start_time {
+    margin-left: -48px;
+}
+
+.program_start_date {
+    margin-left: -30px;
+}
+
+.left_program,
+.right_program {
+    padding: 0px;
+}
+
+.table_story_name {
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.total_time {
+    width: 120px;
+}
+
+.total_time > input {
+    height: 30px;
+}
+
+.total_pale {
+    display:inline-block;
+    margin-top: -5px;
+}

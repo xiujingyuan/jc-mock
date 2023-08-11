@@ -1,0 +1,18 @@
+<div class="modal fade" id="modal_history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog " style="width: 80%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="json_exec_history" style="height: 500px"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+    <script>
+        function bind_history_data(value) {
+            json_dict['json_exec_history'].set(value);
+        }
+
+    </script>

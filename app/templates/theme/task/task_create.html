@@ -1,0 +1,135 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/bootstrap-duallistbox.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block page_content %}
+    <div class="page-header">
+        <h1 style="margin-left: 30px;">创建测试任务</h1>
+    </div>
+    <form id="formSearch" class="form-horizontal">
+        <div class="form-group" style="margin-top:15px;margin-left: -65px;">
+            <label class="control-label col-sm-1" for="txt_case_from_system">任务名</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="txt_task_title" value="test">
+            </div>
+        </div>
+    </form>
+    <div class="row-fluid" style="margin: 20px;">
+       <select multiple="multiple" size="10" name="duallistbox_case_all" class="case_all">
+        </select>
+        <br />
+        <input id="btn_create_task" type="button" class="btn btn-primary pull-right" value="创建任务" />
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.bootstrap-duallistbox.js') }}"></script>
+    <script>
+        $(function () {
+            //初始化
+            initListBox('hangwei.cnblogs.com', 'case_all');
+            $("#btn_create_task").click(function () {
+                var case_ids = $('[name="duallistbox_case_all"]').val();
+                var task_title = $("#txt_task_title").val();
+                if (! case_ids){
+                    toastr.error("error", "用例不能为空");
+                    return
+                }
+
+                if (! task_title){
+                    toastr.error("error", "任务名称不能为空");
+                    return
+                }
+
+                console.log(case_ids);
+                $(this).attr("disabled", "disabled");
+                var paramData = {
+                    "task_title": task_title,
+                    "task_ids":case_ids,
+                    "task_create_user": "{{ current_user.username }}"
+                };
+                $.ajax({
+                    url: '/api/task/create',
+                    headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                    contentType: "application/json; charset=UTF-8",
+                    type: 'post',
+                    data: JSON.stringify(paramData),
+                    async: true,
+                    success: function (data) {
+                        if (data["code"] == 1) {
+                            toastr.error("error", data["msg"]);
+                        }
+                        else {
+                            toastr.success("success", "创建成功");
+                        }
+                        $("#btn_create_task").removeAttr("disabled");
+                    },
+                    error: function (e) {
+                        toastr.warning("warning", e.msg);
+                        $("#btn_create_task").removeAttr("disabled");
+                    }
+            });
+            });
+        });
+
+        /*初始化duallistbox*/
+        //queryParam1：参数
+        //selectClass：select元素class属性
+        //selectedDataStr：选中数据，多个以,隔开
+        function initListBox(queryParam1, selectClass, selectedDataStr) {
+            var paramData = {
+                'testParam1': queryParam1
+            };
+            $.ajax({
+                url: '/api/case/all',
+                type: 'get',
+                data: paramData,
+                async: true,
+                success: function (returnData) {
+                    $(returnData["data"]).each(function () {
+                        var o = document.createElement("option");
+                        o.value = this['case_id'];
+                        o.text = this['case_name'];
+                        if ("undefined" != typeof (selectedDataStr) && selectedDataStr != "") {
+                            var selectedDataArray = selectedDataStr.split(',');
+                            $.each(selectedDataArray, function (i, val) {
+                                if (o.value == val) {
+                                    o.selected = 'selected';
+                                    return false;
+                                }
+                            });
+                        }
+                        $("." + selectClass + "")[0].options.add(o);
+                    });
+                    //渲染dualListbox
+                    $('.' + selectClass + '').bootstrapDualListbox({
+                        nonSelectedListLabel: '待选择用例',
+                        infoText: "",
+                        filterPlaceHolder: "过滤",
+                        selectedListLabel: '已选择用例',
+                        preserveSelectionOnMove: 'moved',
+                        moveOnSelect: true//,
+                        //nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
+                    });
+                },
+                error: function (e) {
+                    alert(e.msg);
+                }
+            });
+        }
+    </script>
+{% endblock %}

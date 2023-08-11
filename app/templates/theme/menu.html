@@ -1,0 +1,72 @@
+<div id="page_menu" class="navbar-default sidebar" role="navigation" style="margin-top: 0px;min-height: ;padding-top: 10px;">
+    <div class="sidebar-nav navbar-collapse" style="border-bottom: 1px solid rgba(0, 0, 0, 0.3);padding: 0px;">
+        <ul class="nav" id="side-menu">
+            {% for menu in menus %}
+                {% if child_menus[menu.id | string] %}
+                    {% if menu.id in (1, 12) %}
+                        {% if current_user.is_administrator() %}
+                            <li class="layui-nav-item"><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    {% for child_menu in child_menus[menu.id | string] %}
+                                        <li><a href="{{ child_menu.route }}"><i class="fa fa-{{ child_menu.data }} fa-fw"></i>{{ child_menu.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% elif  menu.id == 22 %}
+                        <li><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            {% for sys_organization in sys_organizations %}
+                                {% if sys_organization.sys_organization_name not in ("公共组", "风控组") %}
+                                    <li><a href="/report/new/{{ sys_organization.sys_organization_id }}/">{{ sys_organization.sys_organization_name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for child_menu in child_menus[menu.id | string] %}
+                                <li><a href="{{ child_menu.route }}" >{{ child_menu.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        </li>
+                    {% else %}
+                        <li class="layui-nav-item"><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                {% for child_menu in child_menus[menu.id | string] %}
+                                    <li><a href="{{ child_menu.route }}" ><i class="fa fa-{{ child_menu.data }} fa-fw"></i>{{ child_menu.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% elif  menu.id == 5 %}
+                    <li><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            {% for sys_organization in sys_organizations %}
+                            <li><a href="/link/{{ sys_organization.sys_organization_id }}/">{{ sys_organization.sys_organization_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% elif  menu.id == 21 %}
+                    <li><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        {% for sys_organization in sys_organizations %}
+                            {% if sys_organization.sys_organization_name not in ("公共组", "风控组") %}
+                                <li><a href="/assumpt_task/{{ sys_organization.sys_organization_id }}/">{{ sys_organization.sys_organization_name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    </li>
+                {% elif  menu.id == 15 %}
+                    <li><a href="javascript:void(0)"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        {% for sys_organization in sys_organizations %}
+                            {% if sys_organization.sys_organization_name not in ("风控组") %}
+                                <li><a href="/tool/set/{{ sys_organization.sys_organization_id }}/">{{ sys_organization.sys_organization_name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{{ menu.route }}"><i class="fa fa-{{ menu.data }} fa-fw"></i>{{ menu.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

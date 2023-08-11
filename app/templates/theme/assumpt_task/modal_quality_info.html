@@ -1,0 +1,35 @@
+
+<div class="modal fade" id="modal_quality_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 960px;" >
+        <input class="hidden" value="" id="build_task_id">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--初始化基础信息开始-->
+                <div style="margin:0px;">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">提测质量信息记录</div>
+                    <div class="panel-body">
+                        <div class="tab-pane quality-info" id="quality_info_operate">
+                            <div class="quality-info">
+                                <label>提测质量</label>
+                                <select id="sel_quality_info_level" class="selectpicker sel-quality-info" data-style="btn-primary">
+                                    <option value="1">良好</option>
+                                    <option value="0">欠佳</option>
+                                    <option value="2">优</option>
+                                </select>
+                            </div>
+                            <div class="quality-info"><label>需求变更次数</label><input type="text" class="form-control" id="txt_story_change_count" placeholder="请需求变更次数"></div>
+                            <div class="quality-info"><label>冒烟次数</label><input type="text" class="form-control" id="txt_smoke_count" placeholder="请冒烟次数"></div>
+                            <div class="quality-info"><label>原因说明</label><textarea class="form-control" id="txt_reason" name="deblock_udid" rows="16" style="min-width: 90%"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_qualty_info_cancel">取消</button>
+                <button type="button" class="btn btn-default" id="btn_qualty_info_save">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

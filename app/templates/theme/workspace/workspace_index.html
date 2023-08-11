@@ -1,0 +1,200 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap/bootstrap-duallistbox.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link href="{{ cdn_host }}x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/workspace/workspace.css') }}">
+{% endblock %}
+
+{% block content_page_header %}
+    <div class="workspace_header">
+        <div class="workspace_header_dropdown dropdown">
+            <button type="button" class="workspace_header_dropdown btn dropdown-toggle" id="dropdown_country" data-toggle="dropdown" value="china">
+                国内
+                <span class="caret"></span>
+            </button>
+            <ul class="workspace_header_country_ul dropdown-menu" role="menu" aria-labelledby="dropdown_country">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="china">国内</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="ind">印度</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="mex">墨西哥</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="tha">泰国</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="phl">菲律宾</a>
+                </li>
+            </ul>
+        </div>
+        <div class="workspace_header_dropdown dropdown">
+            <button type="button" class="workspace_header_dropdown btn dropdown-toggle" id="dropdown_program" data-toggle="dropdown" value="repay">
+                还款
+                <span class="caret"></span>
+            </button>
+            <ul class="workspace_header_program_ul dropdown-menu" role="menu" aria-labelledby="dropdown_program">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="repay">还款</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="grant">放款</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="payment">支付</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" id="dcs">清结算</a>
+                </li>
+            </ul>
+        </div>
+        <div class="triangle"></div>
+            {% for country, base in env_base_config.items() %}
+                {% for pro, env_list in base.env.items() %}
+                    {% if country == 'china' and pro == 'repay' %}
+                        <ul class="workspace_program" id="ul_program_{{ country }}_{{ pro }}">
+                    {% else %}
+                        <ul class="workspace_program hidden" id="ul_program_{{ country }}_{{ pro }}">
+                    {% endif %}
+{#                        {% for env in env_list %}#}
+{#                            {% if loop.first and country == 'china' and pro == 'repay' %}#}
+{#                                <li class="workspace_program_item active">#}
+{#                            {% else %}#}
+{#                                <li class="workspace_program_item">#}
+{#                            {% endif %}#}
+{#                                <a id="sel_pro_{{ env }}">#}
+{#                                    <span>{{ env }}测试环境</span>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+
+                        <li class="workspace_program_item" style="width: 100px;margin-top: 10px;">
+                            <select id="sel_pro_env" name="country" class="form-control selectpicker " data-style="btn-primary">
+                                {% for env in env_list %}
+                                    <option value="{{env}}" id="sel_pro_{{ env }}">{{ env }}测试环境</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        </ul>
+                {% endfor %}
+            {% endfor %}
+        <div class="cat-off"></div>
+        <ul class="base-url-ul">
+        <li class="workspace_program_item">
+            <select id="sel_base_url" name="country" class="form-control selectpicker " data-style="btn-primary">
+                <option value="test">测试</option>
+                <option value="prod">生产</option>
+            </select>
+        </li>
+        {% for base_url_name, base_url_value in program_url_config.china.items() %}
+            {% if base_url_value.test %}
+                <li class="workspace_program_item">
+            {% else %}
+                <li class="workspace_program_item hidden">
+             {% endif %}
+                    <a href="{{ base_url_value.test | replace('{0}', '1') }}" target="_blank">{{ base_url_name }}</a>
+                </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block page_content %}
+    <div class="workspace-list tab-content">
+        <!--左边导航开始-->
+        <div class="container menu-list-url">
+            <div class="span6">
+                <ul class="nav nav-list">
+                    <li class="nav-header">
+                        <select id="sel_captial" name="sel_captial" class="selectpicker show-tick form-control captial-sel" data-live-search="false">
+                            <option value="hami_tianshan">哈密天山</option>
+                            <option value="weishenma">微神马</option>
+                        </select>
+                        <select id="sel_captial_period" name="sel_captial_period" class="selectpicker show-tick form-control captial-sel" data-live-search="false">
+                            <option value="6">6期</option>
+                            <option value="12">12期</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="nav nav-list nav-content">
+                    <li class="nav-item"><input type="button" id="add_asset" value="新增资产" class="btn btn-primary"></li>
+                    <li class="nav-item"><a href="" id="shil20201600072260568031">shil20201600072260568031</a></li>
+                    <li class="nav-item"><a href="" id="qinn20201600065112979194">qinn20201600065112979194</a></li>
+                    <li class="nav-item"><a href="" id="yixi20201600064176370284">yixi20201600064176370284</a></li>
+                    <li class="nav-item"><a href="" id="shil20201600054651096872">shil20201600054651096872</a></li>
+                    <li class="nav-item"><a href="#">修改资产</a></li>
+                    <li class="nav-item"><a href="#">主动还款</a></li>
+                    <li class="nav-item"><a href="#">协议支付-发短信</a></li>
+                    <li class="nav-item"><a href="#">协议支付</a></li>
+                    <li class="nav-item"><a href="#">资产取消</a></li>
+                    <li class="nav-item"><a href="#">刷罚息</a></li>
+                    <li class="nav-item"><a href="#">资产逆操作</a></li>
+                    <li class="nav-item"><a href="#">paysvr代扣回调接口</a></li>
+                    <li class="nav-item"><a href="#">Task执行</a></li>
+                    <li class="nav-item"><a href="#">msg执行</a></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+        <!--左边导航结束-->
+        <!--请求相关开始-->
+        <div class="send-content">
+            <div class="operation-content">
+                <input type="button" value="合并代扣-单期" class="btn btn-primary">
+                <input type="button" value="合并代扣-提前结清" class="btn btn-primary">
+                <input type="button" value="合并代扣-逾期部分" class="btn btn-primary">
+                <input type="button" value="自动批扣" class="btn btn-default">
+                <input type="button" value="手动还款" class="btn btn-danger">
+                <input type="button" value="罚息减免" class="btn btn-dark">
+                <input type="button" value="罚息增加" class="btn btn-dropbox">
+                <input type="button" value="Task执行" class="btn btn-dropbox">
+                <input type="button" value="Msg执行" class="btn btn-dropbox">
+                <input type="button" value="Paysvr代扣回调成功" class="btn btn-dropbox">
+                <input type="button" value="Paysvr代扣回调失败" class="btn btn-dropbox">
+                <input type="button" value="资产逆操作" class="btn btn-dropbox">
+                <input type="button" value="修改资产日期" class="btn btn-dropbox">
+                <input type="button" value="协议支付" class="btn btn-dropbox">
+                <input type="button" value="协议支付发短信" class="btn btn-dropbox">
+            </div>
+            <div class="post-content"></div>
+            <div class="return-content"></div>
+        </div>
+        <!--请求相关结束-->
+        <!--结果查询开始-->
+        <div class="query-result"></div>
+        <!--结果查询结束-->
+    </div>
+
+    {% include 'theme/workspace/modal_asset_add.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.bootstrap-duallistbox.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-paginator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nanobar.min.js') }}?v=2.9993"></script>
+    <script>
+    var current_user = "{{ current_user.username }}",
+        program_url_config = eval('(' + "{{ program_url_config | safe }}" + ')'),
+        csrf_token = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ url_for('static', filename='theme/js/workspace/workspace.js') }}"></script>
+{% endblock %}

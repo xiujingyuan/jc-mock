@@ -1,0 +1,96 @@
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/case_task/case_detail.css') }}">
+   <div class="panel-body" style="padding-bottom:0px;">
+       <input type="hidden" id="task_id_number" value="1">
+        <form id="formSearch" class="form-horizontal" style="border: 0px;">
+            <input type="text" id="task_id" hidden="hidden" value="1">
+            <div class="form-group" style="margin-top:15px">
+                <label class="control-label col-sm-1" for="txt_task_title">任务名:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_title">
+                </div>
+
+                <label class="control-label col-sm-1" for="txt_task_desc">任务描述:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_desc">
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_system">所属系统:</label>
+                <div class="col-sm-2">
+{#                    <input type="text" class="form-control col-sm-1" id="task_system" disabled="disabled">#}
+                    <select id="task_system" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;" disabled="disabled">
+                                {% for program in sys_programs %}
+                                    {% if program.sys_program_group_id != 8 %}
+                                        <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_business">所属业务:</label>
+                <div class="col-sm-2">
+{#                    <input type="text" class="form-control col-sm-1" id="task_business" disabled="disabled">#}
+                    <select id="task_business" name="country" class="form-control selectpicker " data-style="btn-primary" style="height: 55px;" disabled="disabled">
+                        <option value="">全部</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <form id="formSearch" class="form-horizontal" style="border: 0px;">
+            <div class="form-group" style="margin-top:15px">
+                <label class="control-label col-sm-1" for="txt_task_create_user">创建人:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_create_user" disabled="disabled">
+                </div>
+
+                <label class="control-label col-sm-1" for="txt_task_last_user">更新人:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_last_user" disabled="disabled">
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_create_time">创建时间:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_create_time" disabled="disabled">
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_last_run_time">上次执行时间:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_last_run_time" disabled="disabled">
+                </div>
+            </div>
+        </form>
+        <form id="formSearch" class="form-horizontal" style="border: 0px;">
+            <div class="form-group" style="margin-top:15px">
+                <label class="control-label col-sm-1" for="txt_task_status">任务状态:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_status" disabled="disabled">
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_last_result">上次执行结果:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_last_result" disabled="disabled">
+                </div>
+                <label class="control-label col-sm-1" for="txt_task_run_time">运行次数:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control col-sm-1" id="task_run_time" disabled="disabled">
+                </div>
+                <div class="col-sm-2" style="margin-left: 62px;padding: 0px;">
+                    <div class="col-sm-4" style="padding: 0px;">
+                        <label class="control-label" for="txt_task_run_time">运行环境:</label>
+                    </div>
+                    <div class="col-sm-6" style="padding: 0px;">
+                        <select id="task_run_env" name="country" class="form-control selectpicker" data-style="btn-primary" style="height: 55px;">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary pull-left" id="btn_exec" >执行</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-2" style="margin: 0px;padding: 0px;width: 180px;">
+            <ul class="list-group fullscreen" id="run_list">
+            </ul>
+        </div>
+        <div id="myTabContent" class="tab-content col-sm-10" style="padding: 0px;margin-left: 20px;">
+        </div>
+   </div>
+   <div style="text-align: left;margin-left: 15px;" class="hidden">
+      <ul id="pageLimit"></ul>
+   </div>
+

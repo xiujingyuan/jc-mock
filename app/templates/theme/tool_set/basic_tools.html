@@ -1,0 +1,221 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} 工具集 - 基础组{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/tool/tool_index.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+{% endblock %}
+
+{% block content_page_header %}
+    <div class="tool_header">
+        <div class="tool_header_dropdown dropdown">
+            <button type="button" class="tool_header_dropdown btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                <i class="tool_header_i fa fa-link"></i>我关注的
+                <span class="caret"></span>
+            </button>
+            <ul class="tool_header_ul dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">我关注的</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">所有的</a>
+                </li>
+            </ul>
+        </div>
+        <div class="triangle"></div>
+        <ul id="orgTitle" class="org_title">
+            {% for org, programs in org_programs.items() %}
+                {% if loop.first %}
+                    <li class="org_title_item active"><a href="#org{{ loop.index }}" data-toggle="tab"><span>{{ org }}</span></a></li>
+                {% else %}
+                    <li class="org_title_item"><a href="#org{{ loop.index }}" data-toggle="tab"><span>{{ org }}</span></a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="container-fluid">
+        <div id="orgTitleContent" class="tab-content org-content">
+        {% for org, programs in org_programs.items() %}
+            {% if loop.first %}
+                <div class="tab-pane fade in active" id="org{{ loop.index }}">
+            {% else %}
+                <div class="tab-pane fade in" id="org{{ loop.index }}">
+            {% endif %}
+            {% if org == "信贷平台组" %}
+                {% include "theme/tool_set/paysvr/paysvr_tool.html" %}
+                </div>
+            {% else %}
+                    <ul id="myTab{{ loop.index }}" class="nav nav-tabs ">
+                        {% for program in programs %}
+                            {% if loop.first %}
+                            <li class="active">
+                            {% else %}
+                            <li>
+                            {% endif %}
+                            <a href="#tab{{ program.sys_program_id }}{{ loop.index }}" data-toggle="tab">{{  program.sys_program_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div id="myTabContent{{ loop.index }}" class="tab-content ">
+                        {% for program in programs %}
+                            {% if loop.first %}
+                                <div class="tab-pane fade in active" id="tab{{ program.sys_program_id }}{{ loop.index }}">
+                            {% else %}
+                                <div class="tab-pane fade" id="tab{{ program.sys_program_id }}{{ loop.index }}">
+                            {% endif %}
+                            {% if program.sys_program_name == "电销系统" %}
+                                {% include "theme/tool_set/tmms/tmms_tool.html" %}
+                            {% elif program.sys_program_name == "OA系统" %}
+                                {% include "theme/tool_set/oa/oa_tool.html" %}
+                            {% elif program.sys_program_name == "paysvr" %}
+                                {% include "theme/tool_set/paysvr/paysvr_tool.html" %}
+                            {% elif program.sys_program_name == "贷后系统" %}
+                                {% include "theme/tool_set/dh/dh_tool.html" %}
+                            {% else %}
+                                <div>开发中，敬请期待！</div>
+                            {% endif %}
+                                </div>
+                        {% endfor %}
+                    </div>
+                    </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script>
+    var new_tools_object={};
+    $(function () {
+        bind_select_init("sel_request_funcation");
+
+        $(window).resize(function () {
+            set_content_height();
+        });
+        set_content_height();
+    });
+
+    function set_content_height() {
+        $(".paysvr-content").css("height", $(window).height() - 120);
+        $(".org-content").css("height", $(window).height() - 120);
+        $(".dh-content").css("height", $(window).height() - 200);
+        $(".json-content").css("height", ($(window).height() - 250) / 2)
+    }
+
+    var json_dict = {},
+        options = {
+            mode: "code",
+            sortObjectKeys:false
+        },
+        json = {
+    };
+
+    var json_list = ['tool_request_params', 'tool_request_response'];
+    for(var json_name in json_list){
+        var container = document.getElementById(json_list[json_name]);
+        console.log(container, options, json);
+        var json_edit = new JSONEditor(container, options, json);
+        json_dict[json_list[json_name]] = json_edit;
+    }
+
+    $('#sel_request_funcation').on('changed.bs.select',function(e){
+        if(new_tools_object.hasOwnProperty(e.target.value)){
+            var temp_value = new_tools_object[e.target.value];
+            $('#tool_http_address').val(temp_value['common_tools_address']);
+            $('#tool_http_method').val(temp_value['common_tools_method']);
+            $('#tool_table_id').val(temp_value['common_tools_id']);
+            json_dict['tool_request_params'].set(temp_value['common_tools_placeholder']);
+            json_dict['tool_request_response'].set({});
+        }
+    });
+
+    function bind_select_init(obj) {
+        var tools = {{ tools | tojson }}
+            $('#'+obj).append(" <option value=\"0\" >" +"请选择" + "</option>");
+            for(var i in tools){
+                new_tools_object[tools[i]['common_tools_id']]=tools[i];
+                $('#'+obj).append(" <option value=\"" + tools[i]['common_tools_id'] + "\">" + tools[i]['common_tools_title'] + "</option>");
+        }
+        $('#'+obj).selectpicker('refresh');
+    }
+
+    function send_request() {
+        var id = $('#tool_table_id').val();
+        if($.isEmptyObject(id)){
+            toastr.warning("warning", "请选择你需要的功能！");
+            return
+
+        }
+        $('#loadingModal').modal({"data-backdrop": 'static', "keyboard": false});
+        $("#loadingModal").modal('show');
+
+        var data = deepCopy(new_tools_object[id]);
+        data['common_tools_placeholder'] = JSON.stringify(json_dict['tool_request_params'].get());
+        var request_data = JSON.stringify(data);
+        $.ajax({
+            url: "/api/case/common/request",
+            contentType: "application/json; charset=UTF-8",
+            headers: {"X-CSRFToken":"{{ csrf_token() }}"},
+            async: true,
+            jsonp: "callback",
+            type: "POST",
+            data: request_data,
+            // 成功后开启模态框
+
+            success: function (data) {
+                    //绑定值
+                    json_dict['tool_request_response'].set(data["msg"]);
+                    $("#loadingModal").modal('hide');
+            },
+            error: function () {
+                $("#loadingModal").modal('hide');
+                $("#update_warning").text("网络异常，请求失败");
+                $("#update_warning").show()
+            },
+            dataType: "json"
+        });
+
+    }
+
+    var deepCopy = function(obj){
+        var newItem = null;
+        if(typeof obj != 'object'|| obj==null){
+            return obj;	 //如果传入obj不是object或者为null就退出递归,
+        }
+        Array.isArray(obj) ? newItem = [] : newItem = {};
+
+        for(var key in obj){
+            //arguments.callee 的作用是指向正在执行的函数的指针(也就是deepCopy函数本身)
+            newItem[key] = arguments.callee(obj[key]);  //进行递归操作
+        }
+        return newItem;
+    };
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}系统设置 - 菜单列表{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>菜单列表</h1>
+</div>
+<div class="panel-body" style="padding-bottom:0px;">
+    <div class="panel panel-default">
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_name">名称</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_name">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_rule_name">路由</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_rule_name">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_order">排序</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_order">
+                        </div>
+                        <div class="col-sm-3" >
+                            <button type="button" id="btn_query" class="btn btn-primary" >查 询</button>
+                            <button type="button"  id="btn_reset" style="margin-left: 20px;"class="btn btn-primary">重 置</button>
+                            <button id="btn_add" type="button" style="margin-left: 20px;"class="btn btn-primary">新增菜单</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    <table id="tb_menu_lists" class="table-bordered"></table>
+</div>
+
+    {% include 'system/model_menu_edit.html' %}
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script>
+    $(function () {
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
+
+    });
+
+    window.operateEvents = {
+        'click.menu_lists_hidden': function (e, value, row, index) {
+            $.ajax({
+                type: "DELETE",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                url: "/api/system/menu/" + row['name'],
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+                    if (data.code != 0) {
+                        toastr.error("error", "程序发生异常，请求联系管理员");
+                        return;
+                    }
+                    $("#tb_permission").bootstrapTable('remove', {
+                        field: 'case_id',
+                        values: [row['case_id']]
+                    });
+                    $("#tb_permission").bootstrapTable('refresh');
+
+                    toastr.success("success", "隐藏成功");
+                }
+            });
+        },
+    };
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_menu_lists').bootstrapTable({
+                url: '/api/system/menu/',         //请求后台的URL（*）
+                method: 'GET',                      //请求方式（*）
+                dataType: "json",
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
+                paginationPreText: "上一页",
+                paginationNextText: "下一页",
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 25, 50],        //可供选择的每页的行数（*）
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: false,                  //是否显示所有的列
+                showRefresh: false,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: false,                //是否启用点击选中行
+                //height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                columns: [{
+                    field: 'SerialNumber',
+                    title: '序号',
+                    formatter:function (value, row, index) {
+                        return index + 1;
+                    }
+                }, {
+                    field: 'name',
+                    title: '名称',
+                }, {
+                    field: 'parent',
+                    title: '父级'
+                }, {
+                    field: 'route',
+                    title: '路由',
+                    align: 'left'
+                },{
+                    field: 'order',
+                    title: '顺序'
+                }, {
+                    field: 'operate',
+                    title: '操作',
+                    events: operateEvents,
+                    formatter: permissionFormatter,
+                    class: 'W90',
+                },]
+            });
+        };
+
+        function permissionFormatter(value, row, index) {
+            //var row_list = "";
+            //var i;
+            //for(i in row){
+            //    row_list += "" + row[i].toString() + ";";
+            //}
+            //row_list = "'" + row_list +"'";
+            //console.log(row_list);
+            return [
+                '<a href="javascript:void(0)" title="查看">',
+                '<span class=\'glyphicon glyphicon-eye-open\'></span>',
+                '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                {#'<a style="cursor: pointer" data-toggle="modal" onclick="init_menu(' + row_list + ')" data-target="#menuEdit" title="编辑">',#}
+                '<a style="cursor: pointer" data-toggle="modal" onclick="init_menu(' + row.id + ')" data-target="#menuEdit" title="编辑">',
+                '<span class=\'glyphicon glyphicon-pencil\'></span>',
+                '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                '<a class="menu_lists_hidden"  style="cursor: pointer" href="javascript:void(0)"   title="隐藏">',
+                '<span class=\'glyphicon glyphicon-remove\'></span>',
+                '</a>',
+
+            ].join('');
+        };
+
+        oTableInit.queryParams = function (params) {
+            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                name: $("#txt_name").val().trim(),
+                route: $("#txt_rule_name").val().trim(),
+                order: $("#txt_order").val().trim(),
+                page_index: (params.offset / params.limit) + 1,
+                page_size: params.limit,
+            };
+            return temp;
+        };
+
+        return oTableInit;
+    }
+    </script>
+{% endblock %}

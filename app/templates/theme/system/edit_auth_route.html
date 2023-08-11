@@ -1,0 +1,48 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} 系统设置 - 路由列表{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>路由列表</h1>
+</div>
+    <div class="col-md-11" >
+        <div class="input-group" style="margin:5px;">
+            <input id="inp-route" type="text" class="form-control" placeholder="新路由">
+            <span class="input-group-btn">
+                <a id="btn-new" class="btn btn-primary" href="/admin/route/create">添加路由
+                    <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display: none;"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div style="margin:5px;">
+        <div class="col-md-5">
+            <input class="form-control search" style="margin-bottom: 5px;" data-target="assigned" placeholder="Search for available">
+            <select multiple="" size="20" class="form-control list" data-target="assigned">
+
+            </select>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <br>
+                <a class="btn btn-primary btn-assign" href="/admin/route/assign" title="Assign" data-target="available">&gt;&gt;
+                    <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display: none;"></i>
+                </a>
+            <br>
+            <br>
+                <a class="btn btn-danger btn-assign" href="/admin/route/assign" title="Remove" data-target="available"><<
+                    <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display: none;"></i>
+                </a>
+            </div>
+        <div class="col-md-5">
+            <input class="form-control search" style="margin-bottom: 5px;" data-target="assigned" placeholder="Search for assigned">
+            <select multiple="" size="20" class="form-control list" data-target="assigned">
+                {% for route in routes %}
+                <option value="{{ route.name }}">{{ route.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endblock %}

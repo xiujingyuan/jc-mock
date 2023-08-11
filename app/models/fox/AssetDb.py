@@ -1,0 +1,77 @@
+# coding: utf-8
+from sqlalchemy import Column, DateTime, Enum, Index, String, TIMESTAMP, text
+from sqlalchemy.dialects.mysql import INTEGER, MEDIUMINT
+from sqlalchemy.ext.declarative import declarative_base
+from app import db
+
+
+class Asset(db.Model):
+    __tablename__ = 'asset'
+    __bind_key__ = "dh"
+    __table_args__ = (
+        Index('idx_late_days_status', 'asset_late_days', 'asset_status'),
+    )
+    __table_args__ = {"useexisting": True}
+
+    asset_id = Column(INTEGER(11), primary_key=True)
+    asset_item_number = Column(String(64), nullable=False, index=True)
+    asset_original_item_number = Column(String(64), nullable=False, index=True, server_default=text("''"))
+    asset_from_system = Column(String(50), nullable=False)
+    asset_from_system_name = Column(String(50))
+    asset_product_name = Column(String(64), server_default=text("''"))
+    asset_type = Column(String(60), nullable=False)
+    asset_name = Column(String(64))
+    asset_sign_at = Column(DateTime, nullable=False)
+    asset_grant_at = Column(DateTime, nullable=False)
+    asset_actual_grant_at = Column(DateTime)
+    asset_due_at = Column(DateTime, nullable=False)
+    asset_interest_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_repaid_interest_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_principal_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_repaid_principal_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_fee_amount = Column(INTEGER(11), server_default=text("'0'"))
+    asset_repaid_fee_amount = Column(INTEGER(11), server_default=text("'0'"))
+    asset_penalty_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_repaid_penalty_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_decrease_penalty_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    asset_channel = Column(String(45))
+    asset_province = Column(String(32))
+    asset_province_code = Column(MEDIUMINT(8))
+    asset_city = Column(String(32))
+    asset_city_code = Column(MEDIUMINT(8))
+    asset_status = Column(Enum('repay', 'payoff', 'late', 'lateoff', 'writeoff'), nullable=False, server_default=text("'repay'"))
+    asset_late_status = Column(Enum('m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'))
+    asset_late_days = Column(INTEGER(11), index=True, server_default=text("'0'"))
+    asset_level = Column(Enum('unknow', 'ptp', 'found1', 'found2', 'search', 'search1', 'search2', 'ptpn', 'check', 'visit', 'highrisk_cash', 'outsourcing'), server_default=text("'unknow'"))
+    asset_result = Column(Enum('unknow', 'no_answer', 'closing_down', 'power_off', 'unoccupied', 'out_service', 'refuse', 'call_reminder', 'number_changeOwner', 'telephone_settings', 'refuse_communicate', 'refused_repay', 'other'), server_default=text("'unknow'"))
+    asset_period_count = Column(INTEGER(11), server_default=text("'0'"))
+    asset_period_type = Column(String(32))
+    asset_period_days = Column(INTEGER(11))
+    asset_ref_order_type = Column(String(64), server_default=text("''"))
+    asset_outsourcing_collect_amount = Column(INTEGER(11), server_default=text("'0'"))
+    asset_collect_amount = Column(INTEGER(11), server_default=text("'0'"))
+    asset_create_at = Column(DateTime, nullable=False, index=True, server_default=text("'1000-01-01 00:00:00'"))
+    asset_create_user_id = Column(INTEGER(5), nullable=False)
+    asset_create_user_name = Column(String(10))
+    asset_update_at = Column(TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    asset_update_user_id = Column(INTEGER(5), nullable=False)
+    asset_update_user_name = Column(String(100))
+    asset_sub_type = Column(String(60))
+    asset_loan_channel = Column(String(60))
+    asset_owner = Column(String(32), server_default=text("'KN'"))
+    asset_collect_result = Column(Enum('commitrepay', 'commitrepaysome', 'refuserepay', 'bounced', 'follow', 'alllost'))
+    overdue_principal_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    overdue_penalty_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    overdue_fee_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    overdue_interest_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    recovery_interest_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    recovery_penalty_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    recovery_fee_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    recovery_principal_amount = Column(INTEGER(11), nullable=False, server_default=text("'0'"))
+    original_customer_id = Column(String(64))
+    census_register_province = Column(String(45))
+    census_register_province_code = Column(MEDIUMINT(8))
+    census_register_city = Column(String(45))
+    census_register_city_code = Column(MEDIUMINT(8))
+    census_register_county = Column(String(45))
+    census_register_county_code = Column(MEDIUMINT(8))

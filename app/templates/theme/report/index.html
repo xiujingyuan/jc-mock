@@ -1,0 +1,308 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}质量报告-月报告{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/index.css') }}">
+    <link href="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sonarqube.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme/css/report/report_index.css') }}">
+
+{% endblock %}
+
+{% block content_page_header %}
+{% endblock %}
+
+{% block page_content %}
+    <ul class="nav nav-tabs" id="myTabCase" style="margin-left: 17px;margin-top: 27px;">
+        <li class="active"><a href="#tab_story_bug" data-toggle="tab">需求/缺陷构建</a></li>
+        <li><a href="#tab_coverage" data-toggle="tab">代码覆盖情况</a></li>
+        <li><a href="#tab_build" data-toggle="tab">上线情况</a></li>
+        <li><a href="#tab_sonar" data-toggle="tab">代码质量</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_story_bug">
+            <!--需求/缺陷/日均构建情况-->
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-8 col-md-offset-2"><div class="col-sm-2" style="width:70px;">
+                            <select id="sel_year" name="year" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="2019">2019</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="width: 30px;margin-top: 7px;">年</div>
+                        <div class="col-sm-2" style="width:70px;">
+                            <select id="sel_month" name="month" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="12">12</option>
+                                <option value="11">11</option>
+                                <option value="10">10</option>
+                                <option value="09">09</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 7px;">月需求/缺陷/日均构建数统计图</div></div>
+                </div>
+                <div id="story_bug_build_month" style="width: 1200px;height:500px;"></div>
+            </div>
+            <!--需求/缺陷/日均构建情况结束-->
+        </div>
+        <div class="tab-pane" id="tab_coverage">
+            <!--覆盖率情况开始-->
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-8 col-md-offset-1">
+                        <div class="col-sm-2" style="width:140px;">
+                            <select id="sel_coverage_program" name="country" class="form-control selectpicker " data-style="btn-primary" style="width: 130px;">
+                                {% for program in sys_programs %}
+{#                                    {% if program.sys_program_id in (4, 9, 15, 17, 23) %}#}
+{#                                        <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>#}
+{#                                    {% endif %}#}
+                                    {% if program.sys_program_id not in (5, 6, 11) %}
+                                        <option value="{{ program.sys_program_id }}">{{ program.sys_program_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="width: 60px;margin-top: 7px;">项目</div>
+                        <div class="col-sm-2" style="width: 70px;margin-left: -20px;">
+                            <select id="sel_coverage_year" name="year" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="2019">2019</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="width: 30px;margin-top: 7px;">年</div>
+                        <div class="col-sm-2" style="width: 70px;">
+                            <select id="sel_coverage_month" name="month" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="12">12</option>
+                                <option value="11">11</option>
+                                <option value="10">10</option>
+                                <option value="09">09</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 7px;">月覆盖率统计图</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="margin:10px auto;height: 2px;border: 1px #797979 solid;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">平均覆盖率</label><br><label class="coverage_month_data" id="average_coverage">68.82%</label></div>
+                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">测试覆盖分支数</label><br><label class="coverage_month_data" id="branch_count">17</label></div>
+                        <div class="col-md-3 coverage_row_right"><label class="coverage_month_label">未统计覆盖分支</label><br><label class="coverage_month_data" id="miss_count">2</label></div>
+                        <div class="col-md-3"><label class="coverage_month_label">代码变更总行数</label><br><label class="coverage_month_data" id="change_code">146330</label></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="margin:10px auto;height: 2px;border: 1px #797979 solid;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table id="tb_program_coverage_month"></table>
+                    </div>
+                </div>
+            </div>
+            <!--覆盖率情况结束-->
+        </div>
+        <div class="tab-pane" id="tab_build">
+            <!--上线情况开始-->
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-8 col-md-offset-2"><div class="col-sm-2" style="width:70px;">
+                            <select id="sel_tag_year" name="year" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="2019">2019</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="width: 30px;margin-top: 7px;">年</div>
+                        <div class="col-sm-2" style="width:70px;">
+                            <select id="sel_tag_month" name="month" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="12">12</option>
+                                <option value="11">11</option>
+                                <option value="10">10</option>
+                                <option value="09">09</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 7px;">月上线情况统计</div></div>
+                </div>
+                <div id="tag_online_month" style="width: 1200px;height:500px;"></div>
+            </div>
+            <!--上线情况结束-->
+        </div>
+        <div class="tab-pane" id="tab_sonar">
+            <!--代码质量开始-->
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-8 col-md-offset-1">
+                        <div class="col-sm-2" style="width: 70px;margin-left: -20px;">
+                            <select id="sel_sonar_year" name="year" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="width: 30px;margin-top: 7px;">年</div>
+                        <div class="col-sm-2" style="width: 70px;">
+                            <select id="sel_sonar_month" name="month" class="form-control selectpicker" data-style="btn-primary" style="width: 60px;">
+                                <option value="12">12</option>
+                                <option value="11">11</option>
+                                <option value="10">10</option>
+                                <option value="09">09</option>
+                                <option value="08">08</option>
+                                <option value="07">07</option>
+                                <option value="06">06</option>
+                                <option value="05">05</option>
+                                <option value="04">04</option>
+                                <option value="03">03</option>
+                                <option value="02">02</option>
+                                <option value="01">01</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 7px;">月代码质量统计图</div></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <table id="tb_sonar"></table>
+                    </div>
+                    <div class="col-md-5">
+                        <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List" role="grid" tabindex="0" style="box-sizing: border-box; direction: ltr; height: auto; position: relative; will-change: transform; overflow: auto; outline: none;margin-top: 20px;">
+                            <div class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup" style="width: auto; height: 600px; max-height: 600px;position: relative;">
+                                <div style="height: 143px; left: 0px; position: absolute; top: 0px; width: 100%;background: #9e9e9e;">
+                                    <div class="boxed-group project-card" data-key="biz-repay" style="height: 143px;">
+                                        <div class="boxed-group-header clearfix">
+                                            <div class="project-card-header">
+                                                <h2 class="project-card-name">biz-repay</h2>
+                                                <div class="project-card-quality-gate big-spacer-left">
+                                                    <div class="project-card-measure-inner">
+                                                        <span class="level level-OK level-small">Passed</span>
+                                                    </div>
+                                                </div>
+                                                <div class="project-card-header-right"></div>
+                                            </div>
+                                            <div class="project-card-dates note text-right">
+                                                <span class="big-spacer-left">Last analysis: December 9, 2019, 4:41 PM</span>
+                                            </div>
+                                        </div>
+                                        <div class="boxed-group-inner">
+                                            <div class="project-card-measures">
+                                                <div class="project-card-measure" data-key="reliability_rating">
+                                                    <div class="project-card-measure-inner">
+                                                        <div class="project-card-measure-number">
+                                                            <span class="spacer-right">42</span>
+                                                            <span class="rating rating-D">D</span>
+                                                        </div>
+                                                        <div class="project-card-measure-label-with-icon">
+                                                            <svg class="little-spacer-right vertical-bottom" height="16" version="1.1" viewBox="0 0 16 16" width="16" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                                                                <path d="M11 9h1.3l.5.8.8-.5-.8-1.3H11v-.3l2-2.3V3h-1v2l-1 1.2V5c-.1-.8-.7-1.5-1.4-1.9L11 1.8l-.7-.7-1.8 1.6-1.8-1.6-.7.7 1.5 1.3C6.7 3.5 6.1 4.2 6 5v1.1L5 5V3H4v2.3l2 2.3V8H4.2l-.7 1.2.8.5.4-.7H6v.3l-2 1.9V14h1v-2.4l1-1C6 12 7.1 13 8.4 13h.8c.7 0 1.4-.3 1.8-.9.3-.4.3-.9.2-1.4l.9.9V14h1v-2.8l-2-1.9V9zm-2 2H8V6h1v5z" style="fill: currentcolor;">
+                                                                </path>
+                                                            </svg>Bugs
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="project-card-measure" data-key="security_rating">
+                                                    <div class="project-card-measure-inner">
+                                                        <div class="project-card-measure-number">
+                                                            <span class="spacer-right">43</span>
+                                                            <span class="rating rating-D">D</span>
+                                                        </div>
+                                                        <div class="project-card-measure-label-with-icon">
+                                                            <svg class="little-spacer-right vertical-bottom" height="16" version="1.1" viewBox="0 0 16 16" width="16" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                                                                <path d="M10.8 5H6V3.9a2.28 2.28 0 0 1 2-2.5 2.22 2.22 0 0 1 1.8 1.2.48.48 0 0 0 .7.2.48.48 0 0 0 .2-.7A3 3 0 0 0 8 .4a3.34 3.34 0 0 0-3 3.5v1.2a2.16 2.16 0 0 0-2 2.1v4.4a2.22 2.22 0 0 0 2.2 2.2h5.6a2.22 2.22 0 0 0 2.2-2.2V7.2A2.22 2.22 0 0 0 10.8 5zm-2.2 5.5v1.2H7.4v-1.2a1.66 1.66 0 0 1-1.1-1.6A1.75 1.75 0 0 1 8 7.2a1.71 1.71 0 0 1 .6 3.3z" style="fill: currentcolor;">
+                                                                </path>
+                                                            </svg>
+                                                            Vulnerabilities
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="project-card-measure" data-key="sqale_rating">
+                                                <div class="project-card-measure-inner">
+                                                    <div class="project-card-measure-number">
+                                                        <span class="spacer-right">38k</span>
+                                                        <span class="rating rating-C">C</span>
+                                                    </div>
+                                                    <div class="project-card-measure-label-with-icon">
+                                                        <svg class="little-spacer-right vertical-bottom" height="16" version="1.1" viewBox="0 0 16 16" width="16" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                                                            <path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm-.5 5.5h.9v.9h-.9v-.9zm-3.8.2c-.1 0-.2-.1-.2-.2 0-.4.1-1.2.6-2S5.3 4.2 5.6 4c.2 0 .3 0 .3.1l1.3 2.3c0 .1 0 .2-.1.2-.1.2-.2.3-.3.5-.1.2-.2.4-.2.5 0 .1-.1.2-.2.2l-2.7-.1zM9.9 12c-.3.2-1.1.5-2 .5-.9 0-1.7-.3-2-.5-.1 0-.1-.2-.1-.3l1.3-2.3c0-.1.1-.1.2-.1.2.1.3.1.5.1s.4 0 .5-.1c.1 0 .2 0 .2.1l1.3 2.3c.2.2.2.3.1.3zm2.5-4.1L9.7 8c-.1 0-.2-.1-.2-.2 0-.2-.1-.4-.2-.5 0-.1-.2-.3-.3-.4-.1 0-.1-.1-.1-.2l1.3-2.3c.1-.1.2-.1.3-.1.3.2 1 .7 1.5 1.5s.6 1.6.6 2c0 0-.1.1-.2.1z" style="fill: currentcolor;">
+                                                            </path>
+                                                        </svg>
+                                                        Code Smells
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="project-card-measure" data-key="coverage">
+                                                <div class="project-card-measure-inner">
+                                                    <div class="project-card-measure-number">
+                                                        <span class="spacer-right">
+                                                            <svg class="donut-chart" height="24" width="24">
+                                                                <g transform="translate(0, 0)">
+                                                                    <g transform="translate(12, 12)">
+                                                                        <path d="M7.347880794884119e-16,-12L5.51091059616309e-16,-9Z" style="fill: rgb(0, 170, 0);">
+                                                                        </path>
+                                                                        <path d="M7.347880794884119e-16,-12A12,12,0,1,1,-7.347880794884119e-16,12A12,12,0,1,1,7.347880794884119e-16,-12M6.3403325984522e-15,-9A9,9,0,1,0,-6.3403325984522e-15,9A9,9,0,1,0,6.3403325984522e-15,-9Z" style="fill: rgb(212, 51, 63);">
+                                                                        </path>
+                                                                    </g>
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                        <span>0.0%</span>
+                                                    </div>
+                                                    <div class="project-card-measure-label">Coverage</div>
+                                                </div>
+                                            </div>
+                                                <div class="project-card-measure" data-key="duplicated_lines_density">
+                                                    <div class="project-card-measure-inner">
+                                                        <div class="project-card-measure-number">
+                                                            <span class="spacer-right">
+                                                                <div class="duplications-rating duplications-rating-C"></div>
+                                                            </span>
+                                                            <span>6.9%</span>
+                                                        </div>
+                                                        <div class="project-card-measure-label">Duplications</div>
+                                                    </div>
+                                                </div>
+                                                <div class="project-card-measure project-card-ncloc" data-key="ncloc">
+                                                    <div class="project-card-measure-inner pull-right">
+                                                        <div class="project-card-measure-number">
+                                                            <span>66k</span>
+                                                            <span class="spacer-left">
+                                                                <div class="size-rating">M</div>
+                                                            </span>
+                                                        </div>
+                                                        <div class="project-card-measure-label">
+                                                            <div class="project-card-languages">
+                                                                <span>Java</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--代码质量结束-->
+        </div>
+    </div>
+
+    </div>
+    <div class="container-fluid" style="margin: 10px;">
+        <div id="rllfx" style="width: 600px;height:400px;"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <!-- 新添加代码  start -->
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="{{ cdn_host }}moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="{{ cdn_host }}bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='theme/js/report/report_index.js') }}"></script>
+{% endblock %}

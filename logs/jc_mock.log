@@ -1,0 +1,590 @@
+2023-08-08 15:58:43 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 15:58:43 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 15:58:43 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 15:58:43 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 15:59:07 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 529, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 15:59:07 INFO _log: 127.0.0.1 - - [08/Aug/2023 15:59:07] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 15:59:07 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 15:59:07 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 529, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 15:59:53 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 15:59:53 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 15:59:53 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 15:59:53 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 15:59:57 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 530, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 15:59:57 INFO _log: 127.0.0.1 - - [08/Aug/2023 15:59:57] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 15:59:57 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 15:59:57 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 530, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 16:00:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:00:49 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:00:49 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:00:49 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:00:53 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 530, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:00:53 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:00:53] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:00:53 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:00:53 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 530, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 16:02:53 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:02:53 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:02:53 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:02:53 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:02:56 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 530, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:02:56 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:02:56] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:02:56 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:02:56 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 530, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 16:04:57 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:04:57 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:04:57 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:04:57 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:05:02 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 529, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:05:02 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:05:02] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:05:02 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:05:02 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 529, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 16:05:37 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:05:37 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:05:37 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:05:37 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:05:43 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 529, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 39, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:05:43 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:05:43] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:05:43 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:05:43 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 529, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 39, in request_post']
+2023-08-08 16:09:19 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:09:19 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:09:19 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:09:19 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:09:28 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 530, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 40, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:09:28 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:09:28] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:09:28 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:09:28 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 530, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 40, in request_post']
+2023-08-08 16:17:34 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:17:34 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:17:34 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:17:34 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:17:39 ERROR log_exception: Exception on /api/dh/pk/individual [GET]
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/dh_api.py", line 439, in get_pk_individual
+    individual_data = oversea_pk_individual_bean()
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 530, in oversea_pk_individual_bean
+    borrower_name = request_post(oversea_url, param1)
+  File "/Users/yuanxiujing/git_project/jc_test/jc-mock/app/api/dh/individual.py", line 40, in request_post
+    return text
+UnboundLocalError: local variable 'text' referenced before assignment
+2023-08-08 16:17:39 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:17:39] "[35m[1mGET /api/dh/pk/individual HTTP/1.1[0m" 500 -
+2023-08-08 16:17:40 ERROR _failed_send: Sentry responded with an error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)> (url: https://sentry.kuainiujinke.com/api/230/store/)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1276, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1322, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1271, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 1031, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py", line 969, in send
+    self.connect()
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 37, in connect
+    self.sock = ssl.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1441, in wrap_socket
+    return context.wrap_socket(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 512, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1070, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py", line 1341, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/threaded.py", line 165, in send_sync
+    super(ThreadedHTTPTransport, self).send(url, data, headers)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/transport/http.py", line 38, in send
+    response = urlopen(
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 66, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/Users/yuanxiujing/git_project/jc_test/framework-test/venv/lib/python3.10/site-packages/raven/utils/http.py", line 46, in https_open
+    return self.do_open(ValidHTTPSConnection, req)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:997)>
+2023-08-08 16:17:40 ERROR _log_failed_submission: ["UnboundLocalError: local variable 'text' referenced before assignment", '  File "flask/app.py", line 2446, in wsgi_app', '  File "flask/app.py", line 1951, in full_dispatch_request', '  File "flask/app.py", line 1820, in handle_user_exception', '  File "flask/_compat.py", line 39, in reraise', '  File "flask/app.py", line 1949, in full_dispatch_request', '  File "flask/app.py", line 1935, in dispatch_request', '  File "app/api/dh/dh_api.py", line 439, in get_pk_individual', '  File "app/api/dh/individual.py", line 530, in oversea_pk_individual_bean', '  File "app/api/dh/individual.py", line 40, in request_post']
+2023-08-08 16:19:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:19:28 INFO log_info: 传入国家：CN，environment=test
+2023-08-08 16:19:28 INFO log_info: self.dir=/Users/yuanxiujing/git_project/jc_test/jc-mock/resource
+2023-08-08 16:19:28 INFO _log:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2023-08-08 16:19:33 INFO get_pk_individual: {'code': 0, 'msg': 'success', 'data': {'education_level_id': 4, 'marital_status_id': 2, 'language_id': 2, 'occupation_id': 1, 'pay_period_id': 3, 'self_income_id': 2, 'family_income_id': 1, 'job_description': '工作介绍工作介绍haha', 'company_name': '公司名称公司名称', 'name_encrypt': 'enc_04_4106649505695801344_081', 'father_name_encrypt': 'enc_04_4121223410603270144_170', 'phone_encrypt': 'enc_01_4589324770239591424_123', 'gender': 'female', 'birthday': '20/01/2021', 'id_number_encrypt': 'enc_02_4589324769417507840_155', 'email_encrypt': 'enc_05_4589324771866981376_417', 'contacts': [{'contact_name_encrypt': 'enc_04_4121214878315192320_975', 'contact_phone_encrypt': 'enc_01_4589324775054652416_595', 'contact_relationship': 1}, {'contact_name_encrypt': 'enc_04_4121216649620103168_867', 'contact_phone_encrypt': 'enc_01_4589324776648487936_967', 'contact_relationship': 2}, {'contact_name_encrypt': 'enc_04_3767049646904969216_254', 'contact_phone_encrypt': 'enc_01_4589324777638343680_752', 'contact_relationship': 3}, {'contact_name_encrypt': 'enc_04_4121225989127151616_399', 'contact_phone_encrypt': 'enc_01_4589324779081184256_180', 'contact_relationship': 4}]}}
+2023-08-08 16:19:33 INFO _log: 127.0.0.1 - - [08/Aug/2023 16:19:33] "[37mGET /api/dh/pk/individual HTTP/1.1[0m" 200 -

@@ -1,0 +1,353 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "theme/_macros.html" as macros %}
+
+{% block title %}执行日志{% endblock %}
+
+{% block head %}
+
+{{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ cdn_host }}bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link href="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.css" rel="stylesheet">
+    <link href="{{ cdn_host }}toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gaea/gaea.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index/check.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jsoneditor/jsoneditor.css') }}">
+    <script src="{{ cdn_host }}jquery/2.0.3/jquery.js"></script>
+
+    <style>
+    .W90 .th-inner {
+        width:90px !important;
+    }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+ <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_case_id">执行ID</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_run_id">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_name">用例ID</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_case_id">
+                        </div>
+
+                        <label class="control-label col-sm-1" for="txt_case_description">前置ID</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_prev_id">
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_case_from_system">初始化ID</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_case_init_id">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_device">用例名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_case_name">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_case_exec_group">复杂用例名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_case_exec_group">
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="...">
+                        <label class="control-label col-sm-1" for="txt_case_from_system">所属系统</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_case_from_system">
+                        </div>
+                        <div class="col-sm-offset-8">
+                            <button type="button" id="btn_query" class="btn btn-primary" >查 询</button>
+                            <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-primary">重 置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+     <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#modal_history" id="modal_history_btn" ></button>
+     <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#modal_history_table" id="modal_history_btn_tbl" ></button>
+        <table id="tb_case"></table>
+    </div>
+    {% include 'case/modal_history.html' %}
+    {% include 'case/modal_history_table.html' %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+    <script src="{{ cdn_host }}bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auto-line-number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script src="{{ cdn_host }}jsoneditor/5.27.0/jsoneditor.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap_confirm.js') }}"></script>
+    <script>
+        $(function () {
+
+        //1.初始化Table
+        //var oTable = new TableInit();
+        //oTable.Init();
+
+        //2.初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
+
+    });
+
+        var options = {
+            mode: "code"
+        };
+
+        var json = {
+        };
+
+        var json_dict = {};
+
+        var json_list = ['json_exec_history','json_history_case_actual_value','json_history_case_except_value','json_history_case_api_params',
+            'json_history_case_api_expression','json_history_case_sql_params','json_history_case_vars','json_case_init_api_params',
+            'json_case_init_api_expression','json_case_init_sql_params','json_history_prev_api_params',
+            'json_history_prev_api_expression','json_history_prev_params','json_history_prev_expression','json_history_prev_sql_params',
+            'json_history_prev_sql_expression'];
+
+        for(var json_name in json_list){
+
+            var container = document.getElementById(json_list[json_name]);
+            var json_edit = new JSONEditor(container, options, json);
+            json_dict[json_list[json_name]] = json_edit;
+        }
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_case').bootstrapTable({
+                url: '/api/case/history/search/',         //请求后台的URL（*）
+                method: 'GET',                      //请求方式（*）
+                dataType: "json",
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                    //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber:1,                       //初始化加载第一页，默认第一页
+                paginationPreText:"上一页",
+                paginationNextText:"下一页",
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 25, 50],        //可供选择的每页的行数（*）
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: false,                  //是否显示所有的列
+                showRefresh: false,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: false,                //是否启用点击选中行
+                //height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+
+                columns: [ {
+                    field: 'operate',
+                    title: '操作',
+                    events: operateEvents,
+                    formatter: caseFormatter,
+                    class: 'W90',
+                },{
+                    field: 'run_id',
+                    title: '执行ID',
+                    align:'left'
+
+                },{
+                    field: 'history_case_id',
+                    title: '用例ID',
+                    align:'left',
+                    formatter:caseForword
+                },{
+                    field: 'case_init_id',
+                    title: '初始化ID',
+                    align:'left'
+
+                },{
+                    field: 'prev_id',
+                    title: '前置ID',
+                    align:'left'
+
+                },
+                    {
+                    field: 'history_case_result',
+                    title: '执行结果',
+                    align:'left',
+                    formatter:exeChange,
+
+                },{
+                    field: 'history_case_name',
+                    title: '用例名称',
+                    align:'left'
+                }, {
+                    field: 'prev_flag',
+                    title: '前置标志',
+                    align:'left'
+                }, {
+                    field: 'case_init_name',
+                    title: '初始化名称',
+                    align: 'left'
+                }, {
+                    field: 'history_case_from_system',
+                    title: '所属系统',
+                    align: 'left',
+                    formatter:subStringField
+
+                }, {
+                    field: 'history_case_except_value',
+                    title: '预期值',
+                    align: "left",
+                    formatter:subStringField
+                }, {
+                    field: 'history_case_actual_value',
+                    title: '实际值',
+                    align: 'left',
+                    formatter:subStringField
+                },]
+            });
+        };
+        //得到查询的参数
+        oTableInit.queryParams = function (params) {
+            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                run_id: $("#txt_run_id").val().trim(),
+                case_id: $("#txt_case_id").val().trim(),
+                prev_id: $("#txt_prev_id").val().trim(),
+                init_id:$("#txt_case_init_id").val().trim(),
+                case_is_exec: $("#is_run").val(),
+                case_name: $("#txt_case_name").val().trim(),
+                case_from_system: $("#txt_case_from_system").val().trim(),
+                case_exec_group:$("#txt_case_exec_group").val().trim(),
+                //case_exec_group_priority: "main",
+                page_index: (params.offset / params.limit) + 1,
+                page_size: params.limit,
+            };
+            return temp;
+        };
+        return oTableInit;
+    };
+
+    function subStringField(value,row,index) {
+        value = parseJsonToString(value)
+        if($.isEmptyObject(value)==false && value.length>20){
+            return value.substr(0,20) + '...'
+        }else{
+            return value
+        }
+
+    }
+    function parseJsonToString(value,row,index){
+        if($.isEmptyObject((value)==false) && typeof value =="object" ){
+            return JSON.stringify(value)
+        }else{
+            return value
+        }
+    }
+
+    function exeChange(value, row, index) {
+        if(value == "1")
+        {
+            return "<font color='green'>成功</font>"
+        }
+        else{
+            return "<font color='red'>失败</font>"
+        }
+    }
+
+    $("#btn_query").click(function () {
+        var params={
+            offset:0,
+            limit:10
+        }
+        var oTable = new TableInit();
+        oTable.queryParams(params);
+        oTable.Init();
+        $("#tb_case").bootstrapTable('selectPage',1);
+    });
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13) {
+                $('#btn_query').triggerHandler('click');
+            }
+        });
+
+        function jsonFormatter(value, row, index) {
+                return "<pre style='white-space: pre-wrap;border:0px;background-color: transparent;'>"+JSON.stringify(value, null, 2)+"</pre>"
+            };
+
+
+    function caseFormatter(value, row, index) {
+                return [
+                    '<a class="case_run_detail" href="javascript:void(0)" title="详情">',
+                    '<span>详情</span>',
+                    '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                    '<a class="case_run_detail_table" href="javascript:void(0)" title="表格">',
+                    '<span>表格</span>',
+                        '</a>'
+
+                ].join('');
+            };
+
+    function caseForword(value,row,index){
+
+            return [
+
+                '<a class="case_update" style="cursor: pointer" href="../case/' + row.history_case_id + '/" title="'+row.history_case_id+'/">'+ row.history_case_id + '</a>',
+            ].join('');
+    }
+
+
+
+    $("#btn_reset").click(function () {
+        $("#txt_case_id").val("");
+        $("#txt_case_init_id").val("");
+        $("#txt_case_name").val("");
+        $("#txt_prev_id").val("");
+        $("#txt_case_init_id").val("");
+        $("#txt_case_exec_group").val("");
+        $("#txt_case_from_system").val("");
+        $("#txt_run_id").val("");
+        //$("#tb_case").bootstrapTable('refresh');
+    });
+
+    var ButtonInit = function () {
+        var oInit = new Object();
+        var postdata = {};
+
+        oInit.Init = function () {
+            //初始化页面上面的按钮事件
+        };
+
+        return oInit;
+    };
+
+    window.operateEvents = {
+
+        'click .case_run_detail': function (e, value, row, index) {
+            bind_history_data(row)
+            $("#modal_history_btn").click()
+        },
+        'click .case_run_detail_table':function(e, value, row, index) {
+            bind_history_data_table(row)
+            $("#modal_history_btn_tbl").click()
+        }
+    };
+    </script>
+
+
+{% endblock %}

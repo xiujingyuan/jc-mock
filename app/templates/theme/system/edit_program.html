@@ -1,0 +1,201 @@
+{% extends "theme/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}用户设置 - 项目列表{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>项目列表</h1>
+</div>
+<div class="panel-body" style="padding-bottom:0px;">
+    <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_permission_name">名称</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_permission_name">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_rule_name">规则名称</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_rule_name">
+                        </div>
+
+                        <label class="control-label col-sm-1" for="txt_permission_description">描述</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txt_permission_description">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" id="btn_query" class="btn btn-primary" >查 询</button>
+                            <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-primary">重 置</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    <div id="toolbar" class="btn-group">
+            <button id="btn_add" type="button" class="btn btn-primary">新增权限</button>
+        </div>
+    <table id="tb_program"></table>
+</div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ cdn_host }}bootstrap-table/1.13.0/bootstrap-table.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-table-zh-CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script>
+    $(function () {
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
+
+    });
+
+    window.operateEvents = {
+        'click.program_del': function (e, value, row, index) {
+            $.ajax({
+                type: "DELETE",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                url: "/api/setting/program" + row['name'],
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+
+                    if (data.code != 0) {
+                        toastr.error("error", "程序发生异常，请求联系管理员");
+                        return;
+                    }
+                    $("#tb_permission").bootstrapTable('remove', {
+                        field: 'case_id',
+                        values: [row['case_id']]
+                    });
+                    $("#tb_permission").bootstrapTable('refresh');
+
+                    toastr.success("success", "删除成功");
+                }
+            });
+
+
+
+        },
+        'click.program_view': function (e, value, row, index) {
+            $.ajax({
+                type: "GET",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+
+                url: "/api/setting/program" + row['name'],
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+
+                    if (data.code != 0) {
+                        toastr.error("error", data.msg);
+                        return;
+                    }
+                    toastr.success("success", data.msg);
+
+                }
+            });
+        },
+        'click.program_update': function (e, value, row, index) {
+            $.ajax({
+                type: "POST",
+                headers: {"X-CSRFToken": "{{ csrf_token() }}"},
+                url: "/api/setting/program",
+                data: row,
+                contentType: "application/json; charset=UTF-8",
+                success: function (data) {
+
+                    if (data.code != 0) {
+                        toastr.error("error", data.msg);
+                        return;
+                    }
+                    toastr.success("success", data.msg);
+                }
+            });
+        },
+    };
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_program').bootstrapTable({
+                url: '/api/setting/program',         //请求后台的URL（*）
+                //data: {{ permissions }},
+                method: 'GET',                      //请求方式（*）
+                dataType: "json",
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
+                paginationPreText: "上一页",
+                paginationNextText: "下一页",
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 25, 50],        //可供选择的每页的行数（*）
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: false,                  //是否显示所有的列
+                showRefresh: false,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: false,                //是否启用点击选中行
+                //height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                columns: [{
+                    field: 'SerialNumber',
+                    title: '序号',
+                    formatter:function (value, row, index) {
+                        return index + 1;
+                    }
+                }, {
+                    field: 'sys_program_name',
+                    title: '项目名',
+                }, {
+                    field: 'sys_program_group_name',
+                    title: '所属项目组'
+                }, {
+                    field: 'sys_program_desc',
+                    title: '描述',
+                    align: 'left'
+                }, {
+                    field: 'parent_name',
+                    title: '父级项目',
+                    align: 'left'
+                }, {
+                    field: 'operate',
+                    title: '操作',
+                    events: operateEvents,
+                    formatter: permissionFormatter,
+                    class: 'W90',
+                },]
+            });
+        };
+
+        function permissionFormatter(value, row, index) {
+            return [
+                '<a class="program_view" href="javascript:void(0)" title="查看">',
+                '<span class=\'glyphicon glyphicon-eye-open\'></span>',
+                '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                '<a class="program_update" style="cursor: pointer" href="program/' + row.name + '/" title="编辑">',
+                '<span class=\'glyphicon glyphicon-pencil\'></span>',
+                '</a>&nbsp;&nbsp;&nbsp;&nbsp;',
+                '<a class="program_delete"  style="cursor: pointer" href="javascript:void(0)"   title="删除">',
+                '<span class=\'glyphicon glyphicon-trash\'></span>',
+                '</a>',
+
+            ].join('');
+        };
+        return oTableInit;
+    }
+    </script>
+{% endblock %}
